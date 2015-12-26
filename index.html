@@ -1,57 +1,163 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Diargam.builder by tjunussov</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Diargam.builder</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/tjunussov/diargam.builder" class="btn">View on GitHub</a>
-      <a href="https://github.com/tjunussov/diargam.builder/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/tjunussov/diargam.builder/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+    <link href="favicon.ico" rel="icon" type="image/x-icon" /> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Diagram Builder - canvas</title> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/wx-bpm-dvb.css" rel="stylesheet" type="text/css" />
+    
+    <script src="js/wx-bpm-dvb.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui-1.8.9.min.js"></script>
+    <script src="js/jquery.contextmenu.js"></script>
+    <style>
+		 body {
+			-webkit-user-select:none; 
+			-moz-user-select:none;
+			background-color:buttonface;
+		}
+		
+		
+		.wx-bpm-tool {
+			
+		}
+		.wx-bpm-tool-node {
+			display:inline-block; width:25px; height:25px;  border:1px outset #fff; background-color:#f0f0f0;  background-repeat:no-repeat; background-position:center center; cursor:pointer;
+		}
+		
+		.wx-bpm-tool-node:active {
+			  border:1px inset #fff;
+			  background-position:5px 5px;
+		}
+		
+		.wx-bpm-tool-node:hover {
+			 background-color:#fff;
+		}
+		
+		.wx-bpm-tool-node.ui-draggable-dragging {
+			background-color:#fff;	
+			cursor:crosshair !important;
+			border:1px dotted #000;
+			opacity:0.5;
+		}
+		
+		#notepad {
+			border:1px inset;
+		}
 
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		
+		#toolbox {
+			font:11px normal Arial, Helvetica, sans-serif; 
+			text-transform:capitalize; 
+			color:#aaa; 
+			border:1px solid #bbb; 
+			padding:5px;
+			background-color:#f0f0f0; 
+		}
+		
+		#propertybar {
+			margin-top:5px;
+			border:1px solid #bbb; 
+			padding:5px;
+			background-color:#f0f0f0; 
+		}
+		
+		#navbar {
+			border:1px solid #bbb; 
+			padding:5px;
+			background-color:#f0f0f0; 
+			margin-bottom:5px;
+			line-height:0;
+			letter-spacing:5px;
+			
+		}
+		
+		but {
+			display: -webkit-inline-box; width:24px; height:24px;  border:1px outset #fff; background-color:#f0f0f0;  background-repeat:no-repeat; background-position:center center; cursor:pointer;	
+			
+		}
+		but:active { border:1px inset #fff; }
+		but:hover { background-color:#fff; }
+		.icon { background-image:url(img/icons_sprites_off.png); background-repeat:no-repeat; background-position:-356px 3px; }
+		.icon-new { background-position:-68px -52px; }
+		.icon-open { background-position:-141px -52px; }
+		.icon-browse { background-position:3px -52px; }
+		.icon-save { background-position:3px 3px; }
+		.icon-deploy { background-position:-68px 3px; }
+		.icon-undo { background-position:-213px 3px; }
+		.icon-redo { background-position:-213px -52px; }
+		.icon-view { background-position:-141px 3px; }
+		.icon-snap { background-position:-286px 3px; }
+		.icon-settings { background-position:-286px -52px; }
+		 but.disabled, but.disabled:active {  border:1px solid #777; opacity:0.3; background-color:#f0f0f0; cursor:default;	 }
+    </style>
+</head>
+<body>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+	<div style="padding-left:45px; padding-bottom:200px;">
+        <div id="navbar">
+        	<but class="icon icon-new" title="New" onclick="DV.toolCreate();"></but><but id="toolOpen" class="icon icon-open" title="Open" onclick="DV.toolOpen();"></but><but class="icon icon-browse" title="Browse" onclick="DV.toolBrowse();"></but><but class="icon icon-save disabled" title="Save"></but><but class="icon icon-deploy" title="Deploy"  onclick="DV.toolDeploy();"></but>
+        	<but class="icon icon-browse" title="Instance" onclick="DV.toolBrowse();"></but>
+            <but class="icon icon-snap disabled" title="Snap To Grid"></but>
+            <but class="icon icon-undo disabled" title="Undo"></but><but class="icon icon-redo disabled" title="Redo"></but>
+            <but class="icon icon-view disabled" title="View"></but><but class="icon icon-settings" onclick="DV.toolSettings();"  title="Settings"></but>
+            <but class="icon disabled" title="Copy"></but><but class="icon disabled" title="Paste"></but>
+            
+        </div>
+        
+        <div id="toolbox" style="float:left; margin-left:-45px;">
+        
+        </div>
+ 
+		<div id="notepad" style="float:left; width:100%; overflow:scroll; height:500px;">
+        
+        </div>
+        
+        <div style="clear:both;"></div>
+        
+        <div id="propertybar" style="height:150px; margin-bottom:-200px;">
+        	<button class="wx-tool-button">Donwload source</button>
+        </div>
+        
+        
+    </div> 
+    
+    <div id="dialog" style="display:none; position:absolute; top:30px; left:500px; width:300px;z-index: 100;">
+        <popup>
+            <div class="content" id="dialog-content" style="height:300px; padding:20px;"></div>
+            <a href="#" onclick="dialog.hide();" class="close" title="close"></a>
+        </popup>
+    </div>
+    <div id="facebox_overlay" style="background-color: black; display: none; opacity: 0.2;position: fixed; top: 0px; height: 100%; left: 0px; width: 100%; z-index: 99;"></div--	>
+    
+<script> 
+	$(function() {
+		//$('#toolbox').xslt("data/jpdl-3.1.xsd", "xsd_parser.xsl");
+		DV.registry = {
+			BROWSE_URL:'data/definition.list.xml',
+			DEPLOY_URL:this.serverURL+'/bpm/deploy/',
+			DEFINITION_URL:'data/',
+			INSTANCE_URL:'data/'
+		};
+		
+		DV.toolbox("#toolbox");
+		DV.setup("notepad");
+/*		DV.init('data/process-definitionX.xml');
+		DV.loadInstance('data/process-instanceX.xml');*/
+		DV.init('data/definition.xml');
+		//DV.loadInstance('data/instance.xml');
+		
+		
+		
+		//DV.toolBrowse();
+	});
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/tjunussov/diargam.builder">Diargam.builder</a> is maintained by <a href="https://github.com/tjunussov">tjunussov</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
+	function startCreateNewNode(){
+		console.log(event.srcElement.offsetLeft + ":" + event.srcElement.offsetTop);
+	}
+</script> 
+</body>
 </html>
+
