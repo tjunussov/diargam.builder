@@ -1,0 +1,8 @@
+<process-definition id="1" name="OpenNewPeriod" version="1" label="Открытие нового периода" width="500" height="500">
+	<start-state id="2" name="START" label="Начало" x="200" y="200" width="120" height="40">
+		<transition id="1182882" to="END">
+			<label x="5" y="-10"></label>
+		</transition>
+	</start-state>
+	<end-state id="3" name="END" label="Завершение" x="300" y="300" width="120" height="40"/>
+</process-definition>

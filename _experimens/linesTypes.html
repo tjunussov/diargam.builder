@@ -1,0 +1,26 @@
+<html>
+<head>
+<script>
+ 
+function drawPath() {
+	var canvas=document.getElementById("myCanvas");
+	var c=canvas.getContext("2d");
+ 
+	c.beginPath();
+	c.moveTo(100,20);
+	c.lineTo(200,160); // line 1
+	c.quadraticCurveTo(230, 190, 250,120); // quadratic curve
+	c.bezierCurveTo(290, 20, 300, 200, 400, 150); // bezier curve
+	c.lineTo(500, 90); // line 2
+ 
+	c.lineWidth=5;
+	c.strokeStyle="#0000ff";
+	c.stroke();		
+}
+ 
+</script>
+</head>
+<body onload="drawPath()">
+	<canvas id="myCanvas" width="578" height="200"></canvas>
+</body>
+</html>

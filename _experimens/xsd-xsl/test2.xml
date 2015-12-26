@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="xml2xsd.xsl"?>
+<process-definition id="1446659" name="PreTechReq" version="8" label="Оформление предварительных технических условий" width="3350" height="876" shiftLeft="168">
+	<start-state id="1446660" name="START" label="Начало" x="-168" y="264" width="145" height="37">
+		<transition id="1446661" to="INIT" label="" name="">
+			<label x="5" y="-10"></label>
+		</transition>
+	</start-state>
+	<task-node id="1446662" name="REGISTER" label="Прием заявления" x="48" y="348" width="145" height="37">
+		<event id="1446663" type="node-leave">
+			<script id="1446664">action text</script>
+		</event>
+		<transition id="1446665" name="OK" to="PRINT_APPLICATION" label="ОК">
+			<label x="-6" y="-9"></label>
+			<event id="1446666" type="transition">
+				<script id="1446667">action text</script>
+			</event>
+		</transition>
+		<transition id="1446668" name="CANCEL" to="END_CANCELED" label="Отмена">
+			<label x="-19" y="-16"></label>
+		</transition>
+		<task id="1446669" name="register" label="Приём заявления"></task>
+	</task-node>
+	<task-node id="1446670" name="UPLOAD_DOCUMENTS" label="Загрузка файлов" x="48" y="516" width="145" height="37">
+		<transition id="1446671" name="OK" to="PTG_PREPROCESSING" label="ОК">
+			<label x="-71" y="-6"></label>
+			<bendpoint w1="216" h1="0" w2="0" h2="252"></bendpoint>
+		</transition>
+		<transition id="1446672" name="RETURN" to="REGISTER" label="Вернуть">
+			<label x="-36" y="-20"></label>
+			<bendpoint w1="-96" h1="0" w2="-96" h2="84"></bendpoint>
+			<bendpoint w1="-97" h1="-123" w2="-97" h2="57"></bendpoint>
+		</transition>
+		<task id="1446673" name="upload" label="Загрузка файлов"></task>
+	</task-node>
+	<task-node id="1446674" name="PTG_PREPROCESSING" label="Первичная обработка" x="264" y="264" width="145" height="37">
+		<event id="1446675" type="node-enter">
+			<script id="1446676">action text</script>
+		</event>
+		<transition id="1446677" name="BRANCH_HEAD" to="BRANCH_HEAD" label="В РЭС">
+			<label x="5" y="-10"></label>
+			<bendpoint w1="0" h1="-72" w2="-168" h2="0"></bendpoint>
+		</transition>
+		<transition id="1446678" name="SGP" to="SGP" label="В СГП">
+			<label x="27" y="-9"></label>
+			<bendpoint w1="0" h1="72" w2="-168" h2="0"></bendpoint>
+		</transition>
+		<task id="1446679" name="ptg.preprocessing" label="Первичная обработка"></task>
+	</task-node>
+	<task-node id="1446680" name="BRANCH_HEAD" label="РЭС" x="432" y="192" width="145" height="37">
+		<transition id="1446681" name="APPROVE" to="FORK_NES_UPR_VES" label="Одобрить">
+			<label x="-27" y="-17"></label>
+			<event id="1446682" type="transition">
+				<script id="1446683">action text</script>
+			</event>
+		</transition>
+		<transition id="1446684" name="REJECT" to="FORK_NES_UPR_VES" label="Отказать">
+			<label x="-59" y="-15"></label>
+			<bendpoint w1="0" h1="-42" w2="-204" h2="-42"></bendpoint>
+			<bendpoint w1="204" h1="-42" w2="0" h2="-42"></bendpoint>
+			<event id="1446685" type="transition">
+				<script id="1446686">action text</script>
+			</event>
+		</transition>
+		<task id="1446687" name="branch.head" label="Обработка РЭС"></task>
+	</task-node>
+	<task-node id="1446688" name="NES" label="ОДС НЭС" x="1224" y="84" width="145" height="37">
+		<event id="1446689" type="node-enter">
+			<script id="1446690">action text</script>
+		</event>
+		<transition id="1446691" name="APPROVE" to="DNES_CONFIRM" label="Одобрить">
+			<label x="-24" y="-14"></label>
+			<event id="1446692" type="transition">
+				<script id="1446693">action text</script>
+			</event>
+		</transition>
+		<transition id="1446694" name="REJECT" to="DNES_CONFIRM" label="Отказать">
+			<label x="-17" y="3"></label>
+			<bendpoint w1="0" h1="42" w2="-204" h2="42"></bendpoint>
+			<bendpoint w1="205" h1="42" w2="1" h2="42"></bendpoint>
+			<event id="1446695" type="transition">
+				<script id="1446696">action text</script>
+			</event>
+		</transition>
+		<task id="1446697" name="odsnes" label="Обработка НЭС"></task>
+	</task-node>
+	<task-node id="1446698" name="VES" label="ОДС ВЭС" x="1068" y="300" width="145" height="37">
+		<transition id="1446699" name="SECTORS" to="FORK_VES_SECTORS" label="Рекомендации секторов">
+			<label x="-23" y="-9"></label>
+		</transition>
+		<transition id="1446700" name="APPROVE" to="DVES_CONFIRM" label="Одобрить">
+			<label x="-24" y="3"></label>
+			<event id="1446701" type="transition">
+				<script id="1446702">action text</script>
+			</event>
+		</transition>
+		<transition id="1446703" name="REJECT" to="DVES_CONFIRM" label="Отказать">
+			<label x="-16" y="-17"></label>
+			<bendpoint w1="0" h1="-42" w2="-360" h2="-42"></bendpoint>
+			<bendpoint w1="360" h1="-42" w2="0" h2="-42"></bendpoint>
+			<event id="1446704" type="transition">
+				<script id="1446705">action text</script>
+			</event>
+		</transition>
+		<task id="1446706" name="odsves" label="Обработка ВЭС"></task>
+	</task-node>
+	<decision id="1446707" name="NES_OR_DNES" label="НЭС" x="1008" y="84" width="145" height="37">
+		<transition id="1446708" name="DNES" to="DNES_CONFIRM" label="На ДНЭС">
+			<label x="-10" y="-18"></label>
+			<bendpoint w1="0" h1="-15" w2="-420" h2="-126"></bendpoint>
+			<bendpoint w1="420" h1="-126" w2="0" h2="-126"></bendpoint>
+		</transition>
+		<transition id="1446709" name="NES" to="NES" label="На НЭС">
+			<label x="-12" y="-12"></label>
+		</transition>
+	</decision>
+	<task-node id="1446710" name="SGP" label="СГП" x="432" y="336" width="145" height="37">
+		<event id="1446711" type="node-leave">
+			<script id="1446712">action text</script>
+		</event>
+		<transition id="1446713" name="REJECT" to="FORK_NES_UPR_VES" label="Отказать">
+			<label x="-54" y="24"></label>
+			<event id="1446714" type="transition">
+				<script id="1446715">action text</script>
+			</event>
+		</transition>
+		<transition id="1446716" name="APPROVE" to="FORK_NES_UPR_VES" label="Одобрить">
+			<label x="-99" y="5"></label>
+			<bendpoint w1="204" h1="0" w2="0" h2="144"></bendpoint>
+			<event id="1446717" type="transition">
+				<script id="1446718">action text</script>
+			</event>
+		</transition>
+		<task id="1446719" name="odsnes.sgp" label="Рекомендации СГП"></task>
+	</task-node>
+	<task-node id="1446720" name="PS" label="Сектор ПС" x="888" y="492" width="145" height="37">
+		<transition id="1446721" name="DONE" to="COMBINE_VES_SECTORS" label="Выполнено">
+			<label x="-15" y="-54"></label>
+			<bendpoint w1="0" h1="96" w2="-180" h2="0"></bendpoint>
+		</transition>
+		<task id="1446722" name="odsves.ps" label="Обработка Сектором ПС ОДС ВЭС"></task>
+	</task-node>
+	<task-node id="1446723" name="VL" label="Сектор ВЛ" x="1068" y="492" width="145" height="37">
+		<transition id="1446724" name="DONE" to="COMBINE_VES_SECTORS" label="Выполнено">
+			<label x="-12" y="-11"></label>
+		</transition>
+		<task id="1446725" name="odsves.vl" label="Обработка Сектором ВЛ ОДС ВЭС"></task>
+	</task-node>
+	<task-node id="1446726" name="RS" label="Сектор РС" x="1248" y="492" width="145" height="37">
+		<transition id="1446727" name="DONE" to="COMBINE_VES_SECTORS" label="Выполнено">
+			<label x="-15" y="-53"></label>
+			<bendpoint w1="0" h1="96" w2="180" h2="0"></bendpoint>
+		</transition>
+		<task id="1446728" name="odsves.rs" label="Обработка Сектором РС ОДС ВЭС"></task>
+	</task-node>
+	<task-node id="1446729" name="PTG_REGISTRATION" label="ПТГ (оформление)" x="2472" y="264" width="145" height="37">
+		<event id="1446730" type="node-enter">
+			<script id="1446731">action text</script>
+		</event>
+		<transition id="1446732" name="APPROVE" to="PRINT_APPROVE" label="Одобрить">
+			<label x="28" y="-16"></label>
+			<bendpoint w1="0" h1="-85" w2="-186" h2="-1"></bendpoint>
+			<event id="1446733" type="transition">
+				<script id="1446734">action text</script>
+			</event>
+		</transition>
+		<transition id="1446735" name="REJECT" to="PRINT_REJECT" label="Отказать">
+			<label x="38" y="1"></label>
+			<bendpoint w1="0" h1="84" w2="-186" h2="0"></bendpoint>
+			<event id="1446736" type="transition">
+				<script id="1446737">action text</script>
+			</event>
+		</transition>
+		<task id="1446738" name="ptg.registration" label="ПТГ (оформление)"></task>
+	</task-node>
+	<task-node id="1446739" name="DNES_CONFIRM" label="Департамент НЭС" x="1428" y="84" width="145" height="37">
+		<transition id="1446740" name="APPROVE" to="COMBINE_NES_UPR_VES" label="Одобрить">
+			<label x="-92" y="2"></label>
+			<bendpoint w1="10" h1="0" w2="0" h2="0"></bendpoint>
+			<event id="1446741" type="transition">
+				<script id="1446742">action text</script>
+			</event>
+		</transition>
+		<transition id="1446743" name="REJECT" to="COMBINE_NES_UPR_VES" label="Отказать">
+			<label x="-25" y="-18"></label>
+			<bendpoint w1="60" h1="-42" w2="-144" h2="-150"></bendpoint>
+			<bendpoint w1="204" h1="-42" w2="0" h2="-150"></bendpoint>
+			<event id="1446744" type="transition">
+				<script id="1446745">action text</script>
+			</event>
+		</transition>
+		<task id="1446746" name="dnes.confirm" label="Согласование с Директором Департамента НЭС"></task>
+	</task-node>
+	<task-node id="1446747" name="DVES_CONFIRM" label="Департамент ВЭС" x="1428" y="300" width="145" height="37">
+		<transition id="1446748" name="REJECT" to="COMBINE_NES_UPR_VES" label="Отказать">
+			<label x="-94" y="-21"></label>
+			<bendpoint w1="204" h1="0" w2="0" h2="108"></bendpoint>
+			<event id="1446749" type="transition">
+				<script id="1446750">action text</script>
+			</event>
+		</transition>
+		<transition id="1446751" name="APPROVE" to="COMBINE_NES_UPR_VES" label="Одобрить">
+			<label x="4" y="9"></label>
+			<bendpoint w1="0" h1="42" w2="-204" h2="150"></bendpoint>
+			<bendpoint w1="204" h1="42" w2="0" h2="150"></bendpoint>
+			<event id="1446752" type="transition">
+				<script id="1446753">action text</script>
+			</event>
+		</transition>
+		<task id="1446754" name="dves.confirm" label="Согласование с Директором Департамента ВЭС"></task>
+	</task-node>
+	<task-node id="1446755" name="UPR_CONFIRM" label="УПР" x="1428" y="192" width="145" height="37">
+		<transition id="1446756" name="REJECT" to="COMBINE_NES_UPR_VES" label="Отказать">
+			<label x="-21" y="-19"></label>
+			<bendpoint w1="0" h1="-42" w2="-204" h2="-42"></bendpoint>
+			<bendpoint w1="204" h1="-42" w2="0" h2="-42"></bendpoint>
+			<event id="1446757" type="transition">
+				<script id="1446758">action text</script>
+			</event>
+		</transition>
+		<transition id="1446759" name="APPROVE" to="COMBINE_NES_UPR_VES" label="Одобрить">
+			<label x="-26" y="3"></label>
+			<event id="1446760" type="transition">
+				<script id="1446761">action text</script>
+			</event>
+		</transition>
+		<task id="1446762" name="upr.confirm" label="Согласование с Начальником УПР"></task>
+	</task-node>
+	<decision id="1446763" name="INIT" label="Инициализация" x="48" y="264" width="145" height="37">
+		<event id="1446764" type="node-enter">
+			<script id="1446765">action text</script>
+		</event>
+		<transition id="1446766" name="DONE" to="REGISTER" label="Выполнено">
+			<label x="-14" y="-10"></label>
+		</transition>
+	</decision>
+	<task-node id="1446767" name="PRINT_REJECT" label="Оформление отказа" x="2664" y="348" width="132" height="37">
+		<transition id="1446768" name="CLOSE" to="END_REJECTED" label="Завершить">
+			<label x="-16" y="-16"></label>
+		</transition>
+		<task id="1446769" name="print.reject" label="Оформление отказа"></task>
+	</task-node>
+	<fork id="1446770" name="FORK_VES_SECTORS" label="Распараллелить" x="1068" y="396" width="145" height="37">
+		<transition id="1446771" name="PS" to="PS" label="На Сектор ПС">
+			<label x="26" y="-7"></label>
+			<bendpoint w1="-180" h1="0" w2="0" h2="-96"></bendpoint>
+		</transition>
+		<transition id="1446772" name="VL" to="VL" label="На Сектор ВЛ">
+			<label x="-6" y="-11"></label>
+		</transition>
+		<transition id="1446773" name="RS" to="RS" label="На Сектор РС">
+			<label x="-47" y="-8"></label>
+			<bendpoint w1="180" h1="0" w2="0" h2="-96"></bendpoint>
+		</transition>
+	</fork>
+	<join id="1446774" name="COMBINE_VES_SECTORS" label="Ожидание ответов" x="1068" y="588" width="145" height="37">
+		<transition id="1446775" to="VES" label="" name="">
+			<label x="106" y="-18"></label>
+			<bendpoint w1="0" h1="66" w2="0" h2="354"></bendpoint>
+			<bendpoint w1="-276" h1="66" w2="-276" h2="354"></bendpoint>
+			<bendpoint w1="-276" h1="-288" w2="-276" h2="0"></bendpoint>
+		</transition>
+	</join>
+	<task-node id="1446776" name="PRINT_APPLICATION" label="Печать заявления" x="48" y="432" width="145" height="36">
+		<transition id="1446777" name="OK" to="UPLOAD_DOCUMENTS" label="Ок">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="1446778" name="RETURN" to="REGISTER" label="Вернуться">
+			<label x="-28" y="-7"></label>
+			<bendpoint w1="134" h1="-1" w2="134" h2="83"></bendpoint>
+			<bendpoint w1="134" h1="-83" w2="134" h2="1"></bendpoint>
+		</transition>
+		<task id="1446779" name="print" label="Печать заявления"></task>
+	</task-node>
+	<task-node id="1446780" name="UD_CONFIRM" label="Юридический отдел" x="636" y="756" width="145" height="36">
+		<transition id="1446781" name="REJECT" to="COMBINE_NES_UPR_VES" label="Отказать">
+			<label x="-157" y="4"></label>
+			<bendpoint w1="0" h1="42" w2="-1200" h2="531"></bendpoint>
+			<bendpoint w1="996" h1="41" w2="0" h2="605"></bendpoint>
+			<event id="1446782" type="transition">
+				<script id="1446783">action text</script>
+				<script id="1446784">action text</script>
+			</event>
+		</transition>
+		<transition id="1446785" name="APPROVE" to="COMBINE_NES_UPR_VES" label="Одобрить">
+			<label x="-761" y="-16"></label>
+			<bendpoint w1="996" h1="2" w2="0" h2="566"></bendpoint>
+			<event id="1446786" type="transition">
+				<script id="1446787">action text</script>
+			</event>
+		</transition>
+		<task id="1446788" name="ud.confirm" label="Согласование с Начальником ЮО"></task>
+	</task-node>
+	<task-node id="1446789" name="KRG_CONFIRM" label="КРГ" x="2040" y="264" width="132" height="36">
+		<transition id="1446790" name="APPROVE" to="DR_CONFIRM" label="Одобрить">
+			<label x="-24" y="-20"></label>
+			<event id="1446791" type="transition">
+				<script id="1446792">action text</script>
+			</event>
+		</transition>
+		<transition id="1446793" name="REJECT" to="DR_CONFIRM" label="Отказать">
+			<label x="-6" y="3"></label>
+			<bendpoint w1="-1" h1="42" w2="-187" h2="42"></bendpoint>
+			<bendpoint w1="211" h1="42" w2="1" h2="42"></bendpoint>
+			<event id="1446794" type="transition">
+				<script id="1446795">action text</script>
+			</event>
+		</transition>
+		<task id="1446796" name="krg.confirm" label="Согласование с Начальником КРГ"></task>
+	</task-node>
+	<task-node id="1446797" name="PRINT_APPROVE" label="Оформление тех. условия" x="2664" y="180" width="132" height="36">
+		<transition id="1446798" name="DONE" to="CREATE_ENTITY" label="Завершить">
+			<label x="-19" y="-13"></label>
+		</transition>
+		<task id="1446799" name="print.approve" label="Оформление тех. условия"></task>
+	</task-node>
+	<join id="1446802" name="COMBINE_NES_UPR_VES" label="Ожидание ответов" x="1632" y="192" width="145" height="37">
+		<transition id="1446803" name="DONE" to="KRG_CONFIRM" label="Готово">
+			<label x="-83" y="-15"></label>
+			<bendpoint w1="402" h1="0" w2="0" h2="-72"></bendpoint>
+		</transition>
+	</join>
+	<fork id="1446804" name="FORK_NES_UPR_VES" label="Распараллелить" x="636" y="192" width="145" height="36">
+		<transition id="1446805" name="NES_OR_DNES" to="NES_OR_DNES" label="На ОДС ВЭС">
+			<label x="-33" y="-1"></label>
+			<bendpoint w1="0" h1="-108" w2="-168" h2="0"></bendpoint>
+		</transition>
+		<transition id="1446806" name="VES" to="VES" label="На ОДС ВЭС">
+			<label x="-8" y="-43"></label>
+			<bendpoint w1="0" h1="108" w2="-228" h2="0"></bendpoint>
+		</transition>
+		<transition id="1446807" name="UPR_CONFIRM" to="UPR_CONFIRM" label="На УПР">
+			<label x="-21" y="-10"></label>
+		</transition>
+		<transition id="1446808" name="UD_CONFIRM" to="UD_CONFIRM" label="На Юр. отдел">
+			<label x="5" y="-10"></label>
+		</transition>
+	</fork>
+	<task-node id="1446809" name="DR_CONFIRM" label="Департамент Реализации" x="2244" y="264" width="145" height="36">
+		<transition id="1446810" name="REJECT" to="PTG_REGISTRATION" label="Отказать">
+			<label x="-4" y="-16"></label>
+			<bendpoint w1="0" h1="-42" w2="-228" h2="-42"></bendpoint>
+			<bendpoint w1="228" h1="-42" w2="0" h2="-42"></bendpoint>
+			<event id="1446811" type="transition">
+				<script id="1446812">action text</script>
+			</event>
+		</transition>
+		<transition id="1446813" name="APPROVE" to="PTG_REGISTRATION" label="Одобрить">
+			<label x="-26" y="3"></label>
+			<event id="1446814" type="transition">
+				<script id="1446815">action text</script>
+			</event>
+		</transition>
+		<task id="1446816" name="dr.confirm" label="Согласование с Директором ДР"></task>
+	</task-node>
+	<decision id="1446817" name="CREATE_ENTITY" label="База Данных" x="2856" y="180" width="132" height="36">
+		<event id="1446818" type="node-enter">
+			<script id="1446819">action text</script>
+		</event>
+		<transition id="1446820" name="OK" to="END_APPROVED" label="ProcessDefinition.PreTechReq.8.nodes.CREATE_ENTITY.transitions.OK.name">
+			<label x="-11" y="-16"></label>
+		</transition>
+	</decision>
+	<end-state id="1446821" name="END_APPROVED" label="Одобрено" x="3048" y="180" width="132" height="37"></end-state>
+	<end-state id="1446822" name="END_CANCELED" label="Отменено" x="-168" y="348" width="145" height="37"></end-state>
+	<end-state id="1446823" name="END_REJECTED" label="Отказано" x="3048" y="348" width="132" height="36"></end-state>
+</process-definition>

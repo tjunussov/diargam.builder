@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-definition id="3142160" name="InDocumentation" version="10" label="Входящая корреспонденция" width="2222" height="589" shiftLeft="240">
+	<node id="3142161" name="inform" label="Инфо" x="192" y="48" width="132" height="36">
+		<event id="3142162" type="node-enter">
+			<action id="3142163">action text</action>
+		</event>
+		<transition id="3142165" name="toNext" to="GD_OR_DD_OR_SH" label="Далее">
+			<label x="5" y="-10"></label>
+		</transition>
+	</node>
+	<node id="3142166" name="notify" label="Уведомление" x="444" y="228" width="132" height="36">
+		<event id="3142167" type="node-enter">
+			<action id="3142168">action text</action>
+		</event>
+		<transition id="3142170" name="toDD" to="departmentDirector" label="Директору департамента">
+			<label x="-22" y="-17"></label>
+		</transition>
+	</node>
+	<start-state id="3142171" name="Start" label="Старт" x="-240" y="48" width="132" height="36">
+		<transition id="3142172" to="office" label="" name="">
+			<label x="5" y="-10"></label>
+			<event id="3142173" type="transition">
+				<script id="3142174">action text</script>
+			</event>
+		</transition>
+	</start-state>
+	<task-node id="3142175" name="office" label="Канцелярия" x="-240" y="228" width="132" height="36">
+		<event id="3142176" type="before-signal">
+			<action id="3142177">action text</action>
+		</event>
+		<transition id="3142179" name="Cancel" to="Cancel" label="Отменить">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="3142180" name="OK" to="isOfficeHead?" label="Продолжить">
+			<label x="-28" y="-16"></label>
+			<event id="3142181" type="transition">
+				<script id="3142182">action text</script>
+			</event>
+		</transition>
+		<task id="3142183" name="office" label="Регистрация"></task>
+	</task-node>
+	<task-node id="3142184" name="generalDirector" label="Генеральный директор" x="444" y="48" width="132" height="36">
+		<event id="3142185" type="before-signal">
+			<action id="3142186">action text</action>
+		</event>
+		<transition id="3142188" name="toNext" to="notify" label="Отправить">
+			<label x="4" y="-12"></label>
+		</transition>
+		<task id="3142189" name="generalDirector" label="Рассмотрение"></task>
+	</task-node>
+	<task-node id="3142190" name="departmentDirector" label="Директор департамента" x="636" y="228" width="169" height="36">
+		<event id="3142191" type="node-enter">
+			<action id="3142192">action text</action>
+		</event>
+		<event id="3142194" type="before-signal">
+			<action id="3142195">action text</action>
+		</event>
+		<transition id="3142197" name="toNext" to="per_OR_head_OR_DD_OR_zam" label="Отправить">
+			<label x="-24" y="-18"></label>
+		</transition>
+		<task id="3142198" name="departmentDirector" label="Рассмотрение"></task>
+	</task-node>
+	<task-node id="3142199" name="head" label="Начальник" x="900" y="372" width="133" height="36">
+		<event id="3142200" type="node-enter">
+			<action id="3142201">action text</action>
+		</event>
+		<event id="3142203" type="before-signal">
+			<action id="3142204">action text</action>
+		</event>
+		<transition id="3142206" name="toNext" to="per_OR_head_OR_DD_OR_zam" label="На исполнение">
+			<label x="-38" y="-3"></label>
+			<bendpoint w1="-87" h1="-2" w2="-87" h2="142"></bendpoint>
+			<bendpoint w1="-87" h1="-111" w2="-87" h2="33"></bendpoint>
+		</transition>
+		<task id="3142207" name="head" label="Исполнение"></task>
+	</task-node>
+	<task-node id="3142208" name="performer" label="Исполнитель" x="1164" y="228" width="133" height="36">
+		<event id="3142209" type="before-signal">
+			<action id="3142210">action text</action>
+		</event>
+		<transition id="3142212" name="OK" to="end_OR_office" label="Выполнено">
+			<label x="5" y="-10"></label>
+		</transition>
+		<task id="3142213" name="performer" label="На исполнение"></task>
+	</task-node>
+	<decision id="3142214" name="GD_OR_DD_OR_SH" label="ГД или ДД или Рук.Апп?" x="192" y="228" width="133" height="36">
+		<transition id="3142215" name="toGD" to="generalDirector" label="Генеральному директору">
+			<label x="-27" y="-18"></label>
+		</transition>
+		<transition id="3142216" name="toNext" to="notify" label="Далее">
+			<label x="-38" y="-18"></label>
+		</transition>
+		<transition id="3142217" name="toStaffHead" to="staffHead" label="ProcessDefinition.InDocumentation.10.nodes.GD_OR_DD_OR_SH.transitions.toStaffHead.name">
+			<label x="5" y="-10"></label>
+		</transition>
+	</decision>
+	<decision id="3142218" name="per_OR_head_OR_DD_OR_zam" label="Куда?" x="864" y="228" width="205" height="36">
+		<transition id="3142219" name="toPerformer" to="performer" label="На исполнение">
+			<label x="-38" y="-17"></label>
+			<event id="3142220" type="transition">
+				<script id="3142221">action text</script>
+			</event>
+		</transition>
+		<transition id="3142222" name="toHead" to="head" label="На исполнение">
+			<label x="-46" y="-11"></label>
+			<event id="3142223" type="transition">
+				<script id="3142224">action text</script>
+			</event>
+		</transition>
+		<transition id="3142225" name="toDD" to="departmentDirector" label="Директору департамента">
+			<label x="-52" y="-16"></label>
+			<bendpoint w1="-130" h1="-132" w2="116" h2="-132"></bendpoint>
+			<bendpoint w1="-246" h1="-133" w2="0" h2="-133"></bendpoint>
+		</transition>
+		<transition id="3142226" name="toDDZam" to="deptDirZam" label="На рассмотрение заместителю">
+			<label x="-56" y="-20"></label>
+		</transition>
+	</decision>
+	<decision id="3142227" name="end_OR_office" label="Канц. или ответное письмо" x="1164" y="384" width="132" height="36">
+		<transition id="3142228" name="toHead" to="headOut" label="На согласование начальнику">
+			<label x="-73" y="-15"></label>
+			<bendpoint w1="227" h1="0" w2="-1" h2="156"></bendpoint>
+			<event id="3142229" type="transition">
+				<script id="3142230">action text</script>
+			</event>
+		</transition>
+		<transition id="3142231" name="toOffice" to="officeCheck" label="На проверку">
+			<label x="3" y="-6"></label>
+		</transition>
+	</decision>
+	<task-node id="3142232" name="headOut" label="Начальник(Ответное письмо)" x="1392" y="228" width="132" height="36">
+		<event id="3142233" type="node-enter">
+			<action id="3142234">action text</action>
+		</event>
+		<event id="3142236" type="before-signal">
+			<action id="3142237">action text</action>
+		</event>
+		<transition id="3142239" name="toJurist" to="jurist" label="в Юр.отдел">
+			<label x="-43" y="-15"></label>
+		</transition>
+		<transition id="3142240" name="toLowerHead" to="headOut" label="На доработку">
+			<label x="-22" y="-17"></label>
+			<bendpoint w1="-1" h1="-86" w2="-1" h2="-86"></bendpoint>
+			<bendpoint w1="47" h1="-86" w2="47" h2="-86"></bendpoint>
+			<bendpoint w1="47" h1="-49" w2="47" h2="-49"></bendpoint>
+			<event id="3142241" type="transition">
+				<script id="3142242">action text</script>
+			</event>
+		</transition>
+		<transition id="3142243" name="toUpperHead" to="headOut" label="На согласование">
+			<label x="-38" y="-16"></label>
+			<bendpoint w1="-1" h1="-85" w2="-1" h2="-85"></bendpoint>
+			<bendpoint w1="-49" h1="-85" w2="-49" h2="-85"></bendpoint>
+			<bendpoint w1="-49" h1="-51" w2="-49" h2="-51"></bendpoint>
+			<event id="3142244" type="transition">
+				<script id="3142245">action text</script>
+			</event>
+		</transition>
+		<transition id="3142246" name="back" to="performer" label="На доработку">
+			<label x="-32" y="-16"></label>
+			<event id="3142247" type="transition">
+				<script id="3142248">action text</script>
+			</event>
+		</transition>
+		<task id="3142249" name="headOut" label="Согласование"></task>
+	</task-node>
+	<task-node id="3142250" name="officeOut" label="Канцелярия(Ответное письмо)" x="1848" y="228" width="132" height="36">
+		<event id="3142251" type="before-signal">
+			<action id="3142252">action text</action>
+		</event>
+		<transition id="3142254" name="OK" to="End(Answered)" label="Выполнено">
+			<label x="5" y="-10"></label>
+		</transition>
+		<task id="3142255" name="officeOut" label="Регистрация"></task>
+	</task-node>
+	<task-node id="3142256" name="jurist" label="Юр. отдел" x="1632" y="228" width="133" height="36">
+		<event id="3142257" type="before-signal">
+			<action id="3142258">action text</action>
+		</event>
+		<transition id="3142260" name="OK" to="officeOut" label="Одобрено">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="3142261" name="back" to="headOut" label="На доработку">
+			<label x="-27" y="-17"></label>
+			<bendpoint w1="0" h1="80" w2="240" h2="80"></bendpoint>
+			<bendpoint w1="-115" h1="79" w2="125" h2="79"></bendpoint>
+		</transition>
+		<transition id="3142262" name="toGeneralDirector" to="generalDirectorOut" label="Генеральному директору">
+			<label x="5" y="-10"></label>
+		</transition>
+		<task id="3142263" name="jurist" label="Проверка"></task>
+	</task-node>
+	<task-node id="3142264" name="generalDirectorOut" label="Генеральный директор(Ответное письмо)" x="1632" y="96" width="132" height="36">
+		<event id="3142265" type="before-signal">
+			<action id="3142266">action text</action>
+		</event>
+		<transition id="3142268" name="OK" to="officeOut" label="Одобрено">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="3142269" name="back" to="headOut" label="На доработку">
+			<label x="5" y="-10"></label>
+		</transition>
+		<task id="3142270" name="generalDirectorOut" label="Согласование"></task>
+	</task-node>
+	<task-node id="3142271" name="officeCheck" label="Канцелярия(Проверка)" x="1164" y="552" width="132" height="36">
+		<event id="3142272" type="before-signal">
+			<action id="3142273">action text</action>
+		</event>
+		<transition id="3142275" name="OK" to="End" label="Выполнено">
+			<label x="-24" y="-13"></label>
+		</transition>
+		<transition id="3142276" name="back" to="performer" label="На доработку">
+			<label x="-29" y="-8"></label>
+			<bendpoint w1="-104" h1="2" w2="-104" h2="326"></bendpoint>
+			<bendpoint w1="-105" h1="-246" w2="-105" h2="78"></bendpoint>
+		</transition>
+		<task id="3142277" name="officeCheck" label="Проверка"></task>
+	</task-node>
+	<task-node id="3142278" name="officeHead" label="Канцелярия(Начальник)" x="-24" y="48" width="132" height="36">
+		<event id="3142279" type="before-signal">
+			<action id="3142280">action text</action>
+		</event>
+		<transition id="3142282" name="back" to="office" label="На доработку">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="3142283" name="OK" to="inform" label="Отправить">
+			<label x="-26" y="-14"></label>
+			<event id="3142284" type="transition">
+				<script id="3142285">action text</script>
+			</event>
+		</transition>
+		<task id="3142286" name="officeHead" label="Проверка"></task>
+	</task-node>
+	<decision id="3142287" name="isOfficeHead?" label="Начальнику канц.?" x="-24" y="228" width="132" height="36">
+		<transition id="3142288" name="OK" to="inform" label="Далее">
+			<label x="5" y="-10"></label>
+			<event id="3142289" type="transition">
+				<script id="3142290">action text</script>
+			</event>
+		</transition>
+		<transition id="3142291" name="toOfficeHead" to="officeHead" label="Начальнику канцелярии">
+			<label x="5" y="-10"></label>
+		</transition>
+	</decision>
+	<task-node id="3142292" name="deptDirZam" label="Заместитель ДД" x="900" y="48" width="132" height="36">
+		<event id="3142293" type="before-signal">
+			<action id="3142294">action text</action>
+		</event>
+		<transition id="3142296" name="toNext" to="per_OR_head_OR_DD_OR_zam" label="Отправить">
+			<label x="2" y="-11"></label>
+			<bendpoint w1="86" h1="-1" w2="86" h2="-157"></bendpoint>
+			<bendpoint w1="86" h1="124" w2="86" h2="-32"></bendpoint>
+		</transition>
+		<task id="3142297" name="deptDirZam" label="Рассмотрение"></task>
+	</task-node>
+	<task-node id="3142298" name="staffHead" label="Руководитель аппарата" x="444" y="384" width="132" height="36">
+		<event id="3142299" type="before-signal">
+			<action id="3142300">action text</action>
+		</event>
+		<transition id="3142302" name="toNext" to="notify" label="Отправить">
+			<label x="3" y="-11"></label>
+		</transition>
+		<task id="3142303" name="staffHead" label="Рассмотрение"></task>
+	</task-node>
+	<end-state id="3142304" name="End(Answered)" label="Конец" x="1848" y="384" width="132" height="36"></end-state>
+	<end-state id="3142305" name="Cancel" label="Отмена" x="-240" y="384" width="132" height="36"></end-state>
+	<end-state id="3142306" name="End" label="Конец" x="1392" y="552" width="132" height="36"></end-state>
+</process-definition>

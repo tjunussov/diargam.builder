@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="xml2xsd.xsl"?>
+<process-definition id="1182880" name="OpenNewPeriod" version="1" label="Открытие нового периода" width="629" height="355">
+	<start-state id="1182881" name="START" label="Начало" x="108" y="24" width="132" height="36">
+		<transition id="1182882" to="OPEN_NEW_PERIOD" label="" name="">
+			<label x="5" y="-10"></label>
+		</transition>
+	</start-state>
+	<decision id="1182883" name="OPEN_NEW_PERIOD" label="Открытие периода" x="108" y="108" width="132" height="36">
+		<event id="1182884" type="node-enter">
+			<script id="1182885">action text</script>
+		</event>
+		<transition id="1182886" name="OK" to="RESULT" label="ОК">
+			<label x="12" y="-6"></label>
+		</transition>
+		<transition id="1182887" name="ERROR" to="ERROR" label="Ошибка">
+			<label x="-42" y="-6"></label>
+		</transition>
+	</decision>
+	<task-node id="1182888" name="ERROR" label="Ошибка" x="204" y="192" width="132" height="36">
+		<transition id="1182889" name="CANCEL" to="END_UNSUCCESSFUL" label="Отменить">
+			<label x="5" y="-10"></label>
+		</transition>
+		<transition id="1182890" name="RETRY" to="OPEN_NEW_PERIOD" label="Повторить попытку">
+			<label x="9" y="22"></label>
+			<bendpoint w1="-1" h1="-84" w2="95" h2="0"></bendpoint>
+		</transition>
+		<task id="1182891" name="error" label="Произошла ошибка"></task>
+	</task-node>
+	<task-node id="1182892" name="RESULT" label="Результат" x="12" y="192" width="132" height="36">
+		<transition id="1182893" name="CLOSE" to="END_SUCCESSFUL" label="Закрыть">
+			<label x="5" y="-10"></label>
+		</transition>
+		<task id="1182894" name="results" label="Период открыт"></task>
+	</task-node>
+	<end-state id="1182895" name="END_SUCCESSFUL" label="Завершение (удачно)" x="12" y="276" width="132" height="36"></end-state>
+	<end-state id="1182896" name="END_UNSUCCESSFUL" label="Завершение (неудачно)" x="204" y="276" width="132" height="36"></end-state>
+</process-definition>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jbpm-log>
+	<process-instance processDefinition="PreTechReq" processDefinitionId="PreTechReq" id="1485171" version="1" start="2010-11-09 16:45:21" end="" isSuspended="false">
+		<token id="1485172" start="2010-11-09 16:45:21" end="" node="1446804" isAbleToReactivateParent="true" isLocked="false" isRoot="true" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+			<logs>
+				<ProcessInstanceCreateLog id="1485184" date="2010-11-09 16:45:21" />
+				<SignalLog id="1485185" date="2010-11-09 16:45:21" transition="1446661">
+					<logs>
+						<TransitionLog id="1485186" date="2010-11-09 16:45:21" transition="1446661" sourceNode="1446660" destinationNode="1446763">
+							<logs />
+						</TransitionLog>
+						<ActionLog id="1485187" date="2010-11-09 16:45:21" action="1446765">
+							<logs>
+								<VariableCreateLog id="1485188" date="2010-11-09 16:45:21" name="todayDate" />
+								<StringUpdateLog id="1485189" date="2010-11-09 16:45:21" name="todayDate" oldValue="null" newValue="09.11.2010" />
+								<VariableCreateLog id="1485190" date="2010-11-09 16:45:21" name="deadline" />
+								<DateUpdateLog id="1485191" date="2010-11-09 16:45:21" name="deadline" oldValue="null" newValue="2010-12-09 16:45:21.513" />
+								<VariableCreateLog id="1485192" date="2010-11-09 16:45:21" name="udv" />
+								<VariableCreateLog id="1485193" date="2010-11-09 16:45:21" name="requestType" />
+								<StringUpdateLog id="1485194" date="2010-11-09 16:45:21" name="requestType" oldValue="null" newValue="NEW_POWER" />
+							</logs>
+						</ActionLog>
+						<NodeLog id="1485195" date="2010-11-09 16:45:21" node="1446763" enter="2010-11-09 16:45:21" leave="2010-11-09 16:45:21" duration="0" />
+						<TransitionLog id="1485196" date="2010-11-09 16:45:21" transition="1446766" sourceNode="1446763" destinationNode="1446662">
+							<logs />
+						</TransitionLog>
+						<TaskAssignLog id="1485197" date="2010-11-09 16:45:21" taskInstance="1485174" task="1446669" taskOldActorId="null" taskNewActorId="30308" />
+						<TaskCreateLog id="1485198" date="2010-11-09 16:45:21" taskInstance="1485174" task="1446669" taskActorId="30308" />
+					</logs>
+				</SignalLog>
+				<VariableCreateLog id="1485200" date="2010-11-09 16:45:53" name="requestType" />
+				<StringUpdateLog id="1485201" date="2010-11-09 16:45:53" name="requestType" oldValue="null" newValue="RESTRUCT" />
+				<TaskAssignLog id="1485244" date="2010-11-09 16:49:30" taskInstance="1485174" task="1446669" taskOldActorId="30308" taskNewActorId="30308" />
+				<VariableCreateLog id="1485245" date="2010-11-09 16:49:30" name="facilityName" />
+				<StringUpdateLog id="1485246" date="2010-11-09 16:49:30" name="facilityName" oldValue="null" newValue="магазин игротека" />
+				<VariableCreateLog id="1485247" date="2010-11-09 16:49:30" name="consumerType" />
+				<StringUpdateLog id="1485248" date="2010-11-09 16:49:30" name="consumerType" oldValue="null" newValue="UL" />
+				<VariableCreateLog id="1485249" date="2010-11-09 16:49:30" name="documentList" />
+				<ByteArrayUpdateLog id="1485250" date="2010-11-09 16:49:30" name="documentList" oldValue="null" newValue="org.jbpm.bytes.ByteArray@4ed9f114" />
+				<VariableCreateLog id="1485252" date="2010-11-09 16:49:30" name="street" />
+				<VariableCreateLog id="1485253" date="2010-11-09 16:49:30" name="apartmentExt" />
+				<StringUpdateLog id="1485254" date="2010-11-09 16:49:30" name="apartmentExt" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485255" date="2010-11-09 16:49:30" name="workPhoneNumber" />
+				<StringUpdateLog id="1485256" date="2010-11-09 16:49:30" name="workPhoneNumber" oldValue="null" newValue="8 (7212) 43-22-20" />
+				<StringUpdateLog id="1485257" date="2010-11-09 16:49:30" name="requestType" oldValue="RESTRUCT" newValue="RESTRUCT" />
+				<VariableCreateLog id="1485258" date="2010-11-09 16:49:30" name="homePhoneNumber" />
+				<StringUpdateLog id="1485259" date="2010-11-09 16:49:30" name="homePhoneNumber" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485260" date="2010-11-09 16:49:30" name="apartmentNo" />
+				<StringUpdateLog id="1485261" date="2010-11-09 16:49:30" name="apartmentNo" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485262" date="2010-11-09 16:49:30" name="buildingExt" />
+				<StringUpdateLog id="1485263" date="2010-11-09 16:49:30" name="buildingExt" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485264" date="2010-11-09 16:49:30" name="mobilePhoneNumber" />
+				<StringUpdateLog id="1485265" date="2010-11-09 16:49:30" name="mobilePhoneNumber" oldValue="null" newValue="8 (701) 737-94-81" />
+				<VariableCreateLog id="1485266" date="2010-11-09 16:49:30" name="consumerName" />
+				<StringUpdateLog id="1485267" date="2010-11-09 16:49:30" name="consumerName" oldValue="null" newValue="ТОО &quot;Вектор&quot;" />
+				<VariableCreateLog id="1485268" date="2010-11-09 16:49:30" name="buildingNo" />
+				<StringUpdateLog id="1485269" date="2010-11-09 16:49:30" name="buildingNo" oldValue="null" newValue="16" />
+				<VariableCreateLog id="1485270" date="2010-11-09 16:49:30" name="category" />
+				<StringUpdateLog id="1485271" date="2010-11-09 16:49:30" name="category" oldValue="null" newValue="3" />
+				<VariableCreateLog id="1485272" date="2010-11-09 16:49:30" name="AES" />
+				<StringUpdateLog id="1485273" date="2010-11-09 16:49:30" name="AES" oldValue="null" newValue="нет" />
+				<VariableCreateLog id="1485274" date="2010-11-09 16:49:30" name="voltage" />
+				<StringUpdateLog id="1485275" date="2010-11-09 16:49:30" name="voltage" oldValue="null" newValue="380" />
+				<VariableCreateLog id="1485276" date="2010-11-09 16:49:30" name="power" />
+				<LongUpdateLog id="1485277" date="2010-11-09 16:49:30" name="power" oldValue="null" newValue="20" />
+				<VariableCreateLog id="1485278" date="2010-11-09 16:49:30" name="heating" />
+				<StringUpdateLog id="1485279" date="2010-11-09 16:49:30" name="heating" oldValue="null" newValue="1" />
+				<VariableCreateLog id="1485280" date="2010-11-09 16:49:30" name="delegateName" />
+				<StringUpdateLog id="1485281" date="2010-11-09 16:49:30" name="delegateName" oldValue="null" newValue="Погорелов Виталий Васильевич" />
+				<VariableCreateLog id="1485282" date="2010-11-09 16:49:30" name="initiatorComments" />
+				<StringUpdateLog id="1485283" date="2010-11-09 16:49:30" name="initiatorComments" oldValue="null" newValue="ок" />
+				<TaskEndLog id="1485284" date="2010-11-09 16:49:30" taskInstance="1485174" task="1446669" />
+				<VariableCreateLog id="1485285" date="2010-11-09 16:49:30" name="facilityName" />
+				<StringUpdateLog id="1485286" date="2010-11-09 16:49:30" name="facilityName" oldValue="null" newValue="магазин игротека" />
+				<VariableCreateLog id="1485287" date="2010-11-09 16:49:30" name="consumerType" />
+				<StringUpdateLog id="1485288" date="2010-11-09 16:49:30" name="consumerType" oldValue="null" newValue="UL" />
+				<VariableCreateLog id="1485289" date="2010-11-09 16:49:30" name="documentList" />
+				<ByteArrayUpdateLog id="1485290" date="2010-11-09 16:49:30" name="documentList" oldValue="null" newValue="org.jbpm.bytes.ByteArray@216c15b3" />
+				<VariableCreateLog id="1485292" date="2010-11-09 16:49:30" name="street" />
+				<VariableCreateLog id="1485293" date="2010-11-09 16:49:30" name="apartmentExt" />
+				<StringUpdateLog id="1485294" date="2010-11-09 16:49:30" name="apartmentExt" oldValue="null" newValue="" />
+				<StringUpdateLog id="1485295" date="2010-11-09 16:49:30" name="requestType" oldValue="NEW_POWER" newValue="RESTRUCT" />
+				<VariableCreateLog id="1485296" date="2010-11-09 16:49:30" name="workPhoneNumber" />
+				<StringUpdateLog id="1485297" date="2010-11-09 16:49:30" name="workPhoneNumber" oldValue="null" newValue="8 (7212) 43-22-20" />
+				<VariableCreateLog id="1485298" date="2010-11-09 16:49:30" name="homePhoneNumber" />
+				<StringUpdateLog id="1485299" date="2010-11-09 16:49:30" name="homePhoneNumber" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485300" date="2010-11-09 16:49:30" name="apartmentNo" />
+				<StringUpdateLog id="1485301" date="2010-11-09 16:49:30" name="apartmentNo" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485302" date="2010-11-09 16:49:30" name="buildingExt" />
+				<StringUpdateLog id="1485303" date="2010-11-09 16:49:30" name="buildingExt" oldValue="null" newValue="" />
+				<VariableCreateLog id="1485304" date="2010-11-09 16:49:30" name="mobilePhoneNumber" />
+				<StringUpdateLog id="1485305" date="2010-11-09 16:49:30" name="mobilePhoneNumber" oldValue="null" newValue="8 (701) 737-94-81" />
+				<VariableCreateLog id="1485306" date="2010-11-09 16:49:30" name="consumerName" />
+				<StringUpdateLog id="1485307" date="2010-11-09 16:49:30" name="consumerName" oldValue="null" newValue="ТОО &quot;Вектор&quot;" />
+				<VariableCreateLog id="1485308" date="2010-11-09 16:49:30" name="buildingNo" />
+				<StringUpdateLog id="1485309" date="2010-11-09 16:49:30" name="buildingNo" oldValue="null" newValue="16" />
+				<VariableCreateLog id="1485310" date="2010-11-09 16:49:30" name="category" />
+				<StringUpdateLog id="1485311" date="2010-11-09 16:49:30" name="category" oldValue="null" newValue="3" />
+				<VariableCreateLog id="1485312" date="2010-11-09 16:49:30" name="AES" />
+				<StringUpdateLog id="1485313" date="2010-11-09 16:49:30" name="AES" oldValue="null" newValue="нет" />
+				<VariableCreateLog id="1485314" date="2010-11-09 16:49:30" name="voltage" />
+				<StringUpdateLog id="1485315" date="2010-11-09 16:49:30" name="voltage" oldValue="null" newValue="380" />
+				<VariableCreateLog id="1485316" date="2010-11-09 16:49:30" name="heating" />
+				<StringUpdateLog id="1485317" date="2010-11-09 16:49:30" name="heating" oldValue="null" newValue="1" />
+				<VariableCreateLog id="1485318" date="2010-11-09 16:49:30" name="power" />
+				<LongUpdateLog id="1485319" date="2010-11-09 16:49:30" name="power" oldValue="null" newValue="20" />
+				<VariableCreateLog id="1485320" date="2010-11-09 16:49:30" name="delegateName" />
+				<StringUpdateLog id="1485321" date="2010-11-09 16:49:30" name="delegateName" oldValue="null" newValue="Погорелов Виталий Васильевич" />
+				<VariableCreateLog id="1485322" date="2010-11-09 16:49:30" name="initiatorComments" />
+				<StringUpdateLog id="1485323" date="2010-11-09 16:49:30" name="initiatorComments" oldValue="null" newValue="ок" />
+				<SignalLog id="1485324" date="2010-11-09 16:49:30" transition="1446665">
+					<logs>
+						<ActionLog id="1485325" date="2010-11-09 16:49:30" action="1446664">
+							<logs />
+						</ActionLog>
+						<NodeLog id="1485326" date="2010-11-09 16:49:30" node="1446662" enter="2010-11-09 16:45:21" leave="2010-11-09 16:49:30" duration="249296" />
+						<TransitionLog id="1485327" date="2010-11-09 16:49:30" transition="1446665" sourceNode="1446662" destinationNode="1446776">
+							<logs>
+								<ActionLog id="1485328" date="2010-11-09 16:49:30" action="1446667">
+									<logs>
+										<VariableCreateLog id="1485329" date="2010-11-09 16:49:30" name="description" />
+										<StringUpdateLog id="1485330" date="2010-11-09 16:49:30" name="description" oldValue="null" newValue="ТОО &quot;Вектор&quot;" />
+									</logs>
+								</ActionLog>
+							</logs>
+						</TransitionLog>
+						<TaskAssignLog id="1485331" date="2010-11-09 16:49:30" taskInstance="1485202" task="1446779" taskOldActorId="null" taskNewActorId="30308" />
+						<TaskCreateLog id="1485332" date="2010-11-09 16:49:30" taskInstance="1485202" task="1446779" taskActorId="30308" />
+					</logs>
+				</SignalLog>
+				<TaskAssignLog id="1485334" date="2010-11-09 16:57:17" taskInstance="1485202" task="1446779" taskOldActorId="30308" taskNewActorId="30308" />
+				<TaskEndLog id="1485335" date="2010-11-09 16:57:17" taskInstance="1485202" task="1446779" />
+				<SignalLog id="1485336" date="2010-11-09 16:57:17" transition="1446777">
+					<logs>
+						<NodeLog id="1485337" date="2010-11-09 16:57:17" node="1446776" enter="2010-11-09 16:49:30" leave="2010-11-09 16:57:17" duration="466201" />
+						<TransitionLog id="1485338" date="2010-11-09 16:57:17" transition="1446777" sourceNode="1446776" destinationNode="1446670">
+							<logs />
+						</TransitionLog>
+						<TaskAssignLog id="1485339" date="2010-11-09 16:57:17" taskInstance="1485333" task="1446673" taskOldActorId="null" taskNewActorId="30308" />
+						<TaskCreateLog id="1485340" date="2010-11-09 16:57:17" taskInstance="1485333" task="1446673" taskActorId="30308" />
+					</logs>
+				</SignalLog>
+				<VariableCreateLog id="1485343" date="2010-11-09 16:58:07" name="initiatorComments" />
+				<StringUpdateLog id="1485344" date="2010-11-09 16:58:07" name="initiatorComments" oldValue="null" newValue="ок" />
+				<StringUpdateLog id="1485346" date="2010-11-09 16:59:09" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<StringUpdateLog id="1485348" date="2010-11-09 16:59:40" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<StringUpdateLog id="1485350" date="2010-11-09 17:00:20" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<StringUpdateLog id="1485352" date="2010-11-09 17:00:55" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<TaskAssignLog id="1485357" date="2010-11-09 17:02:00" taskInstance="1485333" task="1446673" taskOldActorId="30308" taskNewActorId="30308" />
+				<StringUpdateLog id="1485358" date="2010-11-09 17:02:00" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<TaskEndLog id="1485359" date="2010-11-09 17:02:00" taskInstance="1485333" task="1446673" />
+				<StringUpdateLog id="1485360" date="2010-11-09 17:02:00" name="initiatorComments" oldValue="ок" newValue="ок" />
+				<SignalLog id="1485361" date="2010-11-09 17:02:00" transition="1446671">
+					<logs>
+						<NodeLog id="1485362" date="2010-11-09 17:02:00" node="1446670" enter="2010-11-09 16:57:17" leave="2010-11-09 17:02:00" duration="283671" />
+						<TransitionLog id="1485363" date="2010-11-09 17:02:00" transition="1446671" sourceNode="1446670" destinationNode="1446674">
+							<logs />
+						</TransitionLog>
+						<ActionLog id="1485364" date="2010-11-09 17:02:00" action="1446676">
+							<logs>
+								<VariableCreateLog id="1485365" date="2010-11-09 17:02:00" name="ISSGP" />
+								<StringUpdateLog id="1485366" date="2010-11-09 17:02:00" name="ISSGP" oldValue="null" newValue="FALSE" />
+							</logs>
+						</ActionLog>
+						<TaskAssignLog id="1485367" date="2010-11-09 17:02:00" taskInstance="1485353" task="1446679" taskOldActorId="null" taskNewActorId="null" />
+						<TaskCreateLog id="1485368" date="2010-11-09 17:02:00" taskInstance="1485353" task="1446679" taskActorId="null" />
+					</logs>
+				</SignalLog>
+				<TaskAssignLog id="1486173" date="2010-11-10 17:41:14" taskInstance="1485353" task="1446679" taskOldActorId="null" taskNewActorId="30100" />
+				<VariableCreateLog id="1486174" date="2010-11-10 17:41:14" name="branch" />
+				<VariableCreateLog id="1486175" date="2010-11-10 17:41:14" name="ptgComments" />
+				<StringUpdateLog id="1486176" date="2010-11-10 17:41:14" name="ptgComments" oldValue="null" newValue="" />
+				<TaskEndLog id="1486177" date="2010-11-10 17:41:14" taskInstance="1485353" task="1446679" />
+				<VariableCreateLog id="1486178" date="2010-11-10 17:41:14" name="branch" />
+				<VariableCreateLog id="1486179" date="2010-11-10 17:41:14" name="ptgComments" />
+				<StringUpdateLog id="1486180" date="2010-11-10 17:41:14" name="ptgComments" oldValue="null" newValue="" />
+				<SignalLog id="1486181" date="2010-11-10 17:41:14" transition="1446677">
+					<logs>
+						<NodeLog id="1486182" date="2010-11-10 17:41:14" node="1446674" enter="2010-11-09 17:02:00" leave="2010-11-10 17:41:14" duration="88753938" />
+						<TransitionLog id="1486183" date="2010-11-10 17:41:14" transition="1446677" sourceNode="1446674" destinationNode="1446680">
+							<logs />
+						</TransitionLog>
+						<TaskAssignLog id="1486184" date="2010-11-10 17:41:14" taskInstance="1486166" task="1446687" taskOldActorId="null" taskNewActorId="null" />
+						<TaskCreateLog id="1486185" date="2010-11-10 17:41:14" taskInstance="1486166" task="1446687" taskActorId="null" />
+					</logs>
+				</SignalLog>
+				<TaskAssignLog id="3091905" date="2010-11-24 12:34:45" taskInstance="1486166" task="1446687" taskOldActorId="null" taskNewActorId="21593" />
+				<TaskEndLog id="3091906" date="2010-11-24 12:34:45" taskInstance="1486166" task="1446687" />
+				<SignalLog id="3091907" date="2010-11-24 12:34:45" transition="1446681">
+					<logs>
+						<TransitionLog id="3091928" date="2010-11-24 12:34:45" transition="1446807" sourceNode="1446804" destinationNode="1446755">
+							<logs />
+						</TransitionLog>
+						<TransitionLog id="3091931" date="2010-11-24 12:34:45" transition="1446806" sourceNode="1446804" destinationNode="1446698">
+							<logs />
+						</TransitionLog>
+						<TransitionLog id="3091917" date="2010-11-24 12:34:45" transition="1446808" sourceNode="1446804" destinationNode="1446780">
+							<logs />
+						</TransitionLog>
+						<TransitionLog id="3091920" date="2010-11-24 12:34:45" transition="1446805" sourceNode="1446804" destinationNode="1446707">
+							<logs />
+						</TransitionLog>
+						<TaskAssignLog id="3091918" date="2010-11-24 12:34:45" taskInstance="3091891" task="1446788" taskOldActorId="null" taskNewActorId="null" />
+						<TaskAssignLog id="3091929" date="2010-11-24 12:34:45" taskInstance="3091893" task="1446762" taskOldActorId="null" taskNewActorId="null" />
+						<NodeLog id="3091921" date="2010-11-24 12:34:45" node="1446707" enter="2010-11-24 12:34:45" leave="2010-11-24 12:34:45" duration="4" />
+						<TaskAssignLog id="3091932" date="2010-11-24 12:34:45" taskInstance="3091894" task="1446706" taskOldActorId="null" taskNewActorId="null" />
+						<TaskCreateLog id="3091933" date="2010-11-24 12:34:45" taskInstance="3091894" task="1446706" taskActorId="null" />
+						<TaskCreateLog id="3091919" date="2010-11-24 12:34:45" taskInstance="3091891" task="1446788" taskActorId="null" />
+						<TransitionLog id="3091922" date="2010-11-24 12:34:45" transition="1446709" sourceNode="1446707" destinationNode="1446688">
+							<logs />
+						</TransitionLog>
+						<TaskCreateLog id="3091930" date="2010-11-24 12:34:45" taskInstance="3091893" task="1446762" taskActorId="null" />
+						<ActionLog id="3091923" date="2010-11-24 12:34:45" action="1446690">
+							<logs>
+								<VariableCreateLog id="3091924" date="2010-11-24 12:34:45" name="branchNesSGPRecomendations" />
+								<StringUpdateLog id="3091925" date="2010-11-24 12:34:45" name="branchNesSGPRecomendations" oldValue="null" newValue="" />
+							</logs>
+						</ActionLog>
+						<TaskAssignLog id="3091926" date="2010-11-24 12:34:45" taskInstance="3091892" task="1446697" taskOldActorId="null" taskNewActorId="null" />
+						<TaskCreateLog id="3091927" date="2010-11-24 12:34:45" taskInstance="3091892" task="1446697" taskActorId="null" />
+						<NodeLog id="3091908" date="2010-11-24 12:34:45" node="1446680" enter="2010-11-10 17:41:14" leave="2010-11-24 12:34:45" duration="1191210392" />
+						<TransitionLog id="3091909" date="2010-11-24 12:34:45" transition="1446681" sourceNode="1446680" destinationNode="1446804">
+							<logs>
+								<ActionLog id="3091910" date="2010-11-24 12:34:45" action="1446683">
+									<logs>
+										<VariableCreateLog id="3091911" date="2010-11-24 12:34:45" name="BRANCH_HEAD" />
+										<StringUpdateLog id="3091912" date="2010-11-24 12:34:45" name="BRANCH_HEAD" oldValue="null" newValue="APPROVE" />
+									</logs>
+								</ActionLog>
+							</logs>
+						</TransitionLog>
+						<TokenCreateLog id="3091913" date="2010-11-24 12:34:45" />
+						<TokenCreateLog id="3091914" date="2010-11-24 12:34:45" />
+						<TokenCreateLog id="3091915" date="2010-11-24 12:34:45" />
+						<TokenCreateLog id="3091916" date="2010-11-24 12:34:45" />
+					</logs>
+				</SignalLog>
+			</logs>
+			<tokens>
+				<token id="3091887" name="UD_CONFIRM" start="2010-11-24 12:34:45" end="" node="1446780" isAbleToReactivateParent="true" isLocked="false" isRoot="false" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+					<logs />
+					<tokens />
+				</token>
+				<token id="3091889" name="UPR_CONFIRM" start="2010-11-24 12:34:45" end="" node="1446755" isAbleToReactivateParent="true" isLocked="false" isRoot="false" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+					<logs />
+					<tokens />
+				</token>
+				<token id="3091888" name="NES_OR_DNES" start="2010-11-24 12:34:45" end="" node="1446688" isAbleToReactivateParent="true" isLocked="false" isRoot="false" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+					<logs />
+					<tokens />
+				</token>
+				<token id="3091890" name="VES" start="2010-11-24 12:34:45" end="" node="1446698" isAbleToReactivateParent="true" isLocked="false" isRoot="false" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+					<logs />
+					<tokens />
+				</token>
+			</tokens>
+		</token>
+	</process-instance>
+</jbpm-log>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Diagram Builder - canvas</title> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/wx-bpm-dv.js"></script>
+    <script src="js/wx-bpm-dvb.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.xslt.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <style>
+		 body {
+			-webkit-user-select:none; 
+			-moz-user-select:none;
+		}
+		
+		.wx-bpm-tool-node {
+			display:inline-block; width:20px; height:20px;  border:1px outset; background-color:#f0f0f0; margin-right:5px;
+		}
+		
+		#toolbox {
+			font:11px normal Arial, Helvetica, sans-serif; 
+			text-transform:capitalize; 
+			color:#aaa; 
+			border:1px solid #ccc; 
+			margin-right:5px; 
+			padding:5px;
+			width:100px;
+		}
+    </style>
+</head>
+<body>
+
+    <div id="toolbox" style="float:left;">
+    
+    </div>
+
+	<div style="float:left;">
+        <div id="notepad" style="width:800px; height:500px; overflow:scroll;"></div>
+        
+        <div>
+        	<button onclick="DV.new('New Process')">Create new</button>
+            <button onclick="DV.init('data/process-definitionX.xml')">Load process-definitionX.xml</button>
+            <button onclick="DV.loadInstance('data/process-instanceX.xml')">Load process-instanceX.xml</button> | 
+            <button onclick="DV.init('data/process-definition.xml')">Load process-definition.xml</button>
+            <button onclick="DV.loadInstance('data/instance-da.xml')">Load instance-DA.xml</button> | 
+        </div>
+    </div>
+    
+    <!--div style="position: relative;">
+     <canvas id="layer1" width="100" height="100" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+     <canvas id="layer2" width="100" height="100" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+    </div-->
+    
+<script> 
+	$(function() {
+		//$('#toolbox').xslt("data/jpdl-3.1.xsd", "xsd_parser.xsl");
+		DV.toolbox("#toolbox");
+		DV.setup("notepad");
+/*		DV.init('data/process-definitionX.xml');
+		DV.loadInstance('data/process-instanceX.xml');*/
+		DV.init('data/definition.xml');
+		DV.loadInstance('data/instance.xml');
+		
+	});
+	
+	document.body.onload = function(){
+
+		$(".wx-bpm-tool-node").draggable({helper:"clone",cursor: 'crosshair',distance: 5, zIndex: 2700,
+			stop:function(event,ui){
+				var node = document.createElement(ui.helper[0].attributes['node-name'].value);
+				node.setAttribute("name",node.nodeName);
+				
+				node.setAttribute("x",ui.position.left - DV.canvas.offsetLeft - DV.offsetX - 60 + DV.notepad.scrollLeft );
+				node.setAttribute("y",ui.position.top - DV.canvas.offsetTop - DV.offsetY - 13 + DV.notepad.scrollTop);
+				node.setAttribute("height",36);
+				node.setAttribute("width",132);
+				var xn = DV.drawNode(node);
+				
+				$(xn).draggable({distance: 5, zIndex: 2700});
+			} 
+		});
+		
+		
+		
+	}
+	
+
+	function startCreateNewNode(){
+		console.log(event.srcElement.offsetLeft + ":" + event.srcElement.offsetTop);
+	}
+</script> 
+</body>
+</html>
+

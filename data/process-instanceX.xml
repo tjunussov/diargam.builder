@@ -1,0 +1,39 @@
+<jbpm-log>
+	<process-instance processDefinition="OpenNewPeriod" id="1183020" version="2" start="2010-06-07 16:49:34" end="2010-06-07 16:49:40" isSuspended="false">
+		<token id="1183021" start="2010-06-07 16:49:34" end="2010-06-07 16:49:40" node="1182895" isAbleToReactivateParent="false" isLocked="false" isRoot="true" isTerminationImplicit="false" isTerminatedImplicitly="true" isSuspended="false">
+			<logs>
+				<ProcessInstanceCreateLog id="1183029" date="2010-06-07 16:49:34" />
+				<SignalLog id="1183030" date="2010-06-07 16:49:34" transition="1182882">
+					<logs>
+						<TransitionLog id="1183031" date="2010-06-07 16:49:34" transition="1182882" sourceNode="1182881" destinationNode="1182883">
+							<logs />
+						</TransitionLog>
+						<ActionLog id="1183032" date="2010-06-07 16:49:34" action="1182885">
+							<logs>
+								<VariableCreateLog id="1183033" date="2010-06-07 16:49:37" name="result" />
+								<StringUpdateLog id="1183034" date="2010-06-07 16:49:37" name="result" oldValue="null" newValue="OK" />
+							</logs>
+						</ActionLog>
+						<NodeLog id="1183035" date="2010-06-07 16:49:37" node="1182883" enter="2010-06-07 16:49:37" leave="2010-06-07 16:49:37" duration="1" />
+						<TransitionLog id="1183036" date="2010-06-07 16:49:37" transition="1182886" sourceNode="1182883" destinationNode="1182892">
+							<logs />
+						</TransitionLog>
+						<TaskAssignLog id="1183037" date="2010-06-07 16:49:37" taskInstance="1183022" task="1182894" taskOldActorId="null" taskNewActorId="admin" />
+						<TaskCreateLog id="1183038" date="2010-06-07 16:49:37" taskInstance="1183022" task="1182894" taskActorId="admin" />
+					</logs>
+				</SignalLog>
+				<TaskEndLog id="1183039" date="2010-06-07 16:49:40" taskInstance="1183022" task="1182894" />
+				<SignalLog id="1183040" date="2010-06-07 16:49:40" transition="1182893">
+					<logs>
+						<NodeLog id="1183041" date="2010-06-07 16:49:40" node="1182892" enter="2010-06-07 16:49:37" leave="2010-06-07 16:49:40" duration="2665" />
+						<TransitionLog id="1183042" date="2010-06-07 16:49:40" transition="1182893" sourceNode="1182892" destinationNode="1182895">
+							<logs />
+						</TransitionLog>
+						<ProcessInstanceEndLog id="1183043" date="2010-06-07 16:49:40" />
+					</logs>
+				</SignalLog>
+			</logs>
+			<tokens />
+		</token>
+	</process-instance>
+</jbpm-log>

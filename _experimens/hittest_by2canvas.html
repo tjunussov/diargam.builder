@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<body>
+	<pre>
+	// gctx is ghost context, made from the second canvas
+  // clear(gctx)
+
+  // ...
+
+  // run through all the boxes
+  var l = boxes.length;
+  for (var i = l-1; i >= 0; i--) {
+    // draw shape onto ghost context
+    drawshape(gctx, boxes[i], 'black', 'black');
+
+    // get image data at the mouse x,y pixel
+    var imageData = gctx.getImageData(mx, my, 1, 1);
+    var index = (mx + my * imageData.width) * 4;
+
+    // if the mouse pixel exists, select and break
+    if (imageData.data[3] > 0) {
+      mySel = boxes[i];
+      offsetx = mx - mySel.x;
+      offsety = my - mySel.y;
+      mySel.x = mx - offsetx;
+      mySel.y = my - offsety;
+      isDrag = true;
+      canvas.onmousemove = myMove;
+      invalidate();
+      clear(gctx);
+      return;
+    }
+
+  }
+	</pre>
+</body>
+</html>

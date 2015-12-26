@@ -1,0 +1,24 @@
+rubicsResponse (
+	{
+	  rubics: {
+		meta: {
+		  timestamp: "2011.02.07.03.02.13.PST",
+		  v: "$Name: r20110203a-ronr-iso885915response $",
+		  adstamp: "",
+		  errorText: ""
+		},
+		request: {
+		  appHandle: "netxp1",
+		  unitSp: "45",
+		  unitId: "45",
+		  poolId: "1",
+		  uri: "http://rok.com.com/rok-get?app_handle=netxp1&unit_sp=45&brand=9&wrapper=json"
+		},
+		response: {
+		  bodyText: "<div class='rubics_netxp1_main' id='rbx_netxp1_parent'>\u000a<script type='text/javascript'>\u000afunction do_rbx_ctrk_netxp1 (aElem, iTrkId, cTrkPrefix) {\u000a\u0009var imgElem = document.getElementById(iTrkId);\u000a\u0009if (!imgElem) {\u000a\u0009\u0009return true;\u000a\u0009}\u000a\u000a\u0009if (!aElem.rbxCPrefixed) {\u000a\u0009\u0009aElem.rbxCPrefixed = true;\u000a\u0009\u0009var destUri = encodeURIComponent(aElem.href);\u000a\u0009\u0009var newUri = cTrkPrefix + destUri;\u000a\u0009\u0009aElem.href = newUri;\u000a\u0009}\u000a\u0009return true;\u000a}\u000afunction do_rbx_itrk_netxp1 (parentId, iTrkId, iTrkUri) {\u000a\u0009if (!document.images) {\u000a\u0009\u0009return false;\u000a\u0009}\u000a\u000a\u0009var imgId = iTrkId;\u000a\u0009var imgElem = document.getElementById(imgId);\u000a\u000a\u0009if (!imgElem) {\u000a\u000a\u0009\u0009var parentElem = document.getElementById(parentId);\u000a\u0009\u0009if (!parentElem) {\u000a\u0009\u0009\u0009return false;\u000a\u0009\u0009}\u000a\u000a\u0009\u0009var imgElem = document.createElement('img');\u000a\u0009\u0009if (!imgElem) {\u000a\u0009\u0009\u0009return false;\u000a\u0009\u0009}\u000a\u000a\u0009\u0009imgElem.id = imgId;\u000a\u0009\u0009imgElem.src = iTrkUri;\u000a\u0009\u0009imgElem.alt = '';\u000a\u0009\u0009imgElem.width = '1';\u000a\u0009\u0009imgElem.height = '1';\u000a\u000a\u0009\u0009parentElem.appendChild(imgElem);\u000a\u0009}\u000a\u0009return true;\u000a}\u000a</script>\u000a\u0009On CHOW: \u000a\u0009<a target='_top' onclick=\"return do_rbx_ctrk_netxp1(this, 'rbx_netxp1_1', 'http://dw.com.com/rubicsclk?ver=2&amp;ts=2011.02.07.03.02.13.PST&amp;edId=&amp;onId=&amp;ptId=&amp;sId=-1&amp;appId=19&amp;offId=11127&amp;unitId=45&amp;poolId=1&amp;f1=9&amp;f2=-0&amp;f3=-0&amp;alg=8&amp;&amp;opt=1&amp;linkPos=0&amp;destUrl=');\" href='http://www.chow.com/food-news/55409/the-perfect-soup-dumpling/' class='xpromolink'>How to slurp a soup dumpling</a>\u000a<script type='text/javascript'>\u000a//<![CDATA[\u000ado_rbx_itrk_netxp1('rbx_netxp1_parent', 'rbx_netxp1_1', 'http://dw.com.com/rubicsimp/c.gif?ver=2&ts=2011.02.07.03.02.13.PST&edId=&onId=&ptId=&sId=-1&appId=19&unitId=45&poolId=1&f1=9&f2=-0&f3=-0&alg=8&opt=1&off=11127,-1');\u000a//]]>\u000a</script>\u000a</div>\u000a"
+		}
+	  }
+	}
+);
+
+/* pyrus t 0.1.1.1.4.4.4.8 */

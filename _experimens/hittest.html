@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<body>
+<script>
+ 
+var canvas=null;
+var c = null;
+var myMouseoverEventHandler = null;
+ 
+function MouseoverEventHandler() {
+	this.mouseX = null;
+	this.mouseY = null;
+	this.mouseoverElementIndex = null; 
+	this.elementIndexCounter = 0;
+	this.isMouseoverDetected = false;	
+ 
+	this.addPath = function() {
+		if (!this.isMouseoverDetected 
+			&& c.isPointInPath(this.mouseX,this.mouseY)) {
+			this.mouseoverElementIndex = 
+				this.elementIndexCounter;
+			this.isMouseoverDetected = true;
+		}		
+		this.elementIndexCounter++;
+	}
+ 
+	this.setMousePosition = function(e) {
+		if (e!=null) {
+			this.mouseX = e.clientX - canvas.offsetLeft;
+			this.mouseY = e.clientY - canvas.offsetTop;
+		}
+	}
+ 
+	this.reset = function() {
+		this.mouseX = null;
+		this.mouseY = null;
+		this.mouseoverElementIndex = null; 
+		this.isMouseoverDetected = null;
+		this.elementIndexCounter = 0;
+	}
+}
+ 
+function drawRectangle(x,y, width, height, fillColor) {
+	c.beginPath();
+	c.rect(x,y,width,height);
+	c.fillStyle=fillColor;
+	c.fill();
+	c.lineWidth=5;
+	c.strokeStyle="black"; 
+	c.stroke();	
+ 
+	myMouseoverEventHandler.addPath();
+}
+ 
+function drawCircle(x,y, radius, fillColor) {
+	c.beginPath();
+	c.arc(x,y,radius,0,2*Math.PI,false);
+	c.fillStyle=fillColor;
+	c.fill();
+	c.lineWidth=5;
+	c.strokeStyle="black"; 
+	c.stroke();	
+ 
+	myMouseoverEventHandler.addPath();
+}
+ 
+function drawEventDisplay() {
+	var eventDisplay = null;
+ 
+	switch(myMouseoverEventHandler.mouseoverElementIndex) {
+		case 0: eventDisplay = "Blue rectangle!"; break;
+		case 1: eventDisplay = "Red circle!"; break;
+		default: eventDisplay = "Mouseover a shape..."; break;
+	}
+ 
+	c.font="18pt Calibri";
+	c.fillStyle="black";
+	c.fillText(eventDisplay, 10, 25);
+}
+ 
+function init() {
+	canvas=document.getElementById("myCanvas");
+	c=canvas.getContext("2d");
+	myMouseoverEventHandler = new MouseoverEventHandler();
+	drawStaticObjects(null);
+}
+ 
+function drawStaticObjects(e) {
+	myMouseoverEventHandler.setMousePosition(e);
+ 
+	clearCanvas();	
+	drawRectangle(125,75, 100, 50, "#8ED6FF");
+	drawCircle(400,100,75,"red");
+	drawEventDisplay();
+ 
+	myMouseoverEventHandler.reset();
+}
+ 
+function clearCanvas() {
+	c.clearRect(0,0,canvas.width, canvas.height);
+	c.beginPath();
+}
+ 
+</script>
+</head>
+<body onload="init()">
+	<canvas id="myCanvas" width="578" height="200"
+	onmousemove="drawStaticObjects(event)"></canvas>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<process-definition name="PSC00001" width="1300" height="1180">
+  <description>Получение штрих-кода для удостоверения личности</description>
+  <swimlane name="Операторы СВД">
+    <assignment pooled-actors="#{workflow.getRoleUsers('R_SERVEOUT_OPERATORS')}"></assignment>
+  </swimlane>
+  <swimlane name="Операторы СПД">
+    <assignment pooled-actors="#{workflow.getRoleUsers('R_ADMISSION_OPERATORS')}"></assignment>
+  </swimlane>
+  <start-state name="Старт процесса" x="396" y="24" width="169" height="36">
+    <transition to="СПД : Формирование услуги">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.init}"></action>
+      <action expression="#{PSC00001.setStatus('PREPARE')}"></action>
+    </transition>
+  </start-state>
+  <task-node name="СПД : Формирование услуги" x="336" y="120" width="289" height="36">
+    <task name="T_AO_SERVICE_PREPARE" swimlane="Операторы СПД">
+      <description>Формирование услуги</description>
+      <controller>
+        <variable access="read,write" name="ApplicantName"></variable>
+        <variable access="read,write" name="ApplicantSurname"></variable>
+        <variable access="read,write" name="ApplicantFamilyname"></variable>
+        <variable access="read,write" name="ApplicantINN"></variable>
+        <variable access="read,write" name="ApplicantINNIssuer"></variable>
+        <variable access="read,write" name="ApplicantINNIssueDate"></variable>
+        <variable access="read,write" name="ApplicantINNExpireDate"></variable>
+        <variable access="read,write" name="AOComment"></variable>
+        <variable access="read,write" name="NotifyType"></variable>
+        <variable access="read,write" name="NotifyEmail"></variable>
+        <variable access="read,write" name="NotifyNumber"></variable>
+        <variable access="read,write" name="ReturnTrackingId"></variable>
+      </controller>
+    </task>
+    <transition to="Определение списка документов" name="OK">
+      <label x="5" y="-10"></label>
+      <description>Далее</description>
+      <action expression="#{PSC00001.setStatus('AFTER_PREPARE')}"></action>
+    </transition>
+  </task-node>
+  <task-node name="СПД : Ожидание документов" x="696" y="264" width="289" height="36">
+    <task name="T_AO_SERVICE_WAITFORDOCS" swimlane="Операторы СПД">
+      <description>Ожидание документов</description>
+      <controller>
+        <variable access="read,write" name="ApplicantName"></variable>
+        <variable access="read,write" name="ApplicantSurname"></variable>
+        <variable access="read,write" name="ApplicantFamilyname"></variable>
+        <variable access="read,write" name="ApplicantINN"></variable>
+        <variable access="read,write" name="ApplicantINNIssuer"></variable>
+        <variable access="read,write" name="ApplicantINNIssueDate"></variable>
+        <variable access="read,write" name="ApplicantINNExpireDate"></variable>
+        <variable access="read,write" name="AOComment"></variable>
+        <variable access="read,write" name="NotifyType"></variable>
+        <variable access="read,write" name="NotifyEmail"></variable>
+        <variable access="read,write" name="NotifyNumber"></variable>
+        <variable access="read,write" name="DocumentRequirements"></variable>
+      </controller>
+    </task>
+    <transition to="Завершение процесса 1" name="QUIT">
+      <label x="5" y="-10"></label>
+      <description>Завершить процесс</description>
+    </transition>
+    <transition to="Проверка данных" name="OK">
+      <label x="5" y="-10"></label>
+      <bendpoint w1="0" h1="71" w2="360" h2="-1"></bendpoint>
+      <description>Формировать выписку</description>
+    </transition>
+  </task-node>
+  <task-node name="СПД : Формирование требований" x="336" y="264" width="289" height="36">
+    <task name="T_AO_SERVICE_REQUIREMENTS" swimlane="Операторы СПД">
+      <description>Формирование требований</description>
+      <controller>
+        <variable access="read,write" name="DocumentRequirements"></variable>
+        <variable access="read,write" name="ApplicantName"></variable>
+        <variable access="read,write" name="ApplicantSurname"></variable>
+        <variable access="read,write" name="ApplicantFamilyname"></variable>
+        <variable access="read,write" name="ApplicantINN"></variable>
+        <variable access="read,write" name="ApplicantINNIssuer"></variable>
+        <variable access="read,write" name="ApplicantINNIssueDate"></variable>
+        <variable access="read,write" name="ApplicantINNExpireDate"></variable>
+        <variable access="read,write" name="AOComment"></variable>
+        <variable access="read,write" name="NotifyType"></variable>
+        <variable access="read,write" name="NotifyEmail"></variable>
+        <variable access="read,write" name="NotifyNumber"></variable>
+        <variable access="read,write" name="ReturnTrackingId"></variable>
+      </controller>
+    </task>
+    <transition to="Проверка данных" name="OK">
+      <label x="5" y="-10"></label>
+      <description>Далее</description>
+      <action expression="#{PSC00001.setStatus('AFTER_REQUIREMENTS')}"></action>
+    </transition>
+  </task-node>
+  <decision name="Определение списка документов" expression="#{PSC00001.getServiceDocsReq}" x="360" y="192" width="241" height="37">
+    <description>Определение списка необходимых документов для данной услуги исходя из критериев выбора</description>
+    <transition to="СПД : Формирование требований" name="true">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('REQUIREMENTS')}"></action>
+    </transition>
+  </decision>
+  <decision name="Проверка данных" expression="#{PSC00001.checkServiceDocsReq}" x="360" y="336" width="241" height="36">
+    <transition to="СПД : Ожидание документов" name="false">
+      <label x="5" y="-10"></label>
+    </transition>
+    <transition to="СПД : Формирование выписки" name="true">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('REVIEW')}"></action>
+    </transition>
+  </decision>
+  <task-node name="СПД : Формирование выписки" x="336" y="408" width="289" height="36">
+    <task name="T_AO_SERVICE_REVIEW" swimlane="Операторы СПД">
+      <description>Формирование выписки</description>
+      <controller>
+        <variable access="read" name="DocumentRequirements"></variable>
+        <variable access="read" name="ApplicantName"></variable>
+        <variable access="read" name="ApplicantSurname"></variable>
+        <variable access="read" name="ApplicantFamilyname"></variable>
+        <variable access="read" name="ApplicantINN"></variable>
+        <variable access="read" name="ApplicantINNIssuer"></variable>
+        <variable access="read" name="ApplicantINNIssueDate"></variable>
+        <variable access="read" name="ApplicantINNExpireDate"></variable>
+        <variable access="read" name="AOComment"></variable>
+        <variable access="read" name="NotifyType"></variable>
+        <variable access="read" name="NotifyEmail"></variable>
+        <variable access="read" name="NotifyNumber"></variable>
+        <variable access="read,write" name="ReturnTrackingId"></variable>
+      </controller>
+    </task>
+    <transition to="НС : На приеме документов" name="OK">
+      <label x="5" y="-10"></label>
+      <description>Принять</description>
+      <action expression="#{PSC00001.setStatus('PSC00002')}"></action>
+    </transition>
+  </task-node>
+  <state name="НС : На приеме документов" x="360" y="540" width="241" height="36">
+    <description>Документ готов к отправке в Накопительный сектор</description>
+    <transition to="НС : Готов к передаче в ведомство">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('PSC00003')}"></action>
+    </transition>
+  </state>
+  <state name="НС : Готов к передаче в ведомство" x="360" y="612" width="241" height="36">
+    <description>Документ принят в Накопительном секторе и готов к отправке в ведомство курьером</description>
+    <transition to="НС : Отпавлен в ведомство">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('PSC00004')}"></action>
+    </transition>
+  </state>
+  <state name="НС : Отпавлен в ведомство" x="360" y="684" width="241" height="36">
+    <description>Документ принят курьером и отправлен в ведомство</description>
+    <transition to="НС : Принят из ведомства">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('PSC00005')}"></action>
+    </transition>
+  </state>
+  <state name="НС : Принят из ведомства" x="360" y="756" width="241" height="36">
+    <description>Документ принят из Ведомства в Накопительном секторе и готов к отправке в Сектор Выдачи документов</description>
+    <transition to="Уведомить о готовности ?">
+      <label x="5" y="-10"></label>
+    </transition>
+  </state>
+  <task-node name="СВД : Выдача документа" x="336" y="936" width="289" height="36">
+    <task name="T_HO_DOCUMENTS_SERVEOUT" swimlane="Операторы СВД">
+      <description>Выдача документов</description>
+      <controller>
+        <variable access="read,write" name="HOComment"></variable>
+        <variable access="read" name="DocumentRequirements"></variable>
+        <variable access="read" name="ApplicantName"></variable>
+        <variable access="read" name="ApplicantSurname"></variable>
+        <variable access="read" name="ApplicantFamilyname"></variable>
+        <variable access="read" name="ApplicantINN"></variable>
+        <variable access="read" name="ApplicantINNIssuer"></variable>
+        <variable access="read" name="ApplicantINNIssueDate"></variable>
+        <variable access="read" name="ApplicantINNExpireDate"></variable>
+        <variable access="read" name="AOComment"></variable>
+        <variable access="read" name="NotifyType"></variable>
+        <variable access="read" name="NotifyEmail"></variable>
+        <variable access="read" name="NotifyNumber"></variable>
+      </controller>
+    </task>
+    <transition to="Завершение процесса 3" name="OK">
+      <label x="5" y="-10"></label>
+      <description>Завершить процесс</description>
+      <action expression="#{PSC00001.setStatus('END')}"></action>
+    </transition>
+    <transition to="СВД : Временный архив" name="TIMEOUT">
+      <label x="5" y="-10"></label>
+      <bendpoint w1="112" h1="72" w2="-248" h2="0"></bendpoint>
+      <description>Отправит в временный архив</description>
+    </transition>
+  </task-node>
+  <decision name="Уведомить о готовности ?" expression="#{PSC00001.checkForNotifying}" x="360" y="864" width="241" height="36">
+    <transition to="СВД : Выдача документа" name="false">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('SERVEOUT')}"></action>
+    </transition>
+    <transition to="Отправка сообщений" name="true">
+      <label x="5" y="-10"></label>
+      <action expression="#{PSC00001.setStatus('NOTIFICATIONS')}"></action>
+    </transition>
+  </decision>
+  <decision name="Отправка сообщений" expression="#{PSC00001.sendNotifyMessage}" x="12" y="864" width="241" height="36">
+    <description>Отправка сообщения о готовности услуги клиенту на СМС или на Email</description>
+    <transition to="СВД : Выдача документа" name="true">
+      <label x="5" y="-10"></label>
+      <bendpoint w1="2" h1="72" w2="-346" h2="0"></bendpoint>
+      <action expression="#{PSC00001.setStatus('SERVEOUT')}"></action>
+    </transition>
+  </decision>
+  <task-node name="СВД : Временный архив" x="696" y="1008" width="289" height="36">
+    <task name="T_HO_DOCARCHIEVE" swimlane="Операторы СВД">
+      <description>Временный архив</description>
+      <controller>
+        <variable access="read" name="HOComment"></variable>
+        <variable access="read,write" name="HODocArchieveComment"></variable>
+        <variable access="read" name="DocumentRequirements"></variable>
+        <variable access="read" name="ApplicantName"></variable>
+        <variable access="read" name="ApplicantSurname"></variable>
+        <variable access="read" name="ApplicantFamilyname"></variable>
+        <variable access="read" name="ApplicantINN"></variable>
+        <variable access="read" name="ApplicantINNIssuer"></variable>
+        <variable access="read" name="ApplicantINNIssueDate"></variable>
+        <variable access="read" name="ApplicantINNExpireDate"></variable>
+        <variable access="read" name="AOComment"></variable>
+        <variable access="read" name="NotifyType"></variable>
+        <variable access="read" name="NotifyEmail"></variable>
+        <variable access="read" name="NotifyNumber"></variable>
+      </controller>
+    </task>
+    <transition to="Завершение процесса 2" name="QUIT">
+      <label x="5" y="-10"></label>
+      <description>Завершить процесс</description>
+    </transition>
+    <transition to="СВД : Выдача документа" name="REPEAT">
+      <label x="5" y="-10"></label>
+      <bendpoint w1="1" h1="-67" w2="361" h2="5"></bendpoint>
+      <bendpoint w1="-183" h1="-68" w2="201" h2="-68"></bendpoint>
+      <description>Вернуть в сектор выдачи</description>
+    </transition>
+  </task-node>
+  <end-state name="Завершение процесса 1" x="1080" y="264" width="193" height="36"></end-state>
+  <end-state name="Завершение процесса 3" x="384" y="1092" width="193" height="36"></end-state>
+  <end-state name="Завершение процесса 2" x="1080" y="1008" width="193" height="36"></end-state>
+</process-definition>

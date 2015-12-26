@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.wx-dv .wx-dv-bendpoint {
+	height:7px;
+	width:7px;
+	border:0px dotted #ccc;
+	position:absolute;
+	cursor:crosshair;
+}
+.wx-dv .wx-dv-bendpoint:hover {
+	border:1px solid #555;
+}

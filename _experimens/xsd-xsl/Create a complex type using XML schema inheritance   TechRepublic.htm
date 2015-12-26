@@ -1,0 +1,2049 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0115)http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="description" content="Using inheritance, it is possible to create a complex type and then create an element that extends it by adding elements or attributes. Edmond Woychow">
+<meta name="keywords" content="Edmond Woychowsky, Programming and Development, XML Schema, Type, XML">
+<meta name="language" content="en">
+<meta name="robots" content="index, follow, noodp">
+<title>Create a complex type using XML schema inheritance | TechRepublic</title>
+<link rel="stylesheet" type="text/css" media="screen" href="./Create a complex type using XML schema inheritance   TechRepublic_files/base-min.css">
+<link rel="stylesheet" type="text/css" media="print" href="./Create a complex type using XML schema inheritance   TechRepublic_files/print-min.css">
+<!--[if IE]><link rel="stylesheet" type="text/css" media="screen" href="http://i.techrepublic.com.com/css/v3/ie-min.css" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" type="text/css" media="screen" href="http://i.techrepublic.com.com/css/v3/ie6-min.css" /><![endif]-->
+<link rel="stylesheet" type="text/css" media="screen" href="./Create a complex type using XML schema inheritance   TechRepublic_files/community-min.css">
+
+<link rel="canonical" href="./Create a complex type using XML schema inheritance   TechRepublic_files/Create a complex type using XML schema inheritance   TechRepublic.htm">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.techrepublic.com/blog/programming-and-development?mode=rss">
+
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/dw.js"></script>
+<script type="text/javascript">
+DW.pageParams = {
+    siteid: '11',
+    onid: '12845',
+    ptid: '2100',
+    cid: '116643',
+    asid: '116643',
+    astid: '26',
+    edid: '2',
+    usrAction: '43',
+    ctype: 'tr;blog;author;post',
+    cval: 'programming-and-development;Edmond+Woychowsky;759',
+    pguid: 'JVQhvAoPOh0AAChn7dAAAAAo'
+};
+DW.regSilo = 3;
+</script><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/mootools-core-more.js"></script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/cnb-utils-2.0-min.js"></script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/cnb-reg-2.0-min.js"></script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/tr-features-min.js"></script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/cnb-interact-min.js"></script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/cnb-talkback-min.js"></script>
+
+<script type="text/javascript">
+CNB.User.extend({
+    userName: '',
+    regId: '',
+    isLoggedIn: false,
+    isPro: false
+});
+
+CNB.Reg = new CNB.Registration({
+    appId: '243',
+    urlPrefix: '/members/'
+});
+</script>
+
+<script language="javascript" type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/mac-ad"></script><script language="javascript" type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/gw.js"></script><script language="javascript" type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/bk-static.js"></script><script type="text/javascript" async="" src="./Create a complex type using XML schema inheritance   TechRepublic_files/ga.js"></script><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/rok-get"></script><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/FB.Share"></script><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/widgets.js"></script><link rel="stylesheet" type="text/css" href="./Create a complex type using XML schema inheritance   TechRepublic_files/share-button-css"><script src="./Create a complex type using XML schema inheritance   TechRepublic_files/restserver.php"></script><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/3318"></script></head>
+<body><script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/504302872.js"></script>
+<div class="announce announce-latest">
+    <div class="contain contain-24 center s-12 c-1 line-h-9">
+        Welcome to TechRepublic's 2011 upgrade: Simpler and lot more social -- <a href="http://www.techrepublic.com/blog/hiner/techrepublics-2011-upgrade-simpler-and-lot-more-social/7473">Read more</a>    </div>
+</div>
+<div class="eyebrow">
+    <div class="contain contain-25 s-13 clear">
+        <div id="member-tools" class="member-tools right-1">
+                                                                        
+            <div class="reg-is-logged-in hide">
+                <ul class="list-4-a list-dbl-bdr-3 right space-0">
+                    <li>
+                    Welcome <a href="http://www.techrepublic.com/members/manage" rel="nofollow" onclick="CNB.Reg.manage({},event)" class="reg-update-username"></a>
+                    </li>
+                    <li><a href="http://www.techrepublic.com/members/logout" rel="nofollow" onclick="CNB.Reg.logout({},event)">Log Out</a></li>
+                    <li class="my-profile">
+                        <div class="int"><a class="drop-down" href="http://www.techrepublic.com/members/dashboard">My Account</a></div>
+                    </li>
+                    <li><a href="http://www.techrepublic.com/faq/general">FAQ</a></li>
+                                        <li><a href="http://www.techrepublic.com/pro">Go Pro!</a></li>
+                                    </ul>
+                
+                <div class="overlay-pop contain-overlay-4 pop-hidden" style="visibility: hidden; position: absolute; ">
+                    <div class="overlay-int clear">
+                        <ul class="list-3 list-dbl-bdr-1">
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/members/profile">My Profile</a></li>
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/members/contacts">Contacts</a></li>
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/newsletters">Subscriptions</a></li>
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/members/discussions">My Stuff</a></li>
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/members/preferences">Preferences</a></li>
+                            <li><a rel="nofollow" href="http://www.techrepublic.com/members/message">Send a Message</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /reg-is-logged-in -->
+
+            <div class="reg-is-logged-out">
+                <ul class="list-4-a list-dbl-bdr-3 right space-0">
+                    <li><a href="http://www.techrepublic.com/members/login" rel="nofollow" onclick="CNB.Reg.login({regSrc:&#39;hdr-login&#39;},event)">Log In</a></li>
+                    <li><a href="http://www.techrepublic.com/members/join" rel="nofollow" onclick="CNB.Reg.join({regSrc:&#39;hdr-join&#39;},event)">Join TechRepublic</a></li>
+                    <li><a href="http://www.techrepublic.com/faq/general">FAQ</a></li>
+                    <li><a href="http://www.techrepublic.com/pro">Go Pro!</a></li>
+                </ul>
+            </div><!-- /reg-logged-out -->
+        </div><!-- /member-tools -->
+
+        <div class="sister-sites left">
+            <ul class="list-4-a list-dbl-bdr-3 space-0">
+                <li><a href="http://www.zdnet.com/">ZDNet</a></li>
+                <li><a href="http://www.smartplanet.com/">SmartPlanet</a></li>
+                <li><a href="http://www.techrepublic.com/">TechRepublic</a></li>
+                <li id="cbs-sites-rubics-promo" class="cbs-sites-promo"><div class="rubics_netxp1_main" id="rbx_netxp1_parent">
+<script type="text/javascript">
+function do_rbx_ctrk_netxp1 (aElem, iTrkId, cTrkPrefix) {
+	var imgElem = document.getElementById(iTrkId);
+	if (!imgElem) {
+		return true;
+	}
+
+	if (!aElem.rbxCPrefixed) {
+		aElem.rbxCPrefixed = true;
+		var destUri = encodeURIComponent(aElem.href);
+		var newUri = cTrkPrefix + destUri;
+		aElem.href = newUri;
+	}
+	return true;
+}
+function do_rbx_itrk_netxp1 (parentId, iTrkId, iTrkUri) {
+	if (!document.images) {
+		return false;
+	}
+
+	var imgId = iTrkId;
+	var imgElem = document.getElementById(imgId);
+
+	if (!imgElem) {
+
+		var parentElem = document.getElementById(parentId);
+		if (!parentElem) {
+			return false;
+		}
+
+		var imgElem = document.createElement('img');
+		if (!imgElem) {
+			return false;
+		}
+
+		imgElem.id = imgId;
+		imgElem.src = iTrkUri;
+		imgElem.alt = '';
+		imgElem.width = '1';
+		imgElem.height = '1';
+
+		parentElem.appendChild(imgElem);
+	}
+	return true;
+}
+</script>
+	On CHOW: 
+	<a target="_top" onclick="return do_rbx_ctrk_netxp1(this, &#39;rbx_netxp1_1&#39;, &#39;http://dw.com.com/rubicsclk?ver=2&amp;ts=2011.02.07.03.02.13.PST&amp;edId=&amp;onId=&amp;ptId=&amp;sId=-1&amp;appId=19&amp;offId=11127&amp;unitId=45&amp;poolId=1&amp;f1=9&amp;f2=-0&amp;f3=-0&amp;alg=8&amp;&amp;opt=1&amp;linkPos=0&amp;destUrl=&#39;);" href="http://www.chow.com/food-news/55409/the-perfect-soup-dumpling/" class="xpromolink">How to slurp a soup dumpling</a>
+<script type="text/javascript">
+//<![CDATA[
+do_rbx_itrk_netxp1('rbx_netxp1_parent', 'rbx_netxp1_1', 'http://dw.com.com/rubicsimp/c.gif?ver=2&ts=2011.02.07.03.02.13.PST&edId=&onId=&ptId=&sId=-1&appId=19&unitId=45&poolId=1&f1=9&f2=-0&f3=-0&alg=8&opt=1&off=11127,-1');
+//]]>
+</script>
+</div>
+</li>
+            </ul>
+        </div><!-- /sister-sites -->
+    </div>
+</div><!-- /eyebrow -->
+
+<div id="trunk">
+
+<div id="header">
+	<div id="header-pri" class="contain contain-25 clear">
+		<div class="area-6">
+			<a class="site-logo" href="http://www.techrepublic.com/">TechRepublic</a>
+		</div><!--/area-6 -->
+		<div class="area-18 area-last">
+			<ul class="nav-pri right s-11 clear">
+				<li><a class="home" href="http://www.techrepublic.com/">Home</a></li>
+				<li class="on"><a href="http://www.techrepublic.com/blogs">Blogs</a></li>
+				<li><a href="http://www.techrepublic.com/downloads">Downloads</a></li>
+				<li><a href="http://www.techrepublic.com/newsletters">Newsletters</a></li>
+				<li><a href="http://www.techrepublic.com/forum/questions">Q&amp;A</a></li>
+				<li><a href="http://www.techrepublic.com/forum/discussions">Discussions</a></li>
+				<li><a href="http://www.techrepublic.com/training">Training</a></li>
+				<li><a href="http://www.techrepublic.com/research-library">Research Library</a></li>
+			</ul>
+		</div><!--/area-18 -->
+	</div><!-- /header-pri -->
+	<div id="header-sec" class="header-sec contain contain-25 clear">
+		<div class="int clear">
+                <ul class="nav-sec clear">
+                <li class=""><div class="int"><a class="drop-down">IT Management</a></div></li>
+                <li class=""><div class="int"><a class="drop-down">Development</a></div></li>
+                <li class=""><div class="int"><a class="drop-down">IT Support</a></div></li>
+                <li class=""><div class="int"><a class="drop-down">Data Center</a></div></li>
+                <li class=""><div class="int"><a class="drop-down">Networks</a></div></li>
+                <li class=""><div class="int"><a class="drop-down">Security</a></div></li>
+            </ul>
+
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="position: absolute; visibility: hidden; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                                            <li><a href="http://www.techrepublic.com/topics/leadership">Leadership</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/career">Career</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/compliance">Compliance</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/it+consultant">IT Consultant</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/itil">ITIL</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/project+management">Project Management</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/business+intelligence">Business Intelligence</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="visibility: hidden; position: absolute; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                                            <li><a href="http://www.techrepublic.com/topics/web+development">Web Development</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/software+development">Software Development</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/mobile+development">Mobile Development</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="visibility: hidden; position: absolute; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                                            <li><a href="http://www.techrepublic.com/topics/help+desk">Help Desk</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/desktop+applications">Desktop Applications</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/mobile+computing">Mobile Computing</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/microsoft+windows">Microsoft Windows</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/apple">Apple</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/linux">Linux</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="position: absolute; left: 359px; top: 40px; visibility: hidden; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                                            <li><a href="http://www.techrepublic.com/topics/cloud+computing">Cloud Computing</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/database+administration">Database Administration</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/servers">Servers</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/storage">Storage</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/virtualization">Virtualization</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="position: absolute; left: 470px; top: 40px; visibility: hidden; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                            <li><a href="http://www.techrepublic.com/topics/lan">LAN/WAN</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/wireless">Wireless</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/unified+communications">Unified Communications</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/voip">VoIP</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+        <div class="overlay-pop contain-overlay-4 pop-hidden" style="visibility: hidden; position: absolute; ">
+        <div class="overlay-int clear">
+                            <ul class="list-3 list-dbl-bdr-1">
+                                                                                                            <li><a href="http://www.techrepublic.com/topics/anti-malware">Anti-Malware</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/compliance">Compliance</a></li>
+                                                                                                                            <li><a href="http://www.techrepublic.com/topics/it+risk+management">IT Risk Management</a></li>
+                                        </ul>
+                </div><!-- /int -->
+    </div><!-- /overlay -->
+    
+  
+	
+			<div id="site-search-upper" class="site-search search-upper right">
+	            <form action="http://www.techrepublic.com/search" class="">
+	                <div class="int clear">
+	                    <input type="text" placeholder="Search" name="q" class="query placeholder" value="">
+	                    <button class="btn btn-search" type="submit">
+	                        Search
+	                    </button>
+	                </div>
+	                <!-- /clear -->
+	            </form>
+	            <div class="overlay-search pop-hidden">
+	                <ul class="options list-3 list-bdr s-12 fancy">
+	                    <li><a title="all" class="on">All of TechRepublic</a></li>
+	                    <li><a section="publications">Publications</a></li>
+	                    <li><a section="library">Library</a></li>
+	                </ul>
+	            </div><!--/overlay-search -->
+			</div><!--/site-search -->
+		</div><!--/int -->
+		
+	</div><!-- /header-sec -->
+</div><!-- /header -->
+
+<script type="text/javascript">
+    CNB.initNavOverlay();
+</script>
+
+<div id="mantle_skin" style="position: relative; ">
+ <div id="landing" class="contain contain-24 clear">
+        <a class="landing-collapse s-13">Collapse -</a>
+        <div class="landing-pad pad-t-2 clear">
+                                                    
+            
+            <div class="area-8">
+                    <div class="thumb view-9">
+                        <a href="http://www.techrepublic.com/blog/hiner/how-to-hack-the-250-nook-color-into-a-full-android-tablet/7630">
+                            <span class="mask mask-5x2-300"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6191474-300-140.jpg" width="300" height="140" alt="LP - Nook Android"></span>                            <span class="caption"><span class="int line-h-9 s-9">Hack Nook Color into Android tablet</span></span>
+                            <span class="inlay inlay-corners-5x2-300"></span>
+                        </a>
+                    </div><!-- / thumb -->
+            </div><!-- / area -->
+
+                                                            
+            
+            <div class="area-8">
+                    <div class="thumb view-9">
+                        <a href="http://www.techrepublic.com/blog/programming-and-development/avoid-getting-buried-in-technical-debt/3849">
+                            <span class="mask mask-5x2-300"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6190645-300-140.jpg" width="300" height="140" alt="LP - Calculate"></span>                            <span class="caption"><span class="int line-h-9 s-9">Avoid getting buried in technical debt</span></span>
+                            <span class="inlay inlay-corners-5x2-300"></span>
+                        </a>
+                    </div><!-- / thumb -->
+            </div><!-- / area -->
+
+                                                            
+            
+            <div class="area-8 area-last">
+                    <div class="thumb view-9">
+                        <a href="http://www.techrepublic.com/blog/hiner/the-10-hottest-tablets-worth-waiting-for-in-2011/7546">
+                            <span class="mask mask-5x2-300"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6190644-300-140.jpg" width="300" height="140" alt="LP - 2011 tablets"></span>                            <span class="caption"><span class="int line-h-9 s-9">The 10 hottest tablets coming in 2011</span></span>
+                            <span class="inlay inlay-corners-5x2-300"></span>
+                        </a>
+                    </div><!-- / thumb -->
+            </div><!-- / area -->
+
+                                        </div><!-- /landing-pad -->
+</div>
+
+<script type="text/javascript">
+(function() {
+    var landing = new CNB.TR.LandingPad().load();
+})();
+</script>
+
+ 	<!-- Leaderboard -->
+	
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=100/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=248/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><!--NO AD TEXT:--><!-- default ad --><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear.gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"><!-- Cheetah T 1.5.6.9 -->	<!-- Mantle Skin -->
+	
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=100/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=119/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><!--NO AD TEXT:--><!-- default ad --><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(1).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"><!-- Cheetah T 1.7.7.10 --><div id="content" class="contain contain-24 clear col-set-1">
+
+
+
+<div class="area-16 clear">
+
+    <div class="clear">
+        <div class="breadcrumb c-4 s-11 left">
+  <a href="http://www.techrepublic.com/">Home</a> /
+              <a href="http://www.techrepublic.com/blogs">Blogs</a> /                  <a href="http://www.techrepublic.com/blog/programming-and-development">Programming and Development</a>      </div><!-- /breadcrumb -->
+        <dl class="list-4-c c-4 s-11 clear right">
+    <dt>Follow this blog: </dt>
+            <dd><a title="RSS" class="i-rss-2 icon-notext-2 sink-0_3" rel="nofollow" href="http://www.techrepublic.com/blog/programming-and-development?mode=rss">RSS</a></dd>
+                <dd><a title="Email Alerts" class="i-mail-2 icon-notext-2 sink-0_3" rel="nofollow" href="http://www.techrepublic.com/alerts/add?url=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%3Fmode%3Drss&title=Programming+and+Development+on+TechRepublic&source=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759&frequency=weekly">Email Alert</a></dd>
+    </dl><!-- /follow-options -->
+    </div>
+
+    <h2 class="s-9 c-6 heavy">Programming and Development</h2>
+
+    <h1 class="h s-1 space-2">Create a complex type using XML schema inheritance</h1>
+    
+    <div class="content-1 entry space-1 clear">
+    
+		
+<div class="area-6 area-last alignright">
+<div id="interact-247020434" class="view-7 interact-bar">
+		<div class="lvl pad-1_5-a clear">
+		    <div class="interact-vote left space-1">
+                <div class="left">
+                    <a voteaction="vote-up" class="btn plus">Recommend</a>
+                </div>
+                <div class="center int-bd">
+                    <span class="blk count heavy s-7 line-h-10">+7</span>
+                    <span class="blk suffix s-14">Votes</span>
+                </div>
+		    </div>
+		    		        <a class="bubble-4 right c-1" href="http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759#talkback">
+		        	<span class="blk count s-7 heavy line-h-10">11</span>
+					<span class="blk suffix s-14">Comments</span>
+		        </a>
+		    	</div><!-- /lvl -->
+		
+	<div class="lvl pad-1_5-a clear">
+
+        <div class="clear">
+            <div class="left-1 space-0_5 fb-share-cont">
+                <a class="fb-share-btn" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759&t=Create%20a%20complex%20type%20using%20XML%20schema%20inheritance%20%7C%20TechRepublic&src=sp" share_url="http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759" name="fb_share" type="box_count" share_title="Create a complex type using XML schema inheritance" style="text-decoration: none; "><span class="fb_share_size_Small fb_share_count_wrapper"><span></span><span class="fb_share_count_nub_top fb_share_no_count"></span><span class="fb_share_count fb_share_no_count fb_share_count_top"><span class="fb_share_count_inner">&nbsp;</span></span><span class="FBConnectButton FBConnectButton_Small" style="cursor:pointer;"><span class="FBConnectButton_Text">Share</span></span></span></a>
+            </div>
+
+	        <div class="left-1 space-0_5 twitter-share-cont">
+		        <iframe allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" class="twitter-share-button twitter-count-vertical" src="./Create a complex type using XML schema inheritance   TechRepublic_files/tweet_button.htm" style="width: 55px; height: 62px; " title="Twitter For Websites: Tweet Button"></iframe>
+	        </div>
+	        
+            <div class="left space-0_5 su-share-cont"><iframe src="./Create a complex type using XML schema inheritance   TechRepublic_files/saved_resource(2).htm" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:50px;height:60px;" allowtransparency="true"></iframe></div>
+        </div>
+
+        <div class="clear space-0_5"><a class="right share-more c-4 s-12">more +</a></div>	
+	</div><!-- /lvl -->
+	
+	<div class="interact-tray clear pop-hidden" style="visibility: hidden; position: absolute; ">
+		<div class="int s-13">
+			<ul class="list-3 left space-r-1 pad-0 pad-b-2 options">
+				<li class="icon-1 i-mail-1"><a shareaction="email">Email</a></li>
+				<li class="icon-1 i-print-1"><a shareaction="print">Print</a></li>
+				<li class="icon-1 i-tr-1"><a siteaction="favorite" href="http://www.techrepublic.com/util/favorite?title=Create+a+complex+type+using+XML+schema+inheritance&url=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759&contentType=Blog+posts&contentId=programminganddevelopment_759&path=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759">Add to Favorites</a></li>
+				<li class="icon-1 i-delicious-1"><a shareaction="delicious">Del.icio.us</a></li>
+				<li class="icon-1 i-digg-1"><a shareaction="digg">Digg</a></li>
+				<li class="icon-1 i-facebook-1"><a shareaction="facebook">Facebook</a></li>
+				<li class="icon-1 i-google-1"><a shareaction="googleBuzz">Google Buzz</a></li>
+			</ul>
+			 <ul class="list-3 pad-0 pad-b-2 options">
+				<li class="icon-1 i-hackernews-1"><a shareaction="hackerNews">Hacker News</a></li>
+				<li class="icon-1 i-linkedin-1"><a shareaction="linkedIn">LinkedIn</a></li>
+				<li class="icon-1 i-reddit-1"><a shareaction="reddit">Reddit</a></li>
+				<li class="icon-1 i-stumbleupon-1"><a shareaction="stumbleupon">StumbleUpon</a></li>
+				<li class="icon-1 i-technorati-1"><a shareaction="technorati">Technorati</a></li>
+				<li class="icon-1 i-twitter-1"><a shareaction="twitter">Twitter</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</div><!-- /interact-bar -->
+</div>
+
+<script type="text/javascript">
+(function() {
+    var container = $('interact-247020434');
+
+    var pop = new CNB.Pop(container.getElement('.share-more'), container.getElement('.interact-tray'), {
+        position: {x: 'right', y: 'bottom'},
+        offset: {x: -206, y: 0}
+    }).load();
+
+        var voting = new CNB.Voting({
+        url: '/util/vote',
+        container: container.getElement('.interact-vote'),
+        loadingContainer: container.getElement('.plus'),
+        data: {
+            cid: 'programminganddevelopment_759',
+            title: 'Create a complex type using XML schema inheritance',
+            url: 'http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759',
+            ct: 'Blog posts'
+        },
+        hasVoted: false    }).activate();
+    
+    CNB.Share = new CNB.TR.SocialShare({
+        title: 'Create a complex type using XML schema inheritance',
+        summary: 'Using inheritance, it is possible to create a complex type and then create an element that extends it by adding elements or attributes. Edmond...',
+        url: 'http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759',
+        shortUrl: 'http://tek.io/gIEohC',
+        container: container
+    });
+    CNB.Share.loadThirdParty(['twitter', 'facebook', 'stumbleupon']);
+})();
+</script>	    
+	    <div class="space-1 s-11 c-4">
+			<div class="author">By Edmond Woychowsky</div>
+			<div class="date">November 20, 2008, 7:04 AM PST</div>
+		</div> 
+    	
+        
+            
+    	
+
+        <p class="c-4 space-1"><span class="c-6 heavy">Takeaway: </span>Using inheritance, it is possible to create a complex type and then create an element that extends it by adding elements or attributes. Edmond Woychowsky shows how he fudged inheritance using XSLT.</p>        
+        
+        <p>&nbsp;</p><p>
+In the original <em>Star Trek</em> episode, <a href="http://en.wikipedia.org/wiki/Amok_Time" target="_blank">“Amok Time,”</a> Spock utters the line, “After a time, you may find that having is not so pleasing a thing after all as wanting. It is not logical, but it is often true.” Even though Spock was referring to T’Pring at the time, it is a concept that isn’t limited to any one person or thing. If you don’t believe me, might I suggest a double dip ice cream cone on a hot and humid July evening? It’s not something you do more than once, at least not without a shower handy. You can apply the “wanting is better than having” concept to development work. An example is the limited form of inheritance available in XML schemas.</p><p>
+Taken at face value, schema inheritance is a good idea. Using inheritance, it is possible to create a complex type and then create an element that extends it by adding elements or attributes. <strong>Listing A</strong> shows an example of a schema that implements inheritance.</p><p>
+<strong>Listing A</strong></p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:complexType name="inner"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="a" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="c" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:choice&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:complexType&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="root"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:complexType&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:complexContent&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:extension base="inner"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="b" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="d" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:choice&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:extension&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:complexContent&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:complexType&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:element&gt; 
+
+&lt;/xs:schema&gt;</pre>
+<p>The way that the schema works is that the xs:complexType, inner, specifies two elements named a and c whose order doesn’t matter thanks to the attributes of the xs:choice. The xs:element, root, then inherits from inner and adds the elements b and d whose order also doesn’t matter. The result of this inheritance is that the XML document in <strong>Listing B</strong> is perfectly valid.</p><p>
+<strong>Listing B</strong></p>
+<pre>&lt;root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="G:Documentsxmlinheritancetestsample.xsd"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a&gt;one&lt;/a&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;b&gt;two&lt;/b&gt; 
+
+&lt;/root&gt;</pre>
+<p>So far, so good. Unfortunately, the not being as pleasurable as you want issues are about to rear their ugly head like a <a href="http://en.wikipedia.org/wiki/Mugato" target="_blank">Mugato</a>. These issues arise when validating an XML document like the one shown in <strong>Listing C</strong>.</p><p>
+<strong>Listing C</strong></p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="G:Documentsxmlinheritancetestsample.xsd"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a&gt;one&lt;/a&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;b&gt;two&lt;/b&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;c&gt;three&lt;/c&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;d&gt;four&lt;/d&gt; 
+
+&lt;/root&gt;</pre>
+<p>The problem is that, in spite of xs:choice being used for both the base and the derived, the base and the derived are independent of each other. So, once an element from the derived element is encountered, any element from the base is invalid, like c in the above example. The actual error is shown in <a href="http://www.altova.com/products/xmlspy/xml_editor.html" target="_blank">Altova’s XMLSpy</a> (see <strong>Figure 1</strong>).</p><p>
+<strong>Figure 1</strong></p><p>
+<a href="http://content.techrepublic.com.com/2347-10878_11-193387-250669.html?seq=90" target="_blank"><img title="Figure 1" src="./Create a complex type using XML schema inheritance   TechRepublic_files/250669-500-300.jpg" border="0" alt="Figure 1"></a></p><p>
+</p><h6>Click image to enlarge.</h6>
+This issue leaves three possibilities. The first is to forget the whole idea, which in my case wasn’t an option. The second possibility is to make sure that the elements are sequenced so that base elements all occur before the derived elements. As attractive as this possibility is, due to the fact that it isn’t always possible to control the source of an XML document, it also isn’t an option, alas. In the end, I decided to fudge inheritance using XSLT.<p></p><p>
+The way it works is that the XSL style sheet uses the schema as input to create a new schema. The first step is to create the xs:schema element along with its attributes. Next, it is necessary to select those xs:element elements that have xs:extension elements as descendants. At this point, the generic xs:complexType and xs:choice elements are created. Finally the xs:element elements are copied from both the derived and base complex types. In the end, the transformation looks like the one shown in <strong>Listing D</strong>, with the result of the transformation shown in <strong>Listing E</strong>.</p><p>
+<strong>Listing D</strong></p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:template match="/"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:element name="xs:schema"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name="version"&gt;1.0&lt;/xsl:attribute&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select="//xs:element[count(./descendant::node()[name(.) = 'xs:extension']) != 0]"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:element&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:template match="xs:element"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:variable name="base" select="./descendant::node()[name(.) = 'xs:extension']/@base"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="./@*"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:element name="xs:complexType"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:element name="xs:choice"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name="minOccurs"&gt;0&lt;/xsl:attribute&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name="maxOccurs"&gt;unbounded&lt;/xsl:attribute&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="./descendant::node()[name(.) = 'xs:element']"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="//xs:complexType[@name = $base]/descendant::node()[name(.) = 'xs:element']"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:element&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:element&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:copy&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt; 
+
+&lt;/xsl:stylesheet&gt;</pre>
+<p><strong>Listing E</strong>
+</p><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="root"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:complexType&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="b" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="d" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="a" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:element name="c" type="xs:string"/&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:choice&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:complexType&gt; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xs:element&gt; 
+
+&lt;/xs:schema&gt;</pre>
+<h2>Conclusion</h2>
+<p>Some developers might take issue with the idea of what is described here as being true inheritance. On some level, I agree. Some might even consider the code in this article to be a sham, a con, or a fake. I, however, like to think of it as a <a href="http://en.wikipedia.org/wiki/Corbomite" target="_blank">Corbomite Maneuver</a>. It does, after all, get the job done.</p><p>
+<em><strong>Get weekly development tips in your inbox<br>
+</strong>Keep your developer skills sharp by signing up for TechRepublic’s free Web Developer newsletter, delivered each Tuesday. </em><a href="http://nl.com.com/MiniFormHandler?brand=techrepublic&list_id=e055" target="_blank"><em>Automatically subscribe today!</em></a></p>        
+    </div><!-- /entry -->
+
+    <div class="space-2">
+    <p class="s-11 c-4">Get IT Tips, news, and reviews delivered directly to your inbox by subscribing to <a href="http://www.techrepublic.com/newsletters">TechRepublic’s free newsletters</a>.</p>
+    
+    </div>
+
+    <div class="view-7 pad-1 clear space-2">
+
+<div id="share-like-101134604" class="clear right space-1 sink-0_3">
+	<ul class="list-4-a clear space-0 left-1">
+		<li><a class="icon-notext-1 i-digg-1" shareaction="digg">Digg</a></li>
+		<li><a class="icon-notext-1 i-reddit-1" shareaction="reddit">Reddit</a></li>
+		<li><a class="icon-notext-1 i-stumbleupon-1" shareaction="stumbleupon">StumbleUpon</a></li>
+		<li><a class="icon-notext-1 i-twitter-1" shareaction="twitter">Twitter</a></li>
+	</ul>
+
+    <div class="left interact-more c-4 s-12"><a>more +</a></div>
+		
+	<div class="interact-tray clear pop-hidden" style="visibility: hidden; position: absolute; ">
+		<div class="clear s-13">
+			<ul class="list-3 options left">
+				<li class="icon-1 i-mail-1"><a shareaction="email">Email</a></li>
+				<li class="icon-1 i-facebook-1"><a shareaction="facebook">Facebook</a></li>
+				<li class="icon-1 i-google-1"><a shareaction="googleBuzz">Google Buzz</a></li>
+				<li class="icon-1 i-hackernews-1"><a shareaction="hackerNews">Hacker News</a></li>
+			 	<li class="icon-1 i-linkedin-1"><a shareaction="linkedIn">LinkedIn</a></li>
+				<li class="icon-1 i-print-1"><a shareaction="print">Print</a></li>
+				<li class="icon-1 i-technorati-1"><a shareaction="technorati">Technorati</a></li>
+			</ul>
+		</div>
+	</div>
+</div>	
+
+<script type="text/javascript">
+    var container = $('share-like-101134604');
+    var sharepop = new CNB.Pop(container.getElement('.interact-more'), container.getElement('.interact-tray'), {
+        position: {x: 'right', y: 'bottom'},
+        offset: {x: -106, y: 2}
+    }).load();
+
+        if (CNB.Share) {
+        CNB.Share.load('share-like-101134604');
+    }
+    </script>
+
+<div class="left space-1">
+    <iframe src="./Create a complex type using XML schema inheritance   TechRepublic_files/like.htm" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:24px;" allowtransparency="true"></iframe>
+</div>
+
+</div>
+
+
+    
+
+    
+
+
+    <div>
+    
+    
+    
+        <div class="view-7 space-2 clear">
+        
+	        <div class="lvl pad-1 pad-b-1 post-paging clear">
+	        	<div class="area-7_5 prev">
+	                	                <a href="http://www.techrepublic.com/blog/programming-and-development/should-programmers-know-more-than-just-programming/756">
+	                    <span class="s-9 line-h-3 title">Should programmers know more than just programming?</span>
+	                </a>
+	                	            </div><!-- /area -->
+	
+	            <div class="area-7_5 right area-last next">
+	                	                    <a href="http://www.techrepublic.com/blog/programming-and-development/conflict-between-rich-internet-apps-and-soa-say-it-isnt-so/761">
+	                        <span class="s-9 line-h-3 title">Conflict between Rich Internet Apps and SOA? Say it isn't so</span>
+	                    </a>
+	                	            </div><!-- /area -->
+	        </div><!--  //lvl -->
+        
+                <div class="lvl pad-1 pad-b-1 clear">
+        	<h5 class="s-9 c-6 heavy">People who read this...</h5>
+        	<ul class="list-1">
+        	        		<li><a href="http://www.techrepublic.com/blog/programming-and-development/access-xml-data-using-linq-to-xml/594?tag=rbxccnbtr1">Access XML data using LINQ to XML</a></li>
+        	        	</ul>
+        </div><!--  //lvl -->
+                    
+        </div><!-- /view-7 -->
+    </div>
+
+
+    <div id="talkback">
+        <div class="view-8-c space-2 pad-t-2 clear">
+        <div class="bubble-4 c-1 left-2">
+            <div class="count">11</div>
+            <div class="suffix">Comments</div>
+        </div>
+
+        <div class="right">
+            <a class="btn btn-1 s-9" href="http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759#leavecomment">Add Your Opinion</a>
+        </div>
+
+        <div class="int-bd">
+            <h3 class="h c-10 s-7 space-0_3">Join the conversation!</h3>
+            <dl class="list-4-c c-4 s-11 clear ">
+    <dt>Follow via:</dt>
+            <dd><a title="RSS" class="i-rss-2 icon-notext-2 sink-0_3" rel="nofollow" href="http://www.techrepublic.com/forum/discussions/102-279458/rss">RSS</a></dd>
+                <dd><a title="Email Alerts" class="i-mail-2 icon-notext-2 sink-0_3" rel="nofollow" href="http://www.techrepublic.com/alerts/add?url=http%3A%2F%2Fwww.techrepublic.com%2Fforum%2Fdiscussions%2F102-279458%2Frss&title=Discussion+on+Create+a+complex+type+using+XML+schema+inheritance+on+TechRepublic&source=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759&frequency=weekly">Email Alert</a></dd>
+    </dl><!-- /follow-options -->
+        </div>
+    </div><!-- /view-8-c -->
+    
+    <div id="discussion-programminganddevelopment_759" section="discussion-asset-thread">
+
+        
+        
+                <div class="space-2">
+            
+<div class="cmnt cmnt-feature depth-1" id="msg-2647295">
+    <div class="int  space-2">
+                <div class="ribbon ribbon-1"><div class="int s-12 line-h-9">Just<br>In</div></div>
+                        
+        <div class="content space-1 clear">
+            
+
+                        <h6 class="h s-6"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2647295">Softened stance</a></h6>
+            
+            <p class="content-show-more" style="display: block; ">or simply aclimatised. I'm never ever ever going to be a big fan of client side scripting. I know all the arguments for it, but every one assumes that I as a consumer want the funky web page. I don't,... <a class="btn-more more">Read Whole Comment&nbsp;+</a></p><div class="entry content-expandable" style="display: none; ">
+                or simply aclimatised. I'm never ever ever going to be a big fan of client side scripting. <br><br>I know all the arguments for it, but every one assumes that I as a consumer want the funky web page. I don't, I want quick clean and secure. Course I'm a grumpy old reactionary fart.            <a class="btn-less more">Show Less&nbsp;-</a></div>
+        </div><!-- /content -->
+
+        
+        <div class="cmnt-pointer"></div>
+    </div><!-- /int -->
+
+    <div class="cmnt-utils space-1 clear">
+                <div class="cmnt-user push-2 left-1 s-11 c-4 clear">
+            <div class="thumb thumb-3 left-2">
+                <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar.php" width="34" height="34"></div>            </div>
+
+            <div class="left">
+                                                <div class="name">Posted by <a href="http://www.techrepublic.com/members/profile/3122950">Tony Hopkinson</a></div>
+                <div class="date">Nov 25, 2008 @ 1:01 PM (PST)</div>
+            </div>
+        </div><!-- /cmnt-user -->
+            </div>
+
+    
+</div><!-- /cmnt -->
+        </div>
+        
+
+                <div class="space-1 clear">
+            <div class="s-12 right pad-t-0_3">
+                <a href="http://www.techrepublic.com/members/preferences#community">Community Preferences</a>
+            </div>
+
+            
+<div class="left" id="sort-1230281684" section="thread-sort">
+    <div class="left-2 sort-1">
+        <div class="left-0_5 label s-12 c-4">View:</div> 
+        <div class="btn left s-12 view-14">                        
+            <a class="selection drop-down">Collapsed</a>
+        </div>
+
+        <div class="overlay-pop-2 pop-hidden" style="visibility: hidden; position: absolute; ">
+            <ul class="options list-3 list-bdr s-12">
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=50&view=collapsed" rel="nofollow" class="on">Collapsed</a></li>
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=50&view=expanded" rel="nofollow" class="">Expanded</a></li>
+                        </ul>
+        </div>
+    </div>
+
+    <div class="left sort-1">
+        <div class="left-0_5 label s-12 c-4">Show:</div>
+        <div class="btn left s-12 view-14">    
+            <a class="selection drop-down">50</a>
+        </div>
+
+        <div class="overlay-pop-2 pop-hidden" style="visibility: hidden; position: absolute; ">
+            <ul class="options list-3 list-bdr s-12">
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=25&view=collapsed" rel="nofollow" class="">25</a></li> 
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=50&view=collapsed" rel="nofollow" class="on">50</a></li> 
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=100&view=collapsed" rel="nofollow" class="">100</a></li> 
+                            <li><a href="http://www.techrepublic.com/forum/discussions/102-279458?count=all&view=collapsed" rel="nofollow" class="">All</a></li> 
+                        </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var parent = $('sort-1230281684');
+    CNB.PopSelect.MultiInit(parent.getElements('.btn'), parent.getElements('.overlay-pop-2'), { setSelectionOnClick: false });
+})();
+</script>
+        </div>
+        
+        <div class="thread-cont view-7">
+                                    <div class="pad-2-a lvl">
+                <div id="discussion-programminganddevelopment_759-selected" class="cmnt-group">
+                                                            <div class="clear space-0_5 s-12 heavy raise-1">
+                                                <a href="http://www.techrepublic.com/forum/discussions/102-279458-2646064#commentpaging" class="right" title="RE: Create a complex type using XML schema inheritance">Next »</a>
+                        
+                                            </div>
+                    
+                    
+<div class="cmnt cmnt-feature depth-1" id="msg-2645994">
+    <div class="int  space-2">
+                        
+        <div class="content space-1 clear">
+            
+<div class="ribbon ribbon-2 right cmnt-vote">
+    <div class="int center">
+        <span class="blk heavy line-h-9 count">0</span>
+        <span class="blk s-13 suffix">Votes</span>
+    </div>
+    <div class="vote-options clear">
+        <a rel="nofollow" href="http://www.techrepublic.com/util/vote?cid=102-279458-2645994&title=Ugly%21&url=http%3A%2F%2Fwww.techrepublic.com%2Fforum%2Fdiscussions%2F102-279458-2645994&ct=Discussions&cr=1" voteaction="vote-up" class="btn plus ">+</a>
+        <a rel="nofollow" href="http://www.techrepublic.com/util/vote?cid=102-279458-2645994&title=Ugly%21&url=http%3A%2F%2Fwww.techrepublic.com%2Fforum%2Fdiscussions%2F102-279458-2645994&ct=Discussions&cr=-1" voteaction="vote-down" class="btn minus ">-</a>
+    </div>
+</div>
+
+                        <h6 class="h s-6"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2645994">Ugly!</a></h6>
+            
+            <div class="entry">
+                Ed -<br><br>Good piece! This kind of stuff highlights why most developers are mostly using XML for a verbose replacement for CSV with rectangular data sets, or a replacement for INI/conf files, not for the stuff that the other 99.99% of the XML spec allows. <img border="0" src="./Create a complex type using XML schema inheritance   TechRepublic_files/happy.gif" alt="happy"><br><br>J.Ja            </div>
+        </div><!-- /content -->
+
+                <ul class="cmnt-options list-4-a s-12 clear">
+            
+            
+            
+                        <li><a class="icon i-reply" href="http://www.techrepublic.com/forum/discussions/102-279458-2645994/reply?messageView=full" tbkaction="reply" rel="nofollow">Reply</a></li>
+            
+
+                        <li class="reg-is-logged-in hide"><a class="icon i-flag" href="http://www.techrepublic.com/forum/discussions/102-279458-2645994/report" tbkaction="report" rel="nofollow">Flag</a></li>
+            
+            
+                        <li><a class="icon i-fav " href="http://www.techrepublic.com/util/favorite?title=Ugly%21&url=http%3A%2F%2Fwww.techrepublic.com%2Fforum%2Fdiscussions%2F102-279458-2645994&contentType=message&contentId=2645994&path=http%3A%2F%2Fwww.techrepublic.com%2Fblog%2Fprogramming-and-development%2Fcreate-a-complex-type-using-xml-schema-inheritance%2F759" siteaction="favorite" rel="nofollow" title="Mark as Favorite">Favorite</a></li>
+        </ul>
+        
+        <div class="cmnt-pointer"></div>
+    </div><!-- /int -->
+
+    <div class="cmnt-utils space-1 clear">
+                <div class="cmnt-user push-2 left-1 s-11 c-4 clear">
+            <div class="thumb thumb-3 left-2">
+                <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(1).php" width="34" height="34"><div class="avatar-badge avatar-badge-blogger">Blogger</div></div>            </div>
+
+            <div class="left">
+                                                <div class="name">Posted by <a href="http://www.techrepublic.com/members/profile/2926438">Justin James</a></div>
+                <div class="date">Nov 24, 2008 @ 5:50 AM (PST)</div>
+            </div>
+        </div><!-- /cmnt-user -->
+            </div>
+
+    
+</div><!-- /cmnt -->
+
+                    <div id="message-2645994-reply"></div>
+                </div>
+            </div>
+            
+            <div class="pad-2-a lvl">
+                <div id="discussion-programminganddevelopment_759-thread">
+                <div class="thread-col space-1">
+    
+        <div class="cmnt-group space-2">
+
+    
+    
+<div class="cmnt cmnt-collapsed clear depth-1 cmnt-selected" id="msg-2645994">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(1).php" width="34" height="34"><div class="avatar-badge avatar-badge-blogger">Blogger</div></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2645994">Ugly!</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2926438">Justin James</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 5:50 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+    </div><!-- /cmnt-group -->
+        <div class="cmnt-group space-2">
+
+    
+    
+<div class="cmnt cmnt-collapsed clear depth-1" id="msg-2646064">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(2).php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646064">RE: Create a complex type using XML schema inheritance</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/5369084">frank@...</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 7:11 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-2" id="msg-2646076">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(3).php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646076">20000+ lines</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2408413">Ed Woychowsky</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 7:20 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-2" id="msg-2646242">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(3).php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646242">Query</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2408413">Ed Woychowsky</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 10:53 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+    </div><!-- /cmnt-group -->
+        <div class="cmnt-group space-2">
+
+    
+    
+<div class="cmnt cmnt-collapsed clear depth-1" id="msg-2646071">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar.php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646071">My eyes</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/3122950">Tony Hopkinson</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 7:30 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-2" id="msg-2646219">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(3).php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646219">Would you believe...</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2408413">Ed Woychowsky</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 10:23 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-3" id="msg-2646468">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar.php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646468">Indeed Ajax</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/3122950">Tony Hopkinson</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 3:49 PM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-4" id="msg-2646471">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(3).php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646471">AJAX</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2408413">Ed Woychowsky</a></span>
+                                <span class="date c-4">Nov 24, 2008 @ 3:58 PM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-5" id="msg-2646873">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar.php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646873">Possibly</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/3122950">Tony Hopkinson</a></span>
+                                <span class="date c-4">Nov 25, 2008 @ 6:19 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-5" id="msg-2646902">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(1).php" width="34" height="34"><div class="avatar-badge avatar-badge-blogger">Blogger</div></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2646902">I agree on AJAX</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/2926438">Justin James</a></span>
+                                <span class="date c-4">Nov 25, 2008 @ 6:36 AM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+
+<div class="cmnt cmnt-collapsed clear depth-6" id="msg-2647295">
+    <div class="int clear">
+        <div class="right s-9 c-6 sink-0_5">0</div>
+
+         <div class="thumb thumb-3 left-1">
+            <div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar.php" width="34" height="34"></div>        </div>   
+
+        <div class="int-bd">
+            <h6 class="h s-9 space-0"><a href="http://www.techrepublic.com/forum/discussions/102-279458-2647295">Softened stance</a></h6>
+            <div class="s-12">
+                                <span class="name"><a href="http://www.techrepublic.com/members/profile/3122950">Tony Hopkinson</a></span>
+                                <span class="date c-4">Nov 25, 2008 @ 1:01 PM (PST)</span>
+            </div>
+        </div>
+    </div>
+</div><!-- /cmnt -->
+    </div><!-- /cmnt-group -->
+    </div>
+                </div>
+
+                <div id="discussion-programminganddevelopment_759-pagination">
+                                </div>
+            </div>
+                        
+            <div class="pad-2-a lvl" id="leavecomment">
+                <div id="discussion-programminganddevelopment_759-post-form">
+                
+<div class="reg-is-logged-in hide">
+    <div class="clear">
+        <h6 class="h s-8 space-1_5">Join the conversation</h6>
+    </div>
+
+    <div class="cmnt-post">
+    <form method="post" action="http://www.techrepublic.com/forum/discussions/post" tbkaction="post">
+        <div class="lvl area-10 clear">
+            <label class="label-1" for="post-programminganddevelopment_759-subj"><span class="c-6 s-11 heavy">Subject</span> <span class="s-12 c-4">(Max length: 75 characters)</span></label>
+            <input name="subject" class="required area-10" type="text" maxlength="75" id="post-programminganddevelopment_759-subj" value="" placeholder="">
+        </div>
+
+        <div class="lvl area-15 area-last clear">
+            <label class="label-1 c-6 s-11 heavy" for="post-programminganddevelopment_759-body">Comment</label>
+            <textarea name="body" class="area-15 area-last required" id="post-programminganddevelopment_759-body"></textarea>
+        </div><!-- /lvl -->
+
+        <div class="lvl-hidden">
+            <input type="hidden" name="forumId" value="102">
+
+                        <input type="hidden" name="threadId" value="279458">
+            
+                        <input type="hidden" name="assetId" value="programminganddevelopment_759">
+            <input type="hidden" name="assetTitle" value="Create a complex type using XML schema inheritance">
+            <input type="hidden" name="assetUrl" value="http://www.techrepublic.com/blog/programming-and-development/create-a-complex-type-using-xml-schema-inheritance/759">
+            <input type="hidden" name="assetNodeId" value="12845">
+            <input type="hidden" name="assetType" value="bl">
+            <input type="hidden" name="assetAuthor" value="Edmond Woychowsky">
+                    </div>
+
+        <div class="lvl-btn clear">
+            <button type="submit" class="left-2 btn btn-1 s-9">Add Your Opinion</button>
+
+            <div class="int-bd s-12 clear pad-t-0_5">
+                <input type="checkbox" name="setTracked" value="true" id="post-programminganddevelopment_759-track" class="left-_5">
+                <label class="int-bd" for="post-programminganddevelopment_759-track">Alert me when new comments are made</label>
+            </div>
+        </div><!-- /lvl-btn -->
+    </form>
+    </div><!-- /cmnt-post -->
+</div>
+
+<div class="reg-is-logged-out">
+    <p class="s-8">Join the TechRepublic Community and join the conversation! Signing-up is free and quick, Do it now, we want to hear your opinion.</p>
+    <div class="clear space-1">
+        <a href="" class="btn btn-1 s-9 left-1 " regaction="join">Join</a>
+        <a href="" class="btn btn-1 s-9 " regaction="login">Login</a>
+    </div>    
+</div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /disucssion -->
+</div>
+
+<script type="text/javascript">
+    CNB.Comments = new CNB.TR.Talkback({
+        'container' : 'discussion-programminganddevelopment_759',
+        'threadContainer': 'discussion-programminganddevelopment_759-thread',
+        'postForm': 'discussion-programminganddevelopment_759-post-form'
+    });
+</script>
+
+</div><!-- /area-16 -->
+
+<div class="area-8 area-last">
+	<!-- Marquee + Text Links -->
+    
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=100/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=110/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><!--NO AD TEXT:--><!-- default ad --><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(2).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"><!-- Cheetah T 0.5.6.7 -->    
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=100/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=173/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><!--NO AD TEXT:--><!-- default ad --><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(3).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"><!-- Cheetah T 0.6.7.8 -->	
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=100/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=16/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><div class="mpu mpu-upper space-2"><div id="madison_ad_16_100"><div style="text-align:center;"><a href="http://www.cbsinteractive.com/adfeedback/?REDIRECT=TRUE&RGROUP=14419&SEGMENTID=485104&LINEID=395101&SP=16&ADVERTISERID=11169" target="new"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/adinfo_top.gif" width="50" height="10" border="0" alt="advertisement"></a></div><div style="text-align:center;"><center><iframe src="./Create a complex type using XML schema inheritance   TechRepublic_files/saved_resource(1).htm" width="300" height="250" marginwidth="0" marginheight="0" frameborder="0" scrolling="no">
+&lt;script language="JavaScript" src="http://ad.doubleclick.net/adj/sgi.cbsi_business360/ros;id=867160;ch=biz;zn=ros;pos=afr;nw=cbsi;sz=300x250;abr=!ie;click0=http://adlog.com.com/adlog/e/r=14419&amp;amp;sg=485104&amp;amp;o=12841%253A12845%253A&amp;amp;h=cn&amp;amp;p=&amp;amp;b=9&amp;amp;l=&amp;amp;site=11&amp;amp;pt=2100&amp;amp;nd=12845&amp;amp;pid=&amp;amp;cid=116643&amp;amp;pp=100&amp;amp;e=&amp;amp;rqid=00c17-ad-e3:4D4F86553F8D83&amp;amp;orh=&amp;amp;oepartner=&amp;amp;epartner=&amp;amp;ppartner=&amp;amp;pdom=&amp;amp;cpnmodule=&amp;amp;count=&amp;amp;ra=84.240.205.57&amp;amp;pg=JVQhvAoPOh0AAChn7dAAAAAo&amp;amp;t=2011.02.07.11.00.55&amp;event=58/;ord=123456789?" type="text/javascript"&gt;&lt;/script&gt;
+</iframe>
+<noscript>&lt;a href="http://adlog.com.com/adlog/e/r=14419&amp;amp;sg=485104&amp;amp;o=12841%253A12845%253A&amp;amp;h=cn&amp;amp;p=&amp;amp;b=9&amp;amp;l=&amp;amp;site=11&amp;amp;pt=2100&amp;amp;nd=12845&amp;amp;pid=&amp;amp;cid=116643&amp;amp;pp=100&amp;amp;e=&amp;amp;rqid=00c17-ad-e3:4D4F86553F8D83&amp;amp;orh=&amp;amp;oepartner=&amp;amp;epartner=&amp;amp;ppartner=&amp;amp;pdom=&amp;amp;cpnmodule=&amp;amp;count=&amp;amp;ra=84.240.205.57&amp;amp;pg=JVQhvAoPOh0AAChn7dAAAAAo&amp;amp;t=2011.02.07.11.00.55&amp;event=58/http://ad.us.doubleclick.net/jump/sgi.cbsi_business360/ros;id=867160;ch=biz;zn=ros;pos=afr;nw=cbsi;sz=300x250;abr=!ie4;abr=!ie5;abr=!ie6;ord=2011.02.07.11.00.55?" target="_blank"&gt;&lt;img src="http://ad.us.doubleclick.net/ad/sgi.cbsi_business360/ros;id=867160;ch=biz;zn=ros;pos=afr;nw=cbsi;sz=300x250;abr=!ie4;abr=!ie5;abr=!ie6;ord=2011.02.07.11.00.55?" width="300" height="250" border="0" alt=""&gt;&lt;/a&gt;</noscript><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(4).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"></center></div></div></div><!-- Cheetah T 1.6.6.12 -->	
+<div class="bidwar view-7 pad-1_5-a space-2">
+<iframe class="bidwar-iframe" width="100%" height="260" scrolling="no" frameborder="0" align="top" target="_top" allowtransparency="true" marginwidth="0" marginheight="0" src="./Create a complex type using XML schema inheritance   TechRepublic_files/search.htm"></iframe>
+</div>
+	
+
+
+<div class="hed hed-2">
+	<h4 class="h s-9 c-8">Keep Up with TechRepublic</h4>
+</div>
+<div class="view-2 space-2">
+	<div class="lvl pad-1_5-a">
+		<div class="reg-is-logged-out">
+			<form id="promo-subscribe-logged-out" action="http://www.techrepublic.com/members/join" class="space-1 promo-subscribe">
+				<div class="lvl clear space-1_5">
+					<input type="text" placeholder="Your Email" id="promo-subscribe-email" value="" name="email" class="area-6 area-last required validate-email placeholder">
+				</div><!-- /lvl -->
+
+				<div class="lvl s-11 line-h-8 clear">
+					<input type="checkbox" class="left-1 sink-0_3" id="promo-subscribe-nl-e103" value="e103:INTERNAL_NEWSLETTER" checked="checked" name="newsletters">
+					<label for="promo-subscribe-nl-e103" class="int-db">TR Dojo</label>
+				</div><!-- /lvl -->
+
+				<div class="lvl s-11 line-h-8 clear space-1_5">
+					<input type="checkbox" class="left-1 sink-0_3" id="promo-subscribe-nl-e124" value="e124:INTERNAL_NEWSLETTER" checked="checked" name="newsletters">
+					<label for="promo-subscribe-nl-e124" class="int-db">IT Career</label>
+				</div><!-- /lvl -->
+
+				<div class="lvl-btn clear">
+					<button class="btn btn-1 s-9" type="submit">Subscribe Today</button>
+				</div>
+			</form>
+		</div><!-- /reg-logged-out -->
+		<div class="reg-is-logged-in hide">
+			<div class="loading-container" style="float: none; display: block; "><form id="promo-subscribe-logged-in" action="http://www.techrepublic.com/members/manage" class="space-1 promo-subscribe">
+				<h5 class="s-9 c-4">Discover more newsletters</h5>
+				<div class="lvl s-11 clear">
+					<input type="checkbox" class="left-1 sink-0_3" id="promo-subscribe-nl-e042" value="e042:INTERNAL_NEWSLETTER" checked="checked" name="newsletters">
+					<label for="promo-subscribe-nl-e042" class="int-db">10 Things</label>
+				</div><!-- /lvl -->
+				<div class="lvl s-11 clear space-1_5">
+					<input type="checkbox" class="left-1 sink-0_3" id="promo-subscribe-nl-e019" value="e019:INTERNAL_NEWSLETTER" checked="checked" name="newsletters">
+					<label for="promo-subscribe-nl-e019" class="int-db">Sanity Check</label>
+				</div><!-- /lvl -->
+
+				<div class="lvl-btn clear">
+					<button class="btn btn-1 s-9" type="submit">Subscribe Today</button>
+				</div>
+			</form></div>
+		</div><!-- /reg-logged-in -->
+    </div><!-- /lvl -->
+
+    <div class="lvl pad-1_5-a">
+		<p>Follow us however you choose!</p>
+		<ul class="list-4-c clear">
+			<li><a class="icon-social i-facebook-3" onclick="DW.redir({tag:&#39;Facebook_on_site_promo&#39;})" rel="nofollow" href="http://www.facebook.com/TechRepublic">Facebook</a></li>
+			<li><a class="icon-social i-twitter-3" onclick="DW.redir({tag:&#39;Twitter_on_site_promo&#39;})" rel="nofollow" href="http://twitter.com/techrepublic">Twitter</a></li>
+			<li><a class="icon-social i-linkedin-3" onclick="DW.redir({tag:&#39;Linkedin_on_site_promo&#39;})" rel="nofollow" href="http://www.linkedin.com/groups?gid=38635">Linkedin</a></li>
+			<!-- <li><a class="icon-social i-youtube-3" onclick="DW.redir({tag:'Youtube_on_site_promo'})" rel="nofollow" href="">Youtube</a></li> -->
+			<li><a class="icon-social i-digg-3" onclick="DW.redir({tag:&#39;Digg_on_site_promo&#39;})" rel="nofollow" href="http://digg.com/techrepublic">Digg</a></li>
+			<li><a class="icon-social i-rss-3" onclick="DW.redir({tag:&#39;Rss_on_site_promo&#39;})" rel="nofollow" href="http://www.techrepublic.com/rssfeeds">RSS</a></li>
+		</ul>
+	</div>
+ </div><!-- /view-2 -->
+  <script type="text/javascript">
+    (function() {
+        var signupPromo = new CNB.SubscribePromo('promo-subscribe-logged-in', 'promo-subscribe-logged-out');
+    })();
+    </script>
+	<div class="view-1 space-2 clear">
+	<div class="hed hed-2 clear">
+        <span class="s-11 c-3 right-1"><a href="http://www.techrepublic.com/members/top100">View All</a></span>
+		<h4 class="h s-9 c-8 int-bd">Power Users</h4>
+	</div><!-- /hed -->
+	<div class="int clear">
+		<ul class="list-3 clear">
+									<li class="space-1">
+				<div class="view-11">
+					<div class="bubble bubble-10">
+						<div class="count">1</div>
+					</div>
+
+                    <div class="thumb-3 clear right-1">
+                        <a href="http://www.techrepublic.com/members/profile/5612935"><div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(4).php" width="34" height="34"></div></a>
+                    </div><!-- /right -->
+
+					<div class="int-bd">
+						<div class="s-8 sink-0_5"><a href="http://www.techrepublic.com/members/profile/5612935">AnsuGisalas</a></div>
+					</div>
+				</div><!-- /view-11 -->
+			</li>
+									<li class="space-1">
+				<div class="view-11">
+					<div class="bubble bubble-10">
+						<div class="count">2</div>
+					</div>
+
+                    <div class="thumb-3 clear right-1">
+                        <a href="http://www.techrepublic.com/members/profile/4775962"><div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(5).php" width="34" height="34"></div></a>
+                    </div><!-- /right -->
+
+					<div class="int-bd">
+						<div class="s-8 sink-0_5"><a href="http://www.techrepublic.com/members/profile/4775962">seanferd</a></div>
+					</div>
+				</div><!-- /view-11 -->
+			</li>
+									<li class="space-1">
+				<div class="view-11">
+					<div class="bubble bubble-10">
+						<div class="count">3</div>
+					</div>
+
+                    <div class="thumb-3 clear right-1">
+                        <a href="http://www.techrepublic.com/members/profile/4600554"><div class="avatar"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/avatar(6).php" width="34" height="34"></div></a>
+                    </div><!-- /right -->
+
+					<div class="int-bd">
+						<div class="s-8 sink-0_5"><a href="http://www.techrepublic.com/members/profile/4600554">santeewelding</a></div>
+					</div>
+				</div><!-- /view-11 -->
+			</li>
+					</ul>
+	</div><!-- /int -->
+</div><!-- /view-1 -->
+    
+<div class="hed hed-2">
+    <h4 class="h s-9 c-8">Media Gallery</h4>
+</div>
+
+<div class="view-2 pad-1 space-2 clear" id="media-gallery-common">
+        <div class="lvl pad-b-1">
+        <div class="roto-2 clear">
+            <div style="width: 200px; overflow-x: hidden; overflow-y: hidden; position: relative; "><ul class="list-roto space-0_5 clear" style="width: 10000px; ">
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Google+Nexus+S+Teardown/6188842">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6188906-200-140.jpg" width="200" height="140" alt="Google Nexus S Teardown"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (1 of 12)</span>
+                                    <span class="blk line-h-9">Google Nexus S Teardown</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Gallery%3A+The+many+faces+of+Steve+Ballmer/6188687">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6188688-200-140.jpg" width="200" height="140" alt="Gallery: The many faces of Steve Ballmer"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (2 of 12)</span>
+                                    <span class="blk line-h-9">Gallery: The many faces of Steve Ballmer</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Slideshow%3A+10+dirty+little+secrets+about+working+in+IT/490857">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/490858-200-140.jpg" width="200" height="140" alt="Slideshow: 10 dirty little secrets about working in IT"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (3 of 12)</span>
+                                    <span class="blk line-h-9">Slideshow: 10 dirty little secrets about...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/First+Look%3A+Firefox+4+Beta+9/6188678">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6188679-200-140.jpg" width="200" height="140" alt="First Look: Firefox 4 Beta 9"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (4 of 12)</span>
+                                    <span class="blk line-h-9">First Look: Firefox 4 Beta 9</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Microsoft%27s+iPad+battle+plan+for+partners/6189042">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6189043-200-140.jpg" width="200" height="140" alt="Microsoft&#39;s iPad battle plan for partners"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (5 of 12)</span>
+                                    <span class="blk line-h-9">Microsoft's iPad battle plan for partners</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Nexus+S%3A+Photos+and+screenshots+of+the+new+Google+Phone/492701">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/492702-200-140.jpg" width="200" height="140" alt="Nexus S: Photos and screenshots of the new Google Phone"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (6 of 12)</span>
+                                    <span class="blk line-h-9">Nexus S: Photos and screenshots of the new...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Roku+XDS+Teardown/499449">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/499485-200-140.jpg" width="200" height="140" alt="Roku XDS Teardown"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (7 of 12)</span>
+                                    <span class="blk line-h-9">Roku XDS Teardown</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/ioSafe+external+drive+takes+shotgun+blast+and+keeps+working/498610">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/498631-200-140.jpg" width="200" height="140" alt="ioSafe external drive takes shotgun blast and keeps working"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (8 of 12)</span>
+                                    <span class="blk line-h-9">ioSafe external drive takes shotgun blast and...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Dell+Inspiron+Duo+teardown/498079">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/498150-200-140.jpg" width="200" height="140" alt="Dell Inspiron Duo teardown"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (9 of 12)</span>
+                                    <span class="blk line-h-9">Dell Inspiron Duo teardown</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Slideshow%3A+The+10+best+smartphones+of+2010/493400">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/493401-200-140.jpg" width="200" height="140" alt="Slideshow: The 10 best smartphones of 2010"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (10 of 12)</span>
+                                    <span class="blk line-h-9">Slideshow: The 10 best smartphones of 2010</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/Real-world+server+room+nightmares/479281">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/479515-200-140.jpg" width="200" height="140" alt="Real-world server room nightmares"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (11 of 12)</span>
+                                    <span class="blk line-h-9">Real-world server room nightmares</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/photos/10++most+dangerous+species+of+help+desk+callers/483112">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/483116-200-140.jpg" width="200" height="140" alt="10+ most dangerous species of help desk callers"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">PHOTO GALLERY (12 of 12)</span>
+                                    <span class="blk line-h-9">10+ most dangerous species of help desk callers</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                            </ul></div><div class="roto-controls "><div class="prev-next prev-next-3"><a class="btn prev disabled">Previous</a><a class="btn next">Next</a></div></div>
+        </div><!-- /roto-2 -->
+
+        <div class="s-11 center"><a href="http://www.techrepublic.com/photos">More Galleries »</a></div>
+    </div><!-- /lvl -->
+    
+        <div class="lvl pad-t-1 pad-b-1">
+        <div class="roto-2 clear">
+            <div style="width: 200px; overflow-x: hidden; overflow-y: hidden; position: relative; "><ul class="list-roto space-0_5 clear" style="width: 10000px; ">
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Four+netstat+tricks+every+Windows+admin+should+know/500122">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/500123-200-140.jpg" width="200" height="140" alt="TR Dojo: Four netstat tricks every Windows admin should know"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (1 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Four netstat tricks every Windows...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/IDC%3A+Three+emerging+technologies+to+go+mainstream+in+2011/6188652">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6188653-200-140.jpg" width="200" height="140" alt="IDC: Three emerging technologies to go mainstream in 2011"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (2 of 12)</span>
+                                    <span class="blk line-h-9">IDC: Three emerging technologies to go...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Five+tips+for+troubleshooting+a+slow+PC/484429">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/484430-200-140.jpg" width="200" height="140" alt="TR Dojo: Five tips for troubleshooting a slow PC"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (3 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Five tips for troubleshooting a slow PC</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/The+argument+in+favor+of+defending+WikiLeaks%27+right+to+exist/6188646">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/6188647-200-140.jpg" width="200" height="140" alt="The argument in favor of defending WikiLeaks&#39; right to exist"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (4 of 12)</span>
+                                    <span class="blk line-h-9">The argument in favor of defending WikiLeaks'...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Remove+Libraries+from+Windows+Explorer+in+Windows+7/494760">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/494761-200-140.jpg" width="200" height="140" alt="TR Dojo: Remove Libraries from Windows Explorer in Windows 7"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (5 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Remove Libraries from Windows...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/LEGO+Mindstorms+NXT+2.0+Alpha+Rex+robot+in+action/476397">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/476398-200-140.jpg" width="200" height="140" alt="LEGO Mindstorms NXT 2.0 Alpha Rex robot in action"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (6 of 12)</span>
+                                    <span class="blk line-h-9">LEGO Mindstorms NXT 2.0 Alpha Rex robot in action</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Five+tips+for+improving+Linux+security/481681">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/481682-200-140.jpg" width="200" height="140" alt="TR Dojo: Five tips for improving Linux security"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (7 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Five tips for improving Linux security</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Extend+lithium-ion+battery+life+with+these+five+tips/482609">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/482610-200-140.jpg" width="200" height="140" alt="TR Dojo: Extend lithium-ion battery life with these five tips"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (8 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Extend lithium-ion battery life with...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Top+five+TR+Dojo+episodes+of+2010/491592">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/491593-200-140.jpg" width="200" height="140" alt="TR Dojo: Top five TR Dojo episodes of 2010"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (9 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Top five TR Dojo episodes of 2010</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Diagnose+slow+Windows+7+boot+with+Event+Viewer/490623">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/490624-200-140.jpg" width="200" height="140" alt="TR Dojo: Diagnose slow Windows 7 boot with Event Viewer"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (10 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Diagnose slow Windows 7 boot with...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+Five+mistakes+to+avoid+when+supporting+mobile+devices/477943">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/477944-200-140.jpg" width="200" height="140" alt="TR Dojo: Five mistakes to avoid when supporting mobile devices"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (11 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: Five mistakes to avoid when...</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                                <li class="clear">
+                    <div class="thumb">
+                        <a href="http://www.techrepublic.com/videos/test/TR+Dojo%3A+How+to+wipe+a+hard+disk+with+DBAN/487272">
+                            <span class="mask mask-10x7-200"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/487273-200-140.jpg" width="200" height="140" alt="TR Dojo: How to wipe a hard disk with DBAN"></span>                            <span class="inlay inlay-10x7-200"></span>
+                            <span class="caption glass-1">
+                                <span class="int">
+                                    <span class="blk c-6 s-13 heavy">VIDEO (12 of 12)</span>
+                                    <span class="blk line-h-9">TR Dojo: How to wipe a hard disk with DBAN</span>
+                                </span>
+                            </span><!-- /caption -->
+                        </a>
+                    </div>
+                </li>
+                                            </ul></div><div class="roto-controls "><div class="prev-next prev-next-3"><a class="btn prev disabled">Previous</a><a class="btn next">Next</a></div></div>
+        </div><!-- /roto-2 -->
+
+        <div class="s-11 center"><a href="http://www.techrepublic.com/videos">More Videos »</a></div>
+    </div><!-- /lvl -->
+    </div><!-- /view-2 -->
+
+<script type="text/javascript">
+(function() {
+    $$('#media-gallery-common .list-roto').each(function(el) {
+        var roto = new CNB.Rotocop(el, {
+            'itemsPerPage': 1,
+            'prevNextClass': 'prev-next-3'
+        }).load();
+    });
+})();
+</script>
+            
+
+    
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=300/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=102/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><!--NO AD TEXT:--><!--nothing scheduled--><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(5).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"><!-- Cheetah T 1.7.7.11 -->	<div class="view-1 space-2">
+	<div class="hed hed-2 clear">
+		<h4 class="left h s-9">Hot Discussions on ZDNet</h4>
+	</div>
+	<div class="int">
+		<ul class="list-3 list-dbl-bdr-2 clear">
+						<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-b">
+					<div class="count">180</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.zdnet.com/blog/microsoft/microsoft-we-do-not-copy-googles-results/8557">
+					Microsoft: 'We do not copy Google?s results'				</a>
+			</li>
+						<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-b">
+					<div class="count">149</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.zdnet.com/blog/government/ive-changed-my-mind-america-must-never-allow-an-internet-kill-switch-heres-why/9982">
+					I've changed my mind. America must never allow an Internet "kill switch". Here's why.				</a>
+			</li>
+						<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-b">
+					<div class="count">139</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.zdnet.com/blog/perlow/egypt-blocked-in-china-is-internet-access-a-human-right/15746">
+					#Egypt Blocked in China: Is Internet Access A Human Right?				</a>
+			</li>
+						<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-b">
+					<div class="count">137</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.zdnet.com/blog/btl/microsoft-needs-to-jump-start-windows-phone-7-here-are-five-suggestions/44308">
+					Microsoft needs to jump start Windows Phone 7; Here are five suggestions				</a>
+			</li>
+					 </ul><!-- /list-3 -->
+		 <div class="clear">
+			<a class="site-logo-zd right" href="http://www.zdnet.com/">ZDNet</a>
+		</div><!-- /space-1 -->
+	</div><!-- /int -->
+</div><!-- /view-1 -->
+	<div class="view-1 space-2 clear">
+	<div class="hed hed-2 clear">
+        <span class="s-11 c-3 right-1"><a href="http://www.techrepublic.com/forum/questions">View All</a></span>
+		<h4 class="h int-bd s-9">Hot Questions</h4>
+	</div>
+	<div class="int clear">
+		<ul class="list-3 list-dbl-bdr-2 clear">
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-c">
+					<div class="count">3</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/questions/101-341059">
+					BIOS flash upgrade?				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-c">
+					<div class="count">3</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/questions/101-341063">
+					sort the all receiving mails to different folders.				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-c">
+					<div class="count">3</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/questions/101-341066">
+					Windows 7 reports files to be read only when they aren't				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-c">
+					<div class="count">3</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/questions/101-341070">
+					My MP3 player will only work as a USB and not battery powered why is this?				</a>
+			</li>
+					 </ul><!-- /list-3 -->
+		 <div class="lvl-btn clear">
+			<a class="btn btn-1 left s-9" href="http://www.techrepublic.com/forum/questions/post">Ask a Question</a>
+		</div>
+	</div><!-- //int -->
+</div><!-- //view-1 -->
+	<div class="view-1 space-2 clear">
+	<div class="hed hed-2 clear">
+        <span class="s-11 c-3 right-1"><a href="http://www.techrepublic.com/forum/discussions">View All</a></span>
+		<h4 class="h s-9 c-8 int-bd">Hot Discussions</h4>
+	</div>
+	<div class="int clear">
+		<ul class="list-3 list-dbl-bdr-2 clear">
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-a">
+					<div class="count">158</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/discussions/102-340787">
+					Avoid getting buried in technical debt				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-a">
+					<div class="count">13</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/discussions/102-341050">
+					Report TechRepublic bugs and offer suggestions about the 2011 upgrade				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-a">
+					<div class="count">66</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/discussions/102-340986">
+					Lessons from Egypt: Kill the kill switch and decentralize the Internet				</a>
+			</li>
+									<li class="space-1 pad-b-1 min-h-40 clear">
+				<div class="bubble bubble-2 cb-a">
+					<div class="count">588</div>
+				</div>
+				<a class="c-1 pad-l-6 clear" href="http://www.techrepublic.com/forum/discussions/102-337505">
+					Catch Up Cafe Pt.2				</a>
+			</li>
+				
+		</ul><!-- /list-3 -->
+		<div class="lvl-btn clear">
+			<a class="btn btn-1 s-9 left" href="http://www.techrepublic.com/forum/discussions/post">Start a Discussion</a>
+		</div>
+	</div><!-- /int -->
+</div><!-- /view-1 -->
+	<div class="view-1 medusa-promo space-2 ">
+    <div class="hed hed-2">
+        <h4 class="h s-9">White Papers, Webcasts, and Downloads</h4>
+    </div>
+    
+    <div class="int clear">   
+       <ul class="list-3 list-dbl-bdr-2 clear">
+                                        <li>
+                <div class="thumb thumb-5 alignleft"><img alt="" src="./Create a complex type using XML schema inheritance   TechRepublic_files/GoogleApps_60x50.jpg"></div>
+                <div class="h caps heavy c-6 s-13 type">Webcasts</div>
+                <h6 class="h heavy s-10 title"><a target="_top" href="http://dw.com.com/redir?tag=medccnbtrrhs&siteId=11&ptid=&onid=&q=&ctype=docids&cval=2245915&destUrl=http%3A%2F%2Fwww.techrepublic.com%2Fwebcasts%2Fwhen-mobility-and-real-time-communication-matter-businesses-are-choosing-google-apps%2F2245915">Improve productivity through real-time collaboration and communication</a></h6>
+                                <p class="line-h-8 desc">Think increasing productivity is difficult?  Join this live webcast as we review how one company's migration to Google Apps was successful for employees and profitable to the organization.</p>
+                                <div class="s-12 source space-0">From <a href="http://www.google.com/corporate/index.html" class="heavy c-6">Google</a></div>
+            </li>
+                
+            <li class="icon-1 i-video">
+                <div class="h caps heavy c-6 s-13 type">Webcasts</div>
+                <h6 class="h s-10 title"><a target="_top" href="http://dw.com.com/redir?tag=medccnbtrrhs&siteId=11&ptid=&onid=&q=&ctype=docids&cval=2245915&destUrl=http%3A%2F%2Fwww.techrepublic.com%2Fwebcasts%2Fwhen-mobility-and-real-time-communication-matter-businesses-are-choosing-google-apps%2F2245915">Improve productivity through real-time collaboration and communication</a></h6>
+                <div class="s-12 source">From <a href="http://www.google.com/corporate/index.html" class="heavy c-6">Google</a></div>
+            </li>
+                              
+            <li class="icon-1 i-video">
+                <div class="h caps heavy c-6 s-13 type">Webcasts</div>
+                <h6 class="h s-10 title"><a target="_top" href="http://dw.com.com/redir?tag=medccnbtrrhs&siteId=11&ptid=&onid=&q=&ctype=docids&cval=2065809&destUrl=http%3A%2F%2Fwww.techrepublic.com%2Fwebcasts%2Fsave-money-and-increase-collaboration-with-google-apps%2F2065809">Save Money and Increase Collaboration with Google Apps</a></h6>
+                <div class="s-12 source">From <a href="http://www.google.com/corporate/index.html" class="heavy c-6">Google</a></div>
+            </li>
+                              
+            <li class="icon-1 i-whitepaper">
+                <div class="h caps heavy c-6 s-13 type">White Papers</div>
+                <h6 class="h s-10 title"><a target="_top" href="http://dw.com.com/redir?tag=medccnbtrrhs&siteId=11&ptid=&onid=&q=&ctype=docids&cval=2213677&destUrl=http%3A%2F%2Fwww.techrepublic.com%2Fwhitepapers%2Fenabling-cost-reductions-through-convergence%2F2213677">Enabling Cost Reductions Through Convergence</a></h6>
+                <div class="s-12 source">From <a href="http://www.alcatel-lucent.com/" class="heavy c-6">Alcatel-Lucent</a></div>
+            </li>
+                     </ul>
+    </div>
+
+        <div style="position:absolute;top:0;left:-9999px;"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/redir" width="1" height="1"></div>
+    </div>
+
+	
+<div class="space-2">
+	<div class="hed hed-2">
+		<h4 class="h s-9 c-8">Blog Archive</h4>
+	</div>
+	<div class="view-2 space-2 pad-1_5-a clear">
+		<div class="area-3_5">
+			<ul class="list-1 s-11">
+								<li><a href="http://www.techrepublic.com/blog/programming-and-development/201102">February 2011</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201101">January 2011</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201012">December 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201011">November 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201010">October 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201009">September 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201008">August 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201007">July 2010</a></li>
+							</ul>
+		</div>
+		<div class="area-3_5 area-last">
+			<ul class="list-1 s-11">
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201006">June 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201005">May 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201004">April 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201003">March 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201002">February 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/201001">January 2010</a></li>
+												<li><a href="http://www.techrepublic.com/blog/programming-and-development/200912">December 2009</a></li>
+											</ul>
+		</div>
+	</div><!-- /view-2 -->
+</div>
+	
+<!-- php client madison [r20100514-1345-c13VipDvarTagSvn]: 10.15.4.104 GET /html/BRAND=9/CELT=html/CID=116643/CLIENT:ID=CHEETAH/CNET%2dONTOLOGY%2dNODE%2dID=12845/CNET%2dPAGE%2dGUID=JVQhvAoPOh0AAChn7dAAAAAo/COOKIE:ANON_ID=Cg8IL00s0CESAAAAOgQ/DVAR_TAG=XML+Schema%3BType%3BXML%3BSoftware%2FWeb+Development%3BWeb+Development/DVAR_FIRSTPAGE=1/HTTP_HOST=www.techrepublic.com/HUB=cn/COOKIE:MADUCAT=1%260203%26BK16198%26BK16207%26BK15597%26BK15690/MAD_RSI_SEGS=ASD08734_70033%26ASK05540_10279%26ASK05540_10283%26ASK05540_10314%26ASD08734_72080/NCAT=12841%3A12845%3A/POS=200/PTYPE=2100/REMOTE_ADDR=84.240.205.57/SITE=11/SP=16/UA=Mozilla%2F5.0+%28Windows%3B+U%3B+Windows+NT+5.1%3B+en%2dUS%29+AppleWebKit%2F534.13+%28KHTML%2C+like+Gecko%29+Chrome%2F9.0.597.84+Safari%2F534.13 HTTP/1.0 --><div class="mpu mpu-lower space-2"><div id="madison_ad_16_200"><div style="text-align:center;"><a href="http://www.cbsinteractive.com/adfeedback/?REDIRECT=TRUE&RGROUP=14462&SEGMENTID=485070&LINEID=395592&SP=16&ADVERTISERID=12054" target="new"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/adinfo_top.gif" width="50" height="10" border="0" alt="advertisement"></a></div><div style="text-align:center;"><center><div style="text-align:center;"><center><script type="text/javascript">
+admeld_publisher  = 522;
+admeld_site       = 'businesstech';
+admeld_size       = '300x250';
+admeld_placement   = 'businesstech_btf';
+admeld_url = 'http://cbsinteractive.com'; 
+</script>
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/meld120.js"></script><iframe width="300" height="250" marginwidth="0" marginheight="0" frameborder="0" border="0" scrolling="no" src="./Create a complex type using XML schema inheritance   TechRepublic_files/businesstech_btf.htm"></iframe>
+</center></div><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/dotclear(6).gif" height="0" width="0" alt="" style="position:absolute; top:0px; left:0px"></center></div></div></div><!-- Cheetah T 0.7.7.10 --></div><!-- //area-8 -->
+</div><!-- /content -->
+</div><!-- /skin -->
+<div id="footer" class="footer">
+	<div class="contain contain-25 clear">
+		
+		<div class="area-24 space-2 bdr-b-2">
+			<div class="area-15">
+				<a class="site-logo align-left">TechRepublic</a>
+			</div><!--/area-12" -->
+
+			<div class="area-9 area-last">
+                <div id="site-search-lower" class="site-search search-lower">
+                    <form action="http://www.techrepublic.com/search">
+                        <div class="int clear">
+                            <input type="text" placeholder="Search" name="q" class="query placeholder" value="">
+                            <button class="btn btn-search" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+			</div><!--/area-12 -->
+		</div><!--/area-24 -->
+
+        
+<div class="area-24 space-2 bdr-b-2">
+    <h2 class="h s-8 c-2 space-1_5">Trending Topics</h2>
+
+    <ul class="trending-topics clear space-0_5 s-11">
+                <li class="rising"><a href="http://www.techrepublic.com/topics/microsoft+windows">microsoft windows</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/help+desk">help desk</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/lan">LAN</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/web+development">web development</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/software+development">software development</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/desktop+applications">desktop applications</a></li>
+                <li class="rising"><a href="http://www.techrepublic.com/topics/project+management">project management</a></li>
+            </ul>
+    <ul class="trending-topics clear space-2 s-11">
+                <li class="falling"><a href="http://www.techrepublic.com/topics/career">CAREER</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/leadership">Leadership</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/wireless">wireless</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/audio+translation">audio translation</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/banrai+llc">banrai llc</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/beler+ingenierie">beler ingenierie</a></li>
+                <li class="falling"><a href="http://www.techrepublic.com/topics/bios+supports+cdrom">bios supports cdrom</a></li>
+            </ul>
+</div><!--/area-24 -->
+
+        <div class="area-16">
+	<h2 class="h s-8 c-2 space-1_5">Featured TechRepublic Pro Downloads</h2>
+	<div class="rubics-b2btr clear">
+    <div class="item">
+        <div class="thumb"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=350&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=0&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D172482.html%3Fsubj%3DSP001_rubics"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/499728-140-100.jpg" width="140" height="100"><span class="inlay"></span></a></div>
+        <div class="h title"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=350&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=0&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D172482.html%3Fsubj%3DSP001_rubics">Quick Reference: Linux Commands</a></div>
+    </div>
+    <div class="item">
+        <div class="thumb"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=373&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=1&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D361543.html%3Fsubj%3DSP001_rubics"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/499670-140-100.gif" width="140" height="100"><span class="inlay"></span></a></div>
+        <div class="h title"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=373&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=1&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D361543.html%3Fsubj%3DSP001_rubics">Get Up To Speed: Linux</a></div>
+    </div>
+    <div class="item">
+        <div class="thumb"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=403&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=2&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D1004657.html%3Fsubj%3DSP001_rubics"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/499741-140-100.jpg" width="140" height="100"><span class="inlay"></span></a></div>
+        <div class="h title"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=403&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=2&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D1004657.html%3Fsubj%3DSP001_rubics">101 Microsoft Windows XP Tips, Tweaks, and Hacks You Need to Know</a></div>
+    </div>
+    <div class="item">
+        <div class="thumb"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=338&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=3&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D177594.html%3Fsubj%3DSP001_rubics"><img src="./Create a complex type using XML schema inheritance   TechRepublic_files/499728-140-100.jpg" width="140" height="100"><span class="inlay"></span></a></div>
+        <div class="h title"><a href="http://dw.com.com/rubicsclk?ver=2&ts=2011.02.07.03.00.55.PST&edId=&onId=&ptId=&sId=-1&appId=7&offId=338&unitId=25&poolId=1&f1=-0&f2=-0&f3=-0&alg=3&&opt=1&linkPos=3&destUrl=http%3A%2F%2Fdownloads.techrepublic.com.com%2Fabstract.aspx%3Fdocid%3D177594.html%3Fsubj%3DSP001_rubics">Quick Reference: PC Troubleshooting Pack</a></div>
+    </div>
+    <img src="./Create a complex type using XML schema inheritance   TechRepublic_files/c.gif" height="1" width="1" alt="">
+</div><!-- /rubics-b2btr -->
+
+<!-- pyrus t 0.1.1.1.6.6.6.10 --></div><!--/area-16-->
+		
+		<div class="area-8 area-last">
+			<div class="area-4">
+				<h2 class="h s-8 c-2">Explore</h2>
+
+				<ul class="list-1 line-h-8">
+					<li><a href="http://www.techrepublic.com/blogs">Blogs</a></li>
+					<li><a href="http://www.techrepublic.com/downloads">Downloads</a></li>
+					<li><a href="http://www.techrepublic.com/members/top100">Members</a></li>
+					<li><a href="http://www.techrepublic.com/forum/questions">Q&amp;A</a></li>
+					<li><a href="http://www.techrepublic.com/forum/discussions">DIscussions</a></li>
+					<li><a href="http://www.techrepublic.com/training">Training</a></li>
+					<li><a href="https://techrepublic-secure.com.com/1393-6242-97.html">Store</a></li>
+					<li><a href="http://www.techrepublic.com/research-library">Research Library</a></li>
+					<li><a href="http://www.techrepublic.com/photos">Photos</a></li>
+					<li><a href="http://www.techrepublic.com/videos">Videos</a></li>
+				</ul>
+			</div><!--/area-4 -->
+
+			<div class="area-4 area-last">
+				<h2 class="h s-8 c-2">Services</h2>
+
+				<ul class="list-1 line-h-8">
+					<li><a href="http://www.techrepublic.com/about">About Us</a></li>
+					<li><a rel="nofollow" href="http://www.techrepublic.com/members/join">Membership</a></li>
+					<li><a href="http://www.techrepublic.com/newsletters">Newsletters</a></li>
+					<li><a href="http://www.techrepublic.com/rssfeeds">RSS Feeds</a></li>
+					<li><a href="http://www.techrepublic.com/sitemap">Site Map</a></li>
+					<li><a rel="nofollow" href="http://techrepublic.custhelp.com/">Site Help &amp; Feedback</a></li>
+					<li><a href="http://www.techrepublic.com/faq/general">FAQ</a></li>
+					<li><a href="http://www.techrepublic.com/advertise">Advertise</a></li>
+					<li><a href="http://www.techrepublic.com/reprints">Reprint Policy</a></li>
+				</ul>
+			</div><!--/area-4 -->
+		</div><!--/area-16-->
+	</div><!--/contain -->
+	
+	
+<div class="cbs">
+<div class="contain-25 s-12 c-2 pad-2 clear">
+    	<div class="lvl popular">
+		<span class="label">Popular on CBS sites:</span>
+		<span class="value">
+					<a href="http://www.cbssports.com/tennis">US Open</a> | 					<a href="http://www.cbssports.com/golf">PGA Championship</a> | 					<a href="http://www.cnet.com/apple-ipad">iPad</a> | 					<a href="http://www.metacritic.com/games/">Video Game Reviews</a> | 					<a href="http://reviews.cnet.com/cell-phones">Cell Phones</a>				</span>
+	</div><!-- /cbs-popular -->
+    
+    	<div class="lvl legal">          
+				© 2011 CBS Interactive. All rights reserved. 
+				<a href="http://legalterms.cbsinteractive.com/privacy" rel="nofollow">Privacy Policy</a> |
+                		<a href="http://cbsiprivacy.custhelp.com/app/answers/detail/a_id/1272/" rel="nofollow">Ad Choice</a> |
+				<a href="http://legalterms.cbsinteractive.com/terms-of-use" rel="nofollow">Terms of Use</a> | 
+	                <a href="http://www.techrepublic.com/advertise">Advertise</a> | 
+                <a href="http://www.cbsinteractive.com/careers.php">Jobs</a>
+	</div> 
+    
+    	              
+	<div class="lvl sites">
+		<span class="label">Visit other CBS Interactive Sites:</span>
+		<form action="">
+		  <select id="cbsi_footer_menu">
+	        	            <option value="http://www.bnet.com">BNET</option>
+	        	            <option value="http://www.cbscares.com">CBS Cares</option>
+	        	            <option value="http://www.cbsfilms.com">CBS Films</option>
+	        	            <option value="http://www.cbsradio.com/streaming/index.html">CBS Radio</option>
+	        	            <option value="http://www.cbs.com">CBS.com</option>
+	        	            <option value="http://www.cbsinteractive.com">CBSInteractive</option>
+	        	            <option value="http://www.cbsnews.com">CBSNews.com</option>
+	        	            <option value="http://www.cbssports.com">CBSSports.com</option>
+	        	            <option value="http://www.chow.com">CHOW</option>
+	        	            <option value="http://www.cnet.com">CNET</option>
+	        	            <option value="http://collegenetwork.cbssports.com">College Network</option>
+	        	            <option value="http://findarticles.com">Find Articles</option>
+	        	            <option value="http://www.gamespot.com">GameSpot</option>
+	        	            <option value="http://www.help.com">Help.com</option>
+	        	            <option value="http://www.last.fm">Last.fm</option>
+	        	            <option value="http://www.maxpreps.com">MaxPreps</option>
+	        	            <option value="http://www.metacritic.com">Metacritic.com</option>
+	        	            <option value="http://moneywatch.bnet.com">Moneywatch</option>
+	        	            <option value="http://www.mysimon.com">mySimon</option>
+	        	            <option value="http://www.radio.com">Radio.com</option>
+	        	            <option value="http://www.search.com">Search.com</option>
+	        	            <option value="http://www.shopper.com">Shopper.com</option>
+	        	            <option value="http://www.sho.com">Showtime</option>
+	        	            <option value="http://www.smartplanet.com">SmartPlanet</option>
+	        	            <option value="http://www.techrepublic.com">TechRepublic</option>
+	        	            <option value="http://www.theinsider.com">The Insider</option>
+	        	            <option value="http://www.tv.com">TV.com</option>
+	        	            <option value="http://www.urbanbaby.com">UrbanBaby.com</option>
+	        	            <option value="http://www.zdnet.com">ZDNet</option>
+	        	        </select>
+	        <input type="button" value="Go" onclick="window.location=document.getElementById(&#39;cbsi_footer_menu&#39;).options[document.getElementById(&#39;cbsi_footer_menu&#39;).selectedIndex].value;">
+		</form>
+	</div><!-- /sites -->
+    </div>
+</div><!-- /cbs -->
+
+	
+</div><!-- /footer -->
+</div><!-- /trunk -->
+<!-- DW Tracking -->
+<script type="text/javascript">
+    DW.clear();
+    DW.trackClicks();
+</script>
+<!-- /DW Tracking -->
+
+
+<!-- BH Tracking -->
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/adFunctions-techrepublic.js"></script>
+<script type="text/javascript">
+    var cbsiAdGlobal = {
+        'SITE': '11',
+        'NCAT': '12841:12845:',
+        'PTYPE': '2100',
+        'CID': '116643'
+    };
+    cbsiRegisterAdGlobals(cbsiAdGlobal);
+    cbsiAdBehavioralSetup();
+    cbsiAdBehavioral();          
+</script>
+<!-- /BH Tracking -->
+
+
+<!-- GA Tracking -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4559464-1']);
+    _gaq.push(['_setDomainName', '.techrepublic.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+</script>
+<!-- /GA Tracking -->
+
+
+<script type="text/javascript" src="./Create a complex type using XML schema inheritance   TechRepublic_files/script.sc"></script>
+
+
+
+<div id="reg-overlay" class="overlay-shell" style="display: none; "><div class="overlay"><div class="overlay-int"><a class="overlay-close">close</a><div class="loading-container" style="float: none; "><div class="overlay-content clear"></div></div></div></div></div></body></html>

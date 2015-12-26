@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jbpm-log>
+  <process-instance processDefinition="InDocumentation" processDefinitionId="InDocumentation" id="4887709" version="1" start="2010-12-07 12:20:18" end="" isSuspended="false">
+    <token id="4887710" start="2010-12-07 12:20:18" end="" node="3142190" isAbleToReactivateParent="true" isLocked="false" isRoot="true" isTerminationImplicit="false" isTerminatedImplicitly="false" isSuspended="false">
+      <logs>
+        <ProcessInstanceCreateLog id="4887721" date="2010-12-07 12:20:18"/>
+        <SignalLog id="4887722" date="2010-12-07 12:20:18" transition="3142172">
+          <logs>
+            <TransitionLog id="4887723" date="2010-12-07 12:20:18" transition="3142172" sourceNode="3142171" destinationNode="3142175">
+              <logs>
+                <ActionLog id="4887724" date="2010-12-07 12:20:18" action="3142174">
+                  <logs>
+                    <VariableCreateLog id="4887725" date="2010-12-07 12:20:18" name="docs"/>
+                    <VariableCreateLog id="4887726" date="2010-12-07 12:20:18" name="senderType"/>
+                    <StringUpdateLog id="4887727" date="2010-12-07 12:20:18" name="senderType" oldValue="null" newValue="U"/>
+                    <VariableCreateLog id="4887728" date="2010-12-07 12:20:18" name="deadline"/>
+                    <StringUpdateLog id="4887729" date="2010-12-07 12:20:18" name="deadline" oldValue="null" newValue="07.01.2011"/>
+                  </logs>
+                </ActionLog>
+              </logs>
+            </TransitionLog>
+            <TaskAssignLog id="4887730" date="2010-12-07 12:20:18" taskInstance="4887712" task="3142183" taskOldActorId="null" taskNewActorId="21755"/>
+            <TaskCreateLog id="4887731" date="2010-12-07 12:20:18" taskInstance="4887712" task="3142183" taskActorId="21755"/>
+          </logs>
+        </SignalLog>
+        <VariableCreateLog id="4887734" date="2010-12-07 12:23:11" name="sender"/>
+        <StringUpdateLog id="4887735" date="2010-12-07 12:23:11" name="sender" oldValue="null" newValue="Акимат Октябрьского района"/>
+        <StringUpdateLog id="4887737" date="2010-12-07 12:23:50" name="sender" oldValue="Акимат Октябрьского района" newValue="Акимат Октябрьского района"/>
+        <StringUpdateLog id="4887888" date="2010-12-07 12:25:27" name="sender" oldValue="Акимат Октябрьского района" newValue="Акимат Октябрьского района"/>
+        <TaskAssignLog id="4887889" date="2010-12-07 12:25:27" taskInstance="4887712" task="3142183" taskOldActorId="21755" taskNewActorId="21755"/>
+        <VariableCreateLog id="4887890" date="2010-12-07 12:25:27" name="docType"/>
+        <StringUpdateLog id="4887891" date="2010-12-07 12:25:27" name="docType" oldValue="null" newValue="LETTER"/>
+        <VariableCreateLog id="4887892" date="2010-12-07 12:25:27" name="department"/>
+        <StringUpdateLog id="4887893" date="2010-12-07 12:25:27" name="department" oldValue="null" newValue="202-1"/>
+        <VariableCreateLog id="4887894" date="2010-12-07 12:25:27" name="senderType"/>
+        <StringUpdateLog id="4887895" date="2010-12-07 12:25:27" name="senderType" oldValue="null" newValue="U"/>
+        <VariableCreateLog id="4887896" date="2010-12-07 12:25:27" name="important"/>
+        <StringUpdateLog id="4887897" date="2010-12-07 12:25:27" name="important" oldValue="null" newValue="F"/>
+        <VariableCreateLog id="4887898" date="2010-12-07 12:25:27" name="answer"/>
+        <StringUpdateLog id="4887899" date="2010-12-07 12:25:27" name="answer" oldValue="null" newValue="F"/>
+        <VariableCreateLog id="4887900" date="2010-12-07 12:25:27" name="docPagesNumber"/>
+        <StringUpdateLog id="4887901" date="2010-12-07 12:25:27" name="docPagesNumber" oldValue="null" newValue="2"/>
+        <VariableCreateLog id="4887902" date="2010-12-07 12:25:27" name="departmentNotifyList"/>
+        <ByteArrayUpdateLog id="4887903" date="2010-12-07 12:25:27" name="departmentNotifyList" oldValue="null" newValue="org.jbpm.bytes.ByteArray@6341b0f5"/>
+        <VariableCreateLog id="4887905" date="2010-12-07 12:25:27" name="docNumber"/>
+        <StringUpdateLog id="4887906" date="2010-12-07 12:25:27" name="docNumber" oldValue="null" newValue="4-11/2812"/>
+        <VariableCreateLog id="4887907" date="2010-12-07 12:25:27" name="postIndex"/>
+        <StringUpdateLog id="4887908" date="2010-12-07 12:25:27" name="postIndex" oldValue="null" newValue=""/>
+        <VariableCreateLog id="4887909" date="2010-12-07 12:25:27" name="sender"/>
+        <StringUpdateLog id="4887910" date="2010-12-07 12:25:27" name="sender" oldValue="null" newValue="Акимат Октябрьского района"/>
+        <VariableCreateLog id="4887911" date="2010-12-07 12:25:27" name="senderFIO"/>
+        <StringUpdateLog id="4887912" date="2010-12-07 12:25:27" name="senderFIO" oldValue="null" newValue="Мажитов Н. "/>
+        <VariableCreateLog id="4887913" date="2010-12-07 12:25:27" name="address"/>
+        <StringUpdateLog id="4887914" date="2010-12-07 12:25:27" name="address" oldValue="null" newValue="г. Караганда, ул. Алиханова,8а. Тел:23-43-10"/>
+        <VariableCreateLog id="4887915" date="2010-12-07 12:25:27" name="shortDescription"/>
+        <StringUpdateLog id="4887916" date="2010-12-07 12:25:27" name="shortDescription" oldValue="null" newValue="Просьба сообщить о результатах рассмотрения. "/>
+        <VariableCreateLog id="4887917" date="2010-12-07 12:25:27" name="docDate"/>
+        <DateUpdateLog id="4887918" date="2010-12-07 12:25:27" name="docDate" oldValue="null" newValue="2010-12-06 00:00:00.0"/>
+        <VariableCreateLog id="4887919" date="2010-12-07 12:25:27" name="comment"/>
+        <StringUpdateLog id="4887920" date="2010-12-07 12:25:27" name="comment" oldValue="null" newValue=""/>
+        <VariableCreateLog id="4887921" date="2010-12-07 12:25:27" name="deadline"/>
+        <DateUpdateLog id="4887922" date="2010-12-07 12:25:27" name="deadline" oldValue="null" newValue="2011-01-07 00:00:00.0"/>
+        <TaskEndLog id="4887923" date="2010-12-07 12:25:27" taskInstance="4887712" task="3142183"/>
+        <VariableCreateLog id="4887924" date="2010-12-07 12:25:27" name="docType"/>
+        <StringUpdateLog id="4887925" date="2010-12-07 12:25:27" name="docType" oldValue="null" newValue="LETTER"/>
+        <VariableCreateLog id="4887926" date="2010-12-07 12:25:27" name="department"/>
+        <StringUpdateLog id="4887927" date="2010-12-07 12:25:27" name="department" oldValue="null" newValue="202-1"/>
+        <StringUpdateLog id="4887928" date="2010-12-07 12:25:27" name="senderType" oldValue="U" newValue="U"/>
+        <VariableCreateLog id="4887929" date="2010-12-07 12:25:27" name="important"/>
+        <StringUpdateLog id="4887930" date="2010-12-07 12:25:27" name="important" oldValue="null" newValue="F"/>
+        <VariableCreateLog id="4887931" date="2010-12-07 12:25:27" name="answer"/>
+        <StringUpdateLog id="4887932" date="2010-12-07 12:25:27" name="answer" oldValue="null" newValue="F"/>
+        <VariableCreateLog id="4887933" date="2010-12-07 12:25:27" name="docPagesNumber"/>
+        <StringUpdateLog id="4887934" date="2010-12-07 12:25:27" name="docPagesNumber" oldValue="null" newValue="2"/>
+        <VariableCreateLog id="4887935" date="2010-12-07 12:25:27" name="departmentNotifyList"/>
+        <ByteArrayUpdateLog id="4887936" date="2010-12-07 12:25:27" name="departmentNotifyList" oldValue="null" newValue="org.jbpm.bytes.ByteArray@668d9c36"/>
+        <VariableCreateLog id="4887938" date="2010-12-07 12:25:27" name="docNumber"/>
+        <StringUpdateLog id="4887939" date="2010-12-07 12:25:27" name="docNumber" oldValue="null" newValue="4-11/2812"/>
+        <VariableCreateLog id="4887940" date="2010-12-07 12:25:27" name="postIndex"/>
+        <StringUpdateLog id="4887941" date="2010-12-07 12:25:27" name="postIndex" oldValue="null" newValue=""/>
+        <StringUpdateLog id="4887942" date="2010-12-07 12:25:27" name="sender" oldValue="Акимат Октябрьского района" newValue="Акимат Октябрьского района"/>
+        <VariableCreateLog id="4887943" date="2010-12-07 12:25:27" name="senderFIO"/>
+        <StringUpdateLog id="4887944" date="2010-12-07 12:25:27" name="senderFIO" oldValue="null" newValue="Мажитов Н. "/>
+        <VariableCreateLog id="4887945" date="2010-12-07 12:25:27" name="address"/>
+        <StringUpdateLog id="4887946" date="2010-12-07 12:25:27" name="address" oldValue="null" newValue="г. Караганда, ул. Алиханова,8а. Тел:23-43-10"/>
+        <VariableCreateLog id="4887947" date="2010-12-07 12:25:27" name="shortDescription"/>
+        <StringUpdateLog id="4887948" date="2010-12-07 12:25:27" name="shortDescription" oldValue="null" newValue="Просьба сообщить о результатах рассмотрения. "/>
+        <VariableCreateLog id="4887949" date="2010-12-07 12:25:27" name="docDate"/>
+        <DateUpdateLog id="4887950" date="2010-12-07 12:25:27" name="docDate" oldValue="null" newValue="2010-12-06 00:00:00.0"/>
+        <VariableCreateLog id="4887951" date="2010-12-07 12:25:27" name="comment"/>
+        <StringUpdateLog id="4887952" date="2010-12-07 12:25:27" name="comment" oldValue="null" newValue=""/>
+        <VariableDeleteLog id="4887953" date="2010-12-07 12:25:27" name="deadline"/>
+        <VariableCreateLog id="4887954" date="2010-12-07 12:25:27" name="deadline"/>
+        <DateUpdateLog id="4887955" date="2010-12-07 12:25:27" name="deadline" oldValue="null" newValue="2011-01-07 00:00:00.0"/>
+        <SignalLog id="4887956" date="2010-12-07 12:25:27" transition="3142180">
+          <logs>
+            <ActionLog id="4887957" date="2010-12-07 12:25:27" action="3142177">
+              <logs/>
+            </ActionLog>
+            <NodeLog id="4887958" date="2010-12-07 12:25:27" node="3142175" enter="2010-12-07 12:20:18" leave="2010-12-07 12:25:27" duration="309692"/>
+            <TransitionLog id="4887959" date="2010-12-07 12:25:27" transition="3142180" sourceNode="3142175" destinationNode="3142287">
+              <logs>
+                <ActionLog id="4887960" date="2010-12-07 12:25:27" action="3142182">
+                  <logs/>
+                </ActionLog>
+              </logs>
+            </TransitionLog>
+            <NodeLog id="4887961" date="2010-12-07 12:25:27" node="3142287" enter="2010-12-07 12:25:27" leave="2010-12-07 12:25:27" duration="5"/>
+            <TransitionLog id="4887962" date="2010-12-07 12:25:27" transition="3142291" sourceNode="3142287" destinationNode="3142278">
+              <logs/>
+            </TransitionLog>
+            <TaskAssignLog id="4887963" date="2010-12-07 12:25:27" taskInstance="4887853" task="3142286" taskOldActorId="null" taskNewActorId="null"/>
+            <TaskCreateLog id="4887964" date="2010-12-07 12:25:27" taskInstance="4887853" task="3142286" taskActorId="null"/>
+          </logs>
+        </SignalLog>
+        <StringUpdateLog id="4887965" date="2010-12-07 12:25:27" name="comment" oldValue="" newValue=""/>
+        <VariableCreateLog id="4888152" date="2010-12-07 12:29:37" name="answer"/>
+        <StringUpdateLog id="4888153" date="2010-12-07 12:29:37" name="answer" oldValue="null" newValue="T"/>
+        <StringUpdateLog id="4888466" date="2010-12-07 12:41:29" name="sender" oldValue="Акимат Октябрьского района" newValue="Акимат Октябрьского района"/>
+        <TaskAssignLog id="4888467" date="2010-12-07 12:41:29" taskInstance="4887853" task="3142286" taskOldActorId="null" taskNewActorId="21819"/>
+        <VariableCreateLog id="4888468" date="2010-12-07 12:41:29" name="docType"/>
+        <StringUpdateLog id="4888469" date="2010-12-07 12:41:29" name="docType" oldValue="null" newValue="LETTER"/>
+        <VariableCreateLog id="4888470" date="2010-12-07 12:41:29" name="department"/>
+        <StringUpdateLog id="4888471" date="2010-12-07 12:41:29" name="department" oldValue="null" newValue="202-1"/>
+        <VariableCreateLog id="4888472" date="2010-12-07 12:41:29" name="senderType"/>
+        <StringUpdateLog id="4888473" date="2010-12-07 12:41:29" name="senderType" oldValue="null" newValue="U"/>
+        <VariableCreateLog id="4888474" date="2010-12-07 12:41:29" name="important"/>
+        <StringUpdateLog id="4888475" date="2010-12-07 12:41:29" name="important" oldValue="null" newValue="T"/>
+        <StringUpdateLog id="4888476" date="2010-12-07 12:41:29" name="answer" oldValue="T" newValue="T"/>
+        <VariableCreateLog id="4888477" date="2010-12-07 12:41:29" name="docPagesNumber"/>
+        <StringUpdateLog id="4888478" date="2010-12-07 12:41:29" name="docPagesNumber" oldValue="null" newValue="2"/>
+        <VariableCreateLog id="4888479" date="2010-12-07 12:41:29" name="departmentNotifyList"/>
+        <ByteArrayUpdateLog id="4888480" date="2010-12-07 12:41:29" name="departmentNotifyList" oldValue="null" newValue="org.jbpm.bytes.ByteArray@469bf5c3"/>
+        <VariableCreateLog id="4888482" date="2010-12-07 12:41:29" name="docNumber"/>
+        <StringUpdateLog id="4888483" date="2010-12-07 12:41:29" name="docNumber" oldValue="null" newValue="4-11/2812"/>
+        <VariableCreateLog id="4888484" date="2010-12-07 12:41:29" name="postIndex"/>
+        <StringUpdateLog id="4888485" date="2010-12-07 12:41:29" name="postIndex" oldValue="null" newValue=""/>
+        <VariableCreateLog id="4888486" date="2010-12-07 12:41:29" name="sender"/>
+        <StringUpdateLog id="4888487" date="2010-12-07 12:41:29" name="sender" oldValue="null" newValue="Акимат Октябрьского района"/>
+        <VariableCreateLog id="4888488" date="2010-12-07 12:41:29" name="senderFIO"/>
+        <StringUpdateLog id="4888489" date="2010-12-07 12:41:29" name="senderFIO" oldValue="null" newValue="Мажитов Н. "/>
+        <VariableCreateLog id="4888490" date="2010-12-07 12:41:29" name="address"/>
+        <StringUpdateLog id="4888491" date="2010-12-07 12:41:29" name="address" oldValue="null" newValue="г. Караганда, ул. Алиханова,8а. Тел:23-43-10"/>
+        <VariableCreateLog id="4888492" date="2010-12-07 12:41:29" name="shortDescription"/>
+        <StringUpdateLog id="4888493" date="2010-12-07 12:41:29" name="shortDescription" oldValue="null" newValue="Просьба произвести замеры напряжения в домах частного сектора ул.Дружбы дома №29,31,33,35,37,39 и принять меры по стабилизации напряжения"/>
+        <VariableCreateLog id="4888494" date="2010-12-07 12:41:29" name="docDate"/>
+        <DateUpdateLog id="4888495" date="2010-12-07 12:41:29" name="docDate" oldValue="null" newValue="2010-12-01 00:00:00.0"/>
+        <VariableCreateLog id="4888496" date="2010-12-07 12:41:29" name="language"/>
+        <ByteArrayUpdateLog id="4888497" date="2010-12-07 12:41:29" name="language" oldValue="null" newValue="org.jbpm.bytes.ByteArray@72098ce8"/>
+        <VariableCreateLog id="4888499" date="2010-12-07 12:41:29" name="comment"/>
+        <StringUpdateLog id="4888500" date="2010-12-07 12:41:29" name="comment" oldValue="null" newValue=""/>
+        <VariableCreateLog id="4888501" date="2010-12-07 12:41:29" name="deadline"/>
+        <DateUpdateLog id="4888502" date="2010-12-07 12:41:29" name="deadline" oldValue="null" newValue="2011-01-07 00:00:00.0"/>
+        <TaskEndLog id="4888503" date="2010-12-07 12:41:29" taskInstance="4887853" task="3142286"/>
+        <StringUpdateLog id="4888504" date="2010-12-07 12:41:29" name="docType" oldValue="LETTER" newValue="LETTER"/>
+        <StringUpdateLog id="4888505" date="2010-12-07 12:41:29" name="department" oldValue="202-1" newValue="202-1"/>
+        <StringUpdateLog id="4888506" date="2010-12-07 12:41:29" name="senderType" oldValue="U" newValue="U"/>
+        <StringUpdateLog id="4888507" date="2010-12-07 12:41:29" name="important" oldValue="F" newValue="T"/>
+        <StringUpdateLog id="4888508" date="2010-12-07 12:41:29" name="answer" oldValue="F" newValue="T"/>
+        <StringUpdateLog id="4888509" date="2010-12-07 12:41:29" name="docPagesNumber" oldValue="2" newValue="2"/>
+        <ByteArrayUpdateLog id="4888510" date="2010-12-07 12:41:29" name="departmentNotifyList" oldValue="org.jbpm.bytes.ByteArray@138cf609" newValue="org.jbpm.bytes.ByteArray@776bb963"/>
+        <StringUpdateLog id="4888513" date="2010-12-07 12:41:29" name="docNumber" oldValue="4-11/2812" newValue="4-11/2812"/>
+        <StringUpdateLog id="4888514" date="2010-12-07 12:41:29" name="postIndex" oldValue="" newValue=""/>
+        <StringUpdateLog id="4888515" date="2010-12-07 12:41:29" name="sender" oldValue="Акимат Октябрьского района" newValue="Акимат Октябрьского района"/>
+        <StringUpdateLog id="4888516" date="2010-12-07 12:41:29" name="senderFIO" oldValue="Мажитов Н. " newValue="Мажитов Н. "/>
+        <StringUpdateLog id="4888517" date="2010-12-07 12:41:29" name="address" oldValue="г. Караганда, ул. Алиханова,8а. Тел:23-43-10" newValue="г. Караганда, ул. Алиханова,8а. Тел:23-43-10"/>
+        <StringUpdateLog id="4888518" date="2010-12-07 12:41:29" name="shortDescription" oldValue="Просьба сообщить о результатах рассмотрения. " newValue="Просьба произвести замеры напряжения в домах частного сектора ул.Дружбы дома №29,31,33,35,37,39 и принять меры по стабилизации напряжения"/>
+        <DateUpdateLog id="4888519" date="2010-12-07 12:41:29" name="docDate" oldValue="2010-12-06 00:00:00.0" newValue="2010-12-01 00:00:00.0"/>
+        <VariableCreateLog id="4888520" date="2010-12-07 12:41:29" name="language"/>
+        <ByteArrayUpdateLog id="4888521" date="2010-12-07 12:41:29" name="language" oldValue="null" newValue="org.jbpm.bytes.ByteArray@557af5d9"/>
+        <StringUpdateLog id="4888523" date="2010-12-07 12:41:29" name="comment" oldValue="" newValue=""/>
+        <DateUpdateLog id="4888524" date="2010-12-07 12:41:29" name="deadline" oldValue="2011-01-07 00:00:00.0" newValue="2011-01-07 00:00:00.0"/>
+        <SignalLog id="4888525" date="2010-12-07 12:41:29" transition="3142283">
+          <logs>
+            <ActionLog id="4888526" date="2010-12-07 12:41:29" action="3142280">
+              <logs/>
+            </ActionLog>
+            <NodeLog id="4888527" date="2010-12-07 12:41:29" node="3142278" enter="2010-12-07 12:25:27" leave="2010-12-07 12:41:29" duration="962107"/>
+            <TransitionLog id="4888528" date="2010-12-07 12:41:29" transition="3142283" sourceNode="3142278" destinationNode="3142161">
+              <logs>
+                <ActionLog id="4888529" date="2010-12-07 12:41:29" action="3142285">
+                  <logs>
+                    <VariableCreateLog id="4888530" date="2010-12-07 12:41:29" name="inDocNumber"/>
+                    <StringUpdateLog id="4888531" date="2010-12-07 12:41:29" name="inDocNumber" oldValue="null" newValue="160"/>
+                    <VariableCreateLog id="4888532" date="2010-12-07 12:41:29" name="regDocDate"/>
+                    <DateUpdateLog id="4888533" date="2010-12-07 12:41:29" name="regDocDate" oldValue="null" newValue="2010-12-07 12:41:29.965"/>
+                    <VariableCreateLog id="4888534" date="2010-12-07 12:41:29" name="description"/>
+                    <StringUpdateLog id="4888535" date="2010-12-07 12:41:29" name="description" oldValue="null" newValue="№ 160 / 07.12.2010 (Акимат Октябрьского района, 07.01.2011)"/>
+                  </logs>
+                </ActionLog>
+              </logs>
+            </TransitionLog>
+            <ActionLog id="4888536" date="2010-12-07 12:41:29" action="3142163">
+              <logs>
+                <TaskAssignLog id="4888537" date="2010-12-07 12:41:29" taskInstance="4888437" task="3142347" taskOldActorId="null" taskNewActorId="21755"/>
+                <TaskCreateLog id="4888538" date="2010-12-07 12:41:29" taskInstance="4888437" task="3142347" taskActorId="21755"/>
+              </logs>
+            </ActionLog>
+            <NodeLog id="4888539" date="2010-12-07 12:41:29" node="3142161" enter="2010-12-07 12:41:29" leave="2010-12-07 12:41:29" duration="0"/>
+            <TransitionLog id="4888540" date="2010-12-07 12:41:29" transition="3142165" sourceNode="3142161" destinationNode="3142214">
+              <logs/>
+            </TransitionLog>
+            <NodeLog id="4888541" date="2010-12-07 12:41:29" node="3142214" enter="2010-12-07 12:41:29" leave="2010-12-07 12:41:29" duration="2"/>
+            <TransitionLog id="4888542" date="2010-12-07 12:41:29" transition="3142216" sourceNode="3142214" destinationNode="3142166">
+              <logs/>
+            </TransitionLog>
+            <ActionLog id="4888543" date="2010-12-07 12:41:29" action="3142168">
+              <logs/>
+            </ActionLog>
+            <NodeLog id="4888544" date="2010-12-07 12:41:29" node="3142166" enter="2010-12-07 12:41:29" leave="2010-12-07 12:41:29" duration="0"/>
+            <TransitionLog id="4888545" date="2010-12-07 12:41:29" transition="3142170" sourceNode="3142166" destinationNode="3142190">
+              <logs/>
+            </TransitionLog>
+            <ActionLog id="4888546" date="2010-12-07 12:41:29" action="3142192">
+              <logs/>
+            </ActionLog>
+            <TaskAssignLog id="4888547" date="2010-12-07 12:41:29" taskInstance="4888438" task="3142198" taskOldActorId="null" taskNewActorId="null"/>
+            <TaskCreateLog id="4888548" date="2010-12-07 12:41:29" taskInstance="4888438" task="3142198" taskActorId="null"/>
+          </logs>
+        </SignalLog>
+        <StringUpdateLog id="4888549" date="2010-12-07 12:41:30" name="comment" oldValue="" newValue=""/>
+      </logs>
+      <tokens/>
+    </token>
+  </process-instance>
+</jbpm-log>

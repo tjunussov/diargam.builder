@@ -1,0 +1,132 @@
+* {
+	font-size: 13px;
+	font-family: 'Lucida Grande', 'trebuchet ms', verdana;
+}
+@font-face {
+	font-family: ipad;
+	src: url(ipad.otf);
+}
+body {
+	background: #eee url(gradient.jpg) repeat-x;
+}
+.logo {
+	margin: 50px 20px 30px;
+	display: block;
+}
+a {
+	outline: 0;
+	color: #20aeff;
+}
+img {
+	border: 0;
+}
+.body {
+	width: 900px;
+	margin: 0 auto;
+}
+.content {
+	background: #fff; 
+	border: solid 1px #e7e7e7; 
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px; 
+	border-radius: 10px; 
+	padding: 36px 20px 10px 50px;
+}
+.h {
+	display: none;
+}
+.offer {
+	margin: -20px 0 0px 280px; 
+	padding-left: 14px; 
+}
+.offer .offerhead{
+	font: inherit; 
+	color: #fff; 
+	margin: 10px -20px 12px -15px; 
+	padding: 3px 0 1px 15px; 
+	background: #20AEFF url(offerhead-bg.png); 
+	border-top-left-radius: 10px; 
+	border-bottom-left-radius: 10px; 
+	-moz-border-radius-bottomleft: 10px; 
+	-moz-border-radius-topleft: 10px;
+}
+.offer .offerfooter{
+	color: #999; 
+	margin: 5px 0;
+}
+.item {
+	float: left;
+}
+.item-header {
+	font: normal 24px ipad, verdana;
+}
+.item-specs {
+	border-bottom: solid 1px #e7e7e7; 
+	width: 150px; 
+	margin: 22px 0 8px; 
+	padding-bottom: 4px;
+}
+.item-header .price {
+	background: url(price-bg.png) no-repeat; 
+	height: 24px; 
+	text-align: center; 
+	padding-top: 6px; 
+	color: #fff; 
+	font-weight: bold; 
+	margin: 12px 0; 
+	text-shadow: 1px 1px 5pt #000;
+}
+.item-header span{
+	font: inherit;
+	color: #20aeff;
+	display: block;
+	margin-bottom: 8px;
+}
+.item-header img {
+	display: block;
+	padding-top: 10px;
+}
+.description {
+	width: 200px; 
+	color: #666; 
+	padding-top: 10px;
+	line-height: 15px;
+}
+.right-table {
+	padding-left: 280px;
+}
+.right-table.more {
+	padding-top: 20px;
+	padding-right: 30px;
+}
+.right-table.no-pics span {
+	display: block;
+	padding-top: 8px;
+}
+.more img {
+	float: left; 
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+.item-box {
+	width: 165px; 
+	float: left;
+	border-left: solid 1px #eee;
+	padding-left: 14px;
+	padding-bottom: 6px;
+}
+.item-box *, h3 {
+	font: normal 20px ipad, verdana;
+}
+.item-box img {
+	margin: 12px 0;
+	display: block;
+}
+.clearer {
+	clear: left; 
+	padding-bottom: 36px;
+}
+.footer {
+	color: #666; 
+	padding: 30px 40px !important;
+}
